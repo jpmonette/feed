@@ -1,0 +1,6 @@
+{
+	"name":			"Feed",
+	"version":		"0.1.0",
+	"description": 	"Feed Wrapper. Simplest content syndication wrapper for Atom and RSS 2.0.",
+	"main": 		"lib/feed.js"
+}
