@@ -17,28 +17,28 @@ var Feed = require('feed');
 To insert the data you want to syndicate:
 
 ```js
-	var feed = new Feed({
-		title:			'My Blog Name',
-		link:			'http://example.com/',
-		description:	'This is my blog description'
-	});
+var feed = new Feed({
+	title:			'My Blog Name',
+	link:			'http://example.com/',
+	description:	'This is my blog description'
+});
 ```
 
 To insert every posts you want to (as many as you want), use the function `item` as followed:
 
 ```js
-	for(post in posts) {
-		feed.item({
-			title:			post.title,
-			link:			post.url,
-			description:	post.description,
-			date:			posts.date
-		});
-	}
+for(post in posts) {
+	feed.item({
+		title:			post.title,
+		link:			post.url,
+		description:	post.description,
+		date:			posts.date
+	});
+}
 ```
 
 To output a RSS 2.0 feed:
 
 ```js
-	feed.render('rss-2.0');
+feed.render('rss-2.0');
 ```

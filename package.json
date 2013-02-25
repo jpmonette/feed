@@ -1,6 +1,6 @@
 {
 	"name":			"feed",
-	"version":		"0.1.1",
+	"version":		"0.1.2",
 	"description": 	"Feed is the simplest content syndication wrapper for Atom and RSS 2.0.",
 	"homepage": 	"https://github.com/jpmonette/feed",
 	"author":		"Jean-Philippe Monette",
