@@ -1,6 +1,13 @@
 {
-	"name":			"Feed",
+	"name":			"feed",
 	"version":		"0.1.0",
 	"description": 	"Feed Wrapper. Simplest content syndication wrapper for Atom and RSS 2.0.",
-	"main": 		"lib/feed.js"
+	"author":		"Jean-Philippe Monette",
+	"main": 		"lib/feed.js",
+	"dependencies": {
+		"xml": ">= 0.0.5"
+	},
+	"engines": {
+		"node": ">=0.4.0"
+	}
 }
