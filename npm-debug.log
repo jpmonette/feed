@@ -1,0 +1,34 @@
+0 info it worked if it ends with ok
+1 verbose cli [ 'C:\\Program Files\\nodejs\\\\node.exe',
+1 verbose cli   'C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js',
+1 verbose cli   'publish',
+1 verbose cli   './' ]
+2 info using npm@1.1.69
+3 info using node@v0.8.16
+4 verbose node symlink C:\Program Files\nodejs\\node.exe
+5 verbose publish [ './' ]
+6 verbose read json W:\sandbox\rss\feed\package.json
+7 verbose cache add [ './', null ]
+8 silly cache add name=undefined spec="./" args=["./",null]
+9 verbose parsed url { pathname: './', path: './', href: './' }
+10 silly lockFile 0ee6c175- ./
+11 verbose lock ./ C:\Users\Jean-Philippe\AppData\Roaming\npm-cache\0ee6c175-.lock
+12 verbose read json package.json
+13 silly lockFile 0ee6c175- ./
+14 error addLocal Could not install ./
+15 error Failed to parse json
+15 error Unexpected token }
+16 error File: package.json
+17 error Failed to parse package.json data.
+17 error package.json must be actual JSON, not just JavaScript.
+17 error
+17 error This is not a bug in npm.
+17 error Tell the package author to fix their package.json file. JSON.parse
+18 error System Windows_NT 6.1.7601
+19 error command "C:\\Program Files\\nodejs\\\\node.exe" "C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js" "publish" "./"
+20 error cwd W:\sandbox\rss\feed
+21 error node -v v0.8.16
+22 error npm -v 1.1.69
+23 error file package.json
+24 error code EJSONPARSE
+25 verbose exit [ 1, true ]
