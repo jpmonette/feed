@@ -2,19 +2,24 @@
 
 **Feed for Node.js** is the simplest content syndication wrapper, letting you generate Atom 1.0 and RSS 2.0 feeds in no time!
 
-## Install
+## Installation
 
     $ npm install feed
 
-## Examples
+## Features
 
-First, you have to add the module:
+* Pure JavaScript
+* Support for Atom 1.0 and RSS 2.0
+
+## Quick Start
+
+First, add the module:
 
 ```js
 var Feed = require('feed');
 ```
 
-To insert the data you want to syndicate:
+Insert feed-specific information:
 
 ```js
 var feed = new Feed({
@@ -32,7 +37,7 @@ var feed = new Feed({
 });
 ```
 
-To insert every posts you want to (as many as you want), use the function `item` as followed:
+Insert items using the item function:
 
 ```js
 for(var key in posts) {
@@ -45,13 +50,13 @@ for(var key in posts) {
 }
 ```
 
-To output a RSS 2.0 feed:
+Output a RSS 2.0 feed:
 
 ```js
 feed.render('rss-2.0');
 ```
 
-To output an Atom 1.0 feed:
+Output an Atom 1.0 feed:
 
 ```js
 feed.render('atom-1.0');
