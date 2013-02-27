@@ -1,6 +1,6 @@
 # Feed for Node.js
 
-**Feed for Node.js** is a simple content syndication wrapper, letting you generate painlessly some Atom 1.0 and RSS 2.0 feeds!
+**Feed for Node.js** is the simplest content syndication wrapper, letting you generate Atom 1.0 and RSS 2.0 feeds in no time!
 
 ## Install
 
@@ -54,7 +54,7 @@ feed.render('rss-2.0');
 To output an Atom 1.0 feed:
 
 ```js
-feed.render('atom-2.0');
+feed.render('atom-1.0');
 ```
 
 Yes, it's that simple :)!
