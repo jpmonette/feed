@@ -35,12 +35,12 @@ var feed = new Feed({
 To insert every posts you want to (as many as you want), use the function `item` as followed:
 
 ```js
-for(post in posts) {
+for(var key in posts) {
     feed.item({
-        title:          post.title,
-        link:           post.url,
-        description:    post.description,
-        date:           posts.date
+        title:          posts[key].title,
+        link:           posts[key].url,
+        description:    posts[key].description,
+        date:           posts[key].date
     });
 }
 ```
