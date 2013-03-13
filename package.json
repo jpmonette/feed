@@ -1,34 +1,39 @@
 {
 	"name":			"feed",
-	"version":		"0.1.3",
-	"description": 	"Feed is the simplest content syndication wrapper, letting you generate Atom 1.0 and RSS 2.0 feeds in no time!",
-	"homepage": 	"https://github.com/jpmonette/feed",
-	"author":		"Jean-Philippe Monette",
+	"version":		"0.2.0",
+	"description": 	"Feed is a RSS and Atom feed generator for Node.js, making content syndication simple, intuitive and performant!",
+	"homepage": 	"http://projets.jpmonette.net/en/feed",
+	"author":		"Jean-Philippe Monette <contact@jpmonette.net>",
+
+	"main": "lib/feed.js",
 
 	"keywords": [
-		"xml",
 		"rss",
 		"atom",
 		"feed",
-		"syndication"
+		"syndication",
+		"xml",
+		"wrapper",
+		"blog"
 	],
-
-	"bugs": {
-		"url":		"https://github.com/jpmonette/feed/issues"
-	},
-
-	"main": 		"lib/feed.js",
 	
 	"dependencies": {
 		"xml": 		">= 0.0.5"
 	},
+
 	"engines": {
 		"node": ">=0.4.0"
 	},
 
-	"repository":
-	{
+	"bugs": {
+		"url":	"https://github.com/jpmonette/feed/issues"
+	},
+
+	"os" :[],
+	"cpu" : [],
+
+	"repository": {
 		"type": "git",
-		"url": "https://github.com/jpmonette/feed"
+		"url": 	"https://github.com/jpmonette/feed.git"
 	}
 }
