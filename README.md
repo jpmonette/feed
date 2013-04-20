@@ -48,10 +48,28 @@ for(var key in posts) {
         title:          posts[key].title,
         link:           posts[key].url,
         description:    posts[key].description,
+        author: [
+            {
+                name:   'Jane Doe',
+                email:  'janedoe@example.com',
+                link:   'https://example.com/janedoe'
+            },
+            {
+                name:   'Joe Smith',
+                email:  'joesmith@example.com',
+                link:   'https://example.com/joesmith'
+            }
+        ],
         date:           posts[key].date,
         image:          posts[key].image
     });
 }
+```
+
+Insert categories using:
+
+```
+feed.category('Technologie');
 ```
 
 Output a RSS 2.0 feed:
