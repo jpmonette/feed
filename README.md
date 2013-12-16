@@ -60,6 +60,18 @@ for(var key in posts) {
                 link:   'https://example.com/joesmith'
             }
         ],
+        contributor: [
+            {
+                name:   'Shawn Kemp',
+                email:  'shawnkemp@example.com',
+                link:   'https://example.com/shawnkemp'
+            },
+            {
+                name:   'Reggie Miller',
+                email:  'reggiemiller@example.com',
+                link:   'https://example.com/reggiemiller'
+            }
+        ],
         date:           posts[key].date,
         image:          posts[key].image
     });
@@ -69,7 +81,17 @@ for(var key in posts) {
 Insert categories using:
 
 ```
-feed.category('Technologie');
+feed.addCategory('Technologie');
+```
+
+Insert contributors using:
+
+```
+feed.addContributor({
+        name:   'Johan Cruyff',
+        email:  'johancruyff@example.com',
+        link:   'https://example.com/johancruyff'
+    });
 ```
 
 Output a RSS 2.0 feed:
