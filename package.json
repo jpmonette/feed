@@ -4,6 +4,12 @@
     "description":  "Feed is a RSS and Atom feed generator for Node.js, making content syndication simple, intuitive and performant!",
     "homepage":     "http://projets.jpmonette.net/en/feed",
     "author":       "Jean-Philippe Monette <contact@jpmonette.net>",
+    "contributors": [
+    	{
+    		"name": "Pierre Galvez",
+    		"email": "contact@pierre-galvez.fr"
+	    }
+    ],
     "license":      "MIT",
 
     "main": "lib/feed.js",
