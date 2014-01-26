@@ -26,16 +26,17 @@ Insert feed-specific information:
 
 ```js
 var feed = new Feed({
-    title:          'Feed Title',
-    description:    'This is my personnal feed!',
-    link:           'http://example.com/',
-    image:          'http://example.com/image.png',
-    copyright:      'All rights reserved 2013, John Doe',
+    title:       'Feed Title',
+    description: 'This is my personnal feed!',
+    link:        'http://example.com/',
+    image:       'http://example.com/image.png',
+    copyright:   'All rights reserved 2013, John Doe',
+    updated:     new Date(2013, 06, 14),                // optional, default = today
     
     author: {
-        name:       'John Doe',
-        email:      'johndoe@example.com',
-        link:       'https://example.com/johndoe'
+        name:    'John Doe',
+        email:   'johndoe@example.com',
+        link:    'https://example.com/johndoe'
     }
 });
 ```
