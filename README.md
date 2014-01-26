@@ -88,10 +88,10 @@ Insert contributors using:
 
 ```
 feed.addContributor({
-        name:   'Johan Cruyff',
-        email:  'johancruyff@example.com',
-        link:   'https://example.com/johancruyff'
-    });
+    name:   'Johan Cruyff',
+    email:  'johancruyff@example.com',
+    link:   'https://example.com/johancruyff'
+});
 ```
 
 Output a RSS 2.0 feed:
