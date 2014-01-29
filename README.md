@@ -1,6 +1,5 @@
 # Feed for Node.js
-
-[![NPM](https://nodei.co/npm/feed.png?downloads=true)](https://npmjs.org/package/feed)
+[![NPM](https://nodei.co/npm/feed.png?downloads=true)](https://nodei.co/npm/feed/)
 
 > [Feed](http://projets.jpmonette.net/en/feed) is a *RSS 2.0* and *Atom 1.0* generator for **Node.js**, making content syndication simple, intuitive and performant!
 
