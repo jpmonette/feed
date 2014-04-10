@@ -45,7 +45,7 @@ Insert items using the item function:
 
 ```js
 for(var key in posts) {
-    feed.item({
+    feed.addItem({
         title:          posts[key].title,
         link:           posts[key].url,
         description:    posts[key].description,
