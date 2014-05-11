@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
     <title>Feed Title</title>
-    <link>http://example.com/</link>
+    <link href="http://example.com/"/>
     <updated>2013-07-14T07:00:00Z</updated>
+    <id>http://example.com/</id>
     <author>
         <name>John Doe</name>
         <email>johndoe@example.com</email>
