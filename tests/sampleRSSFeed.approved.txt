@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0">
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
         <title>Feed Title</title>
         <description>This is my personnal feed!</description>
@@ -14,6 +14,7 @@
         <copyright>All rights reserved 2013, John Doe</copyright>
         <generator>Feed for Node.js</generator>
         <category>Technologie</category>
+        <atom:link href="http://example.com/atom.xml" rel="self" type="application/rss+xml"/>
         <item>
             <title><![CDATA[Title A]]></title>
             <link>http://example.com/title-a</link>

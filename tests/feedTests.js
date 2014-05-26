@@ -5,6 +5,7 @@ var feed = new Feed({
     title: 'Feed Title',
     description: 'This is my personnal feed!',
     link: 'http://example.com/',
+    feed: 'http://example.com/atom.xml',
     image: 'http://example.com/image.png',
     copyright: 'All rights reserved 2013, John Doe',
     updated: new Date(2013, 06, 14),                // optional, default = today
