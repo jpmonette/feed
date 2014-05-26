@@ -15,7 +15,7 @@
     <logo>http://example.com/image.png</logo>
     <rights>All rights reserved 2013, John Doe</rights>
     <generator>Feed for Node.js</generator>
-    <category term="Technologie">
+    <category term="Technology">
     </category>
     <contributor>
         <name>Johan Cruyff</name>

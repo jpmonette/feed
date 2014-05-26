@@ -63,7 +63,7 @@ for (var key in posts) {
     });
 }
 
-feed.addCategory('Technologie');
+feed.addCategory('Technology');
 
 feed.addContributor({
     name: 'Johan Cruyff',
