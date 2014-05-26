@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>Feed Title</title>
+        <description>This is my personnal feed!</description>
+        <link>http://example.com/</link>
+        <lastBuildDate>Sun, 14 Jul 2013 07:00:00 GMT</lastBuildDate>
+        <docs>http://blogs.law.harvard.edu/tech/rss</docs>
+        <image>
+            <title>Feed Title</title>
+            <url>http://example.com/image.png</url>
+            <link>http://example.com/</link>
+        </image>
+        <copyright>All rights reserved 2013, John Doe</copyright>
+        <generator>Feed for Node.js</generator>
+        <category>Technology</category>
+        <atom:link href="http://example.com/atom.xml" rel="self" type="application/rss+xml"/>
+        <item>
+            <title><![CDATA[Title A]]></title>
+            <link>http://example.com/title-a</link>
+            <guid>http://example.com/title-a</guid>
+            <pubDate>Thu, 01 Feb 2001 08:00:00 GMT</pubDate>
+            <description><![CDATA[Title A description]]></description>
+            <author>
+                <name>Jane Doe</name>
+                <email>janedoe@example.com</email>
+                <link>https://example.com/janedoe</link>
+            </author>
+            <author>
+                <name>Joe Smith</name>
+                <email>joesmith@example.com</email>
+                <link>https://example.com/joesmith</link>
+            </author>
+            <enclosure url="/images/titelA.png">
+            </enclosure>
+        </item>
+    </channel>
+</rss>
