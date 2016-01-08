@@ -27,11 +27,13 @@ Insert feed-specific information:
 ```js
 var feed = new Feed({
     title:       'Feed Title',
-    description: 'This is my personnal feed!',
-    link:        'http://example.com/',
+    description: 'This is my personal feed!',
+    link:        'http://example.com/current',
+    via:        'http://example.com/10',
+    prevArchive:        'http://example.com/9',
     image:       'http://example.com/image.png',
     copyright:   'All rights reserved 2013, John Doe',
-    updated:     new Date(2013, 06, 14),                // optional, default = today
+    updated:     new Date(2015, 05, 17),                // optional, default = today
     
     author: {
         name:    'John Doe',
