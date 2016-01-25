@@ -12,6 +12,9 @@
   ],
   "license": "MIT",
   "main": "lib/feed.js",
+  "scripts": {
+    "test": "export NODE_ENV=test && mocha"
+  },
   "keywords": [
     "rss",
     "atom",
