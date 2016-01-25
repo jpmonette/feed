@@ -26,72 +26,66 @@ Insert feed-specific information:
 
 ```js
 var feed = new Feed({
-    title:       'Feed Title',
-    description: 'This is my personnal feed!',
-    link:        'http://example.com/',
-    image:       'http://example.com/image.png',
-    copyright:   'All rights reserved 2013, John Doe',
-    updated:     new Date(2013, 06, 14),                // optional, default = today
-    
-    author: {
-        name:    'John Doe',
-        email:   'johndoe@example.com',
-        link:    'https://example.com/johndoe'
-    }
+  title: 'Feed Title',
+  description: 'This is my personnal feed!',
+  link: 'http://example.com/',
+  image: 'http://example.com/image.png',
+  copyright: 'All rights reserved 2013, John Doe',
+  updated: new Date(2013, 06, 14), // optional, default = today
+
+  author: {
+    name: 'John Doe',
+    email: 'johndoe@example.com',
+    link: 'https://example.com/johndoe'
+  }
 });
 ```
 
 Insert items using the item function:
 
 ```js
-for(var key in posts) {
-    feed.addItem({
-        title:          posts[key].title,
-        link:           posts[key].url,
-        description:    posts[key].description,
-        author: [
-            {
-                name:   'Jane Doe',
-                email:  'janedoe@example.com',
-                link:   'https://example.com/janedoe'
-            },
-            {
-                name:   'Joe Smith',
-                email:  'joesmith@example.com',
-                link:   'https://example.com/joesmith'
-            }
-        ],
-        contributor: [
-            {
-                name:   'Shawn Kemp',
-                email:  'shawnkemp@example.com',
-                link:   'https://example.com/shawnkemp'
-            },
-            {
-                name:   'Reggie Miller',
-                email:  'reggiemiller@example.com',
-                link:   'https://example.com/reggiemiller'
-            }
-        ],
-        date:           posts[key].date,
-        image:          posts[key].image
-    });
+for (var key in posts) {
+  feed.addItem({
+    title: posts[key].title,
+    link: posts[key].url,
+    description: posts[key].description,
+    author: [{
+      name: 'Jane Doe',
+      email: 'janedoe@example.com',
+      link: 'https://example.com/janedoe'
+    }, {
+      name: 'Joe Smith',
+      email: 'joesmith@example.com',
+      link: 'https://example.com/joesmith'
+    }],
+    contributor: [{
+      name: 'Shawn Kemp',
+      email: 'shawnkemp@example.com',
+      link: 'https://example.com/shawnkemp'
+    }, {
+      name: 'Reggie Miller',
+      email: 'reggiemiller@example.com',
+      link: 'https://example.com/reggiemiller'
+    }],
+    date: posts[key].date,
+    image: posts[key].image
+  });
 }
 ```
 
 Insert categories using:
 
-```
+```js
 feed.addCategory('Technologie');
 ```
 
 Insert contributors using:
 
-```
+```js
 feed.addContributor({
-    name:   'Johan Cruyff',
-    email:  'johancruyff@example.com',
-    link:   'https://example.com/johancruyff'
+  name: 'Johan Cruyff',
+  email: 'johancruyff@example.com',
+  link: 'https://example.com/johancruyff'
 });
 ```
 

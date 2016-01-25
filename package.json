@@ -1,46 +1,39 @@
 {
-    "name":         "feed",
-    "version":      "0.3.0",
-    "description":  "Feed is a RSS and Atom feed generator for Node.js, making content syndication simple, intuitive and performant!",
-    "homepage":     "http://projets.jpmonette.net/en/feed",
-    "author":       "Jean-Philippe Monette <contact@jpmonette.net>",
-    "contributors": [
-    	{
-    		"name": "Pierre Galvez",
-    		"email": "contact@pierre-galvez.fr"
-	    }
-    ],
-    "license":      "MIT",
-
-    "main": "lib/feed.js",
-
-    "keywords": [
-        "rss",
-        "atom",
-        "feed",
-        "syndication",
-        "xml",
-        "wrapper",
-        "blog"
-    ],
-    
-    "dependencies": {
-        "xml":      ">= 0.0.5"
-    },
-
-    "engines": {
-        "node": ">=0.4.0"
-    },
-
-    "bugs": {
-        "url":  "https://github.com/jpmonette/feed/issues"
-    },
-
-    "os" :[],
-    "cpu" : [],
-
-    "repository": {
-        "type": "git",
-        "url":  "https://github.com/jpmonette/feed.git"
+  "name": "feed",
+  "version": "0.3.0",
+  "description": "Feed is a RSS and Atom feed generator for Node.js, making content syndication simple, intuitive and performant!",
+  "homepage": "http://projets.jpmonette.net/en/feed",
+  "author": "Jean-Philippe Monette <contact@jpmonette.net>",
+  "contributors": [
+    {
+      "name": "Pierre Galvez",
+      "email": "contact@pierre-galvez.fr"
     }
+  ],
+  "license": "MIT",
+  "main": "lib/feed.js",
+  "keywords": [
+    "rss",
+    "atom",
+    "feed",
+    "syndication",
+    "xml",
+    "wrapper",
+    "blog"
+  ],
+  "dependencies": {
+    "xml": ">= 0.0.5"
+  },
+  "engines": {
+    "node": ">=0.4.0"
+  },
+  "bugs": {
+    "url": "https://github.com/jpmonette/feed/issues"
+  },
+  "os": [],
+  "cpu": [],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jpmonette/feed.git"
+  }
 }
