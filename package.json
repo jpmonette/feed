@@ -27,6 +27,9 @@
   "dependencies": {
     "xml": ">= 0.0.5"
   },
+  "devDependencies": {
+    "mocha": "*",
+  }
   "engines": {
     "node": ">=0.4.0"
   },
