@@ -2,7 +2,8 @@
 
 > [Feed](http://projets.jpmonette.net/en/feed) is a *RSS 2.0* and *Atom 1.0* generator for **Node.js**, making content syndication simple and intuitive!
 
-[![Build Status](https://travis-ci.org/jpmonette/feed.svg?branch=master)](https://travis-ci.org/jpmonette/feed)
+[![Build Status](https://travis-ci.org/jpmonette/feed.svg?branch=master)](https://travis-ci.org/jpmonette/feed) 
+[![Coverage Status](https://coveralls.io/repos/github/jpmonette/feed/badge.svg?branch=master)](https://coveralls.io/github/jpmonette/feed?branch=master)
 
 ## Installation
 
