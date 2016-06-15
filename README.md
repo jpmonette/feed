@@ -31,6 +31,7 @@ Insert feed-specific information:
 var feed = new Feed({
   title: 'Feed Title',
   description: 'This is my personnal feed!',
+  id: 'http://example.com/',
   link: 'http://example.com/',
   image: 'http://example.com/image.png',
   copyright: 'All rights reserved 2013, John Doe',
@@ -50,6 +51,7 @@ Insert items using the item function:
 for (var key in posts) {
   feed.addItem({
     title: posts[key].title,
+    id: posts[key].url,
     link: posts[key].url,
     description: posts[key].description,
     author: [{
