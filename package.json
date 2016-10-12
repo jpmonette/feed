@@ -39,8 +39,6 @@
   "bugs": {
     "url": "https://github.com/jpmonette/feed/issues"
   },
-  "os": [],
-  "cpu": [],
   "repository": {
     "type": "git",
     "url": "https://github.com/jpmonette/feed.git"
