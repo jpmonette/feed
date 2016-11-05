@@ -11,7 +11,7 @@ describe('RSS 2.0', function () {
       link: 'http://example.com/',
       image: 'http://example.com/image.png',
       copyright: 'All rights reserved 2013, John Doe',
-      updated: new Date(2013, 06, 14), // optional, default = today
+      updated: new Date('Sat, 13 Jul 2013 23:00:00 GMT'), // optional, default = today
 
       author: {
         name: 'John Doe',
