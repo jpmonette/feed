@@ -1,5 +1,6 @@
 var assert = require("assert"),
-  Feed = require('../lib/feed.js')
+  Feed = require('../lib/feed.js'),
+  fs = require('fs')
 
 describe('RSS 2.0', function () {
 
@@ -45,4 +46,27 @@ describe('RSS 2.0', function () {
     assert.equal(data, output);
   });
 
+});
+
+
+describe('atom_1_0', function () {
+
+  it('checking insertion of custom namespaces', function () {
+    var newfeed = new Feed({
+        title: 'Feed Title',
+        id: 'feedid',
+        link: 'http://example.com/',
+        feed: 'http://example.com/1087',
+        description: 'This feed is an example feed',
+        pubDate: new Date('Sat, 13 Jul 2013 23:00:00 GMT')
+    });
+    newfeed.addNS('xml:lang', 'en-US');
+    newfeed.addNS('xmlns:max', 'http://www.memezone.com/memiki/atom/extension');
+    newfeed.addNS('xml:base', 'http://www.uniprot.org/');
+
+    var output = '<?xml version="1.0" encoding="utf-8"?>\n';
+    output += '<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en-US" xmlns:max="http://www.memezone.com/memiki/atom/extension" xml:base="http://www.uniprot.org/">\n';
+
+    assert(newfeed.render('atom-1.0').startsWith(output));
+  });
 });
