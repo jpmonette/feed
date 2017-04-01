@@ -22,7 +22,9 @@
   "jest": {
     "verbose": true,
     "collectCoverage": true,
-    "collectCoverageFrom" : ["**/src/*.{js}"],
+    "collectCoverageFrom": [
+      "**/src/*.{js}"
+    ],
     "testMatch": [
       "**/*.spec.js"
     ]
@@ -42,6 +44,7 @@
   "devDependencies": {
     "babel-cli": "^6.24.0",
     "babel-preset-latest": "^6.24.0",
+    "coveralls": "^2.13.0",
     "jest": "^19.0.2"
   },
   "engines": {
