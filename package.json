@@ -16,8 +16,8 @@
     "build": "babel -d lib/ src/ --ignore **/*.spec.js -s",
     "prebuild": "rm -rf lib/ && mkdir lib",
     "prepublish": "npm run prebuild",
-    "test": "export NODE_ENV=test && ./node_modules/jest/bin/jest.js",
-    "test-travis": "export NODE_ENV=test && ./node_modules/jest/bin/jest.js"
+    "test": "export NODE_ENV=test && jest",
+    "test-travis": "export NODE_ENV=test && jest"
   },
   "jest": {
     "verbose": true,
