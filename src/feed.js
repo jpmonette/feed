@@ -25,6 +25,7 @@ class Feed {
   }
 
   render(format) {
+    console.warn('DEPRECATED: use atom1() or rss2() instead of render()');
     if (format === 'atom-1.0') {
       return this.atom1();
     } else {
@@ -39,7 +40,6 @@ class Feed {
       { _attr: { xmlns: 'http://www.w3.org/2005/Atom' } },
       { id: options.id },
       { title: options.title },
-      { link: options.link },
       { updated: this.ISODateString(options.updated) },
       { generator: GENERATOR },
     ]
@@ -72,7 +72,7 @@ class Feed {
 
     // link (rel="self")
     if(options.feed) {
-      feed.push({ link: { _attr: { rel: 'self', href: options.feed }}});
+      feed.push({ "link": { _attr: { rel: 'self', href: options.feed }}});
     }
 
     // link (rel="hub")
@@ -97,7 +97,7 @@ class Feed {
     }
 
     this.categories.forEach(category => {
-      feed.push({ category: [{ _attr: { term: categories[i] } }] });
+      feed.push({ category: [{ _attr: { term: category } }] });
     })
       
     this.contributors.forEach(item => {
@@ -115,7 +115,7 @@ class Feed {
       if(link) {
         contributor.push({ uri: link });
       }
-  
+
       feed.push({ contributor });
     })
     
@@ -149,10 +149,23 @@ class Feed {
 
       // entry author(s)
       if(Array.isArray(item.author)) {
-        item.author.forEach(author => {
-          if (author.email) {
-            entry.push({ author: author.email });
+        item.author.forEach(oneAuthor => {
+          const { name, email, link } = oneAuthor
+          let author = [];
+      
+          if(name) {
+            author.push({ name });
           }
+      
+          if(email) {
+            author.push({ email });
+          }
+      
+          if(link) {
+            author.push({ uri: link });
+          }
+
+          entry.push({ author });
         })
       }
 
@@ -207,20 +220,22 @@ class Feed {
   }
 
   rss2() {
-    let channel = []
     const { options } = this
     let isAtom = false
     let isContent = false
 
-    let rss = [
-      { _attr: { version: '2.0' } },
-      { channel },
+    let channel = [
       { title: options.title },
       { link: options.link },
       { description: options.description },
-      { lastBuildDate: this.ISODateString(options.updated) },
+      { lastBuildDate: (options.updated ? options.updated.toUTCString() : new Date().toUTCString()) },
       { docs: 'http://blogs.law.harvard.edu/tech/rss'},
       { generator: GENERATOR },
+    ]
+
+    let rss = [
+      { _attr: { version: '2.0' } },
+      { channel },
     ]
 
     let root = [{ rss }]
@@ -306,7 +321,7 @@ class Feed {
 
       if(entry.guid) {
         item.push({ guid: entry.guid });
-      } else if (item.link) {
+      } else if (entry.link) {
         item.push({ guid: entry.link });
       }
 
@@ -327,23 +342,13 @@ class Feed {
        * http://cyber.law.harvard.edu/rss/rss.html#ltauthorgtSubelementOfLtitemgt
        */
       if(Array.isArray(entry.author)) {
-        entry.author.forEach(singleAuthor => {
-          const { name, email, link } = singleAuthor
-          var author = [];
-
-          if(name) {
-            author.push({ name });
+        entry.author.some(author => {
+          if (author.email && author.name) {
+            item.push({ author: author.email + ' (' + author.name + ')' })
+            return true
+          } else {
+            return false
           }
-
-          if(email) {
-            author.push({ email });
-          }
-
-          if(link) {
-            author.push({ link });
-          }
-
-          item.push({ author });
         })
       }
 
@@ -366,13 +371,16 @@ class Feed {
   }
 
   ISODateString(d) {
-    function pad(n){return n<10 ? '0'+n : n}
-    return d.getUTCFullYear()+'-'
-      + pad(d.getUTCMonth()+1)+'-'
-      + pad(d.getUTCDate())+'T'
-      + pad(d.getUTCHours())+':'
-      + pad(d.getUTCMinutes())+':'
-      + pad(d.getUTCSeconds())+'Z'
+    function pad(n) {
+      return n<10 ? '0'+n : n
+    }
+
+    return d.getUTCFullYear() + '-'
+      + pad(d.getUTCMonth() + 1) + '-'
+      + pad(d.getUTCDate()) + 'T'
+      + pad(d.getUTCHours()) + ':'
+      + pad(d.getUTCMinutes()) + ':'
+      + pad(d.getUTCSeconds()) + 'Z'
   }
 
 }
