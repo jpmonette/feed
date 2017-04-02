@@ -1,6 +1,6 @@
 {
   "name": "feed",
-  "version": "0.3.1",
+  "version": "1.0.0",
   "description": "Feed is a RSS and Atom feed generator for Node.js, making content syndication simple and intuitive!",
   "homepage": "http://projets.jpmonette.net/en/feed",
   "author": "Jean-Philippe Monette <contact@jpmonette.net>",
@@ -13,8 +13,21 @@
   "license": "MIT",
   "main": "lib/feed.js",
   "scripts": {
-    "test": "export NODE_ENV=test && mocha",
-    "test-travis": "export NODE_ENV=test && ./node_modules/istanbul/lib/cli.js cover ./node_modules/mocha/bin/_mocha -- -R spec ./test/*"
+    "build": "babel -d lib/ src/ --ignore **/*.spec.js -s",
+    "prebuild": "rm -rf lib/ && mkdir lib",
+    "prepublish": "npm run prebuild",
+    "test": "export NODE_ENV=test && jest",
+    "test-travis": "export NODE_ENV=test && jest"
+  },
+  "jest": {
+    "verbose": true,
+    "collectCoverage": true,
+    "collectCoverageFrom": [
+      "**/src/*.{js}"
+    ],
+    "testMatch": [
+      "**/*.spec.js"
+    ]
   },
   "keywords": [
     "rss",
@@ -29,9 +42,10 @@
     "xml": ">= 0.0.5"
   },
   "devDependencies": {
-    "coveralls": "2.10.0",
-    "istanbul": "0.3.5",
-    "mocha": "*"
+    "babel-cli": "^6.24.0",
+    "babel-preset-latest": "^6.24.0",
+    "coveralls": "^2.13.0",
+    "jest": "^19.0.2"
   },
   "engines": {
     "node": ">=0.4.0"

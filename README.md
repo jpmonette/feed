@@ -97,13 +97,13 @@ feed.addContributor({
 Output a RSS 2.0 feed:
 
 ```js
-feed.render('rss-2.0');
+feed.rss2();
 ```
 
 Output an Atom 1.0 feed:
 
 ```js
-feed.render('atom-1.0');
+feed.atom1();
 ```
 
 Yes, it's that simple :)!
