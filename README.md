@@ -22,13 +22,13 @@ $ npm install feed
 First, add the module:
 
 ```js
-var Feed = require('feed');
+const Feed = require('feed')
 ```
 
 Insert feed-specific information:
 
 ```js
-var feed = new Feed({
+let feed = new Feed({
   title: 'Feed Title',
   description: 'This is my personnal feed!',
   id: 'http://example.com/',
@@ -42,18 +42,18 @@ var feed = new Feed({
     email: 'johndoe@example.com',
     link: 'https://example.com/johndoe'
   }
-});
+})
 ```
 
 Insert items using the item function:
 
 ```js
-for (var key in posts) {
+posts.forEach(post => {
   feed.addItem({
-    title: posts[key].title,
-    id: posts[key].url,
-    link: posts[key].url,
-    description: posts[key].description,
+    title: post.title,
+    id: post.url,
+    link: post.url,
+    description: post.description,
     author: [{
       name: 'Jane Doe',
       email: 'janedoe@example.com',
@@ -72,16 +72,16 @@ for (var key in posts) {
       email: 'reggiemiller@example.com',
       link: 'https://example.com/reggiemiller'
     }],
-    date: posts[key].date,
-    image: posts[key].image
-  });
-}
+    date: post.date,
+    image: post.image
+  })
+})
 ```
 
 Insert categories using:
 
 ```js
-feed.addCategory('Technologie');
+feed.addCategory('Technologie')
 ```
 
 Insert contributors using:
@@ -91,19 +91,19 @@ feed.addContributor({
   name: 'Johan Cruyff',
   email: 'johancruyff@example.com',
   link: 'https://example.com/johancruyff'
-});
+})
 ```
 
 Output a RSS 2.0 feed:
 
 ```js
-feed.rss2();
+feed.rss2()
 ```
 
 Output an Atom 1.0 feed:
 
 ```js
-feed.atom1();
+feed.atom1()
 ```
 
 Yes, it's that simple :)!
