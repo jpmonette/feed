@@ -40,7 +40,7 @@ class Feed {
       { _attr: { xmlns: 'http://www.w3.org/2005/Atom' } },
       { id: options.id },
       { title: options.title },
-      { updated: this.ISODateString(options.updated) },
+      { updated: (options.updated ? this.ISODateString(options.updated) : this.ISODateString(new Date())) },
       { generator: GENERATOR },
     ]
 
