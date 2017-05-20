@@ -1,4 +1,5 @@
 import xml from 'xml'
+import path from 'path'
 
 const GENERATOR = 'Feed for Node.js'
 const DOCTYPE = '<?xml version="1.0" encoding="utf-8"?>\n'
@@ -353,7 +354,8 @@ class Feed {
       }
 
       if(entry.image) {
-        item.push({ enclosure: [{ _attr: { url: entry.image } }] });
+          var imgExt = path.extname(entry.image).substr(1);
+          item.push({ enclosure: [{ _attr: { url: entry.image, type: 'image/'+imgExt } }] });
       }
 
       channel.push({ item });
