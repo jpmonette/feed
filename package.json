@@ -38,7 +38,6 @@
     "blog"
   ],
   "dependencies": {
-    "mime-types": "^2.1.15",
     "xml": ">= 0.0.5"
   },
   "devDependencies": {
