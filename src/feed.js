@@ -1,4 +1,5 @@
 import xml from 'xml'
+import mime from 'mime-types'
 
 const GENERATOR = 'Feed for Node.js'
 const DOCTYPE = '<?xml version="1.0" encoding="utf-8"?>\n'
@@ -352,8 +353,13 @@ class Feed {
         })
       }
 
-      if(item.image) {
-        item.push({ enclosure: [{ _attr: { url: entry.image } }] });
+      if(entry.image) {
+        let attr = { url: entry.image };
+        let contentType = mime.lookup(entry.image);
+        if(contentType && contentType.indexOf('image/')==0) {
+          attr.type = contentType;
+        }
+        item.push({ enclosure: [{ _attr: attr }] });
       }
 
       channel.push({ item });
