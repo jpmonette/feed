@@ -12,6 +12,7 @@ describe('RSS 2.0', function () {
       image: 'http://example.com/image.png',
       copyright: 'All rights reserved 2013, John Doe',
       updated: new Date('Sat, 13 Jul 2013 23:00:00 GMT'), // optional, default = today
+      generator: 'awesome', // optional, default = 'Feed for Node.js'
 
       author: {
         name: 'John Doe',
@@ -36,7 +37,7 @@ describe('RSS 2.0', function () {
     output += '            <link>http://example.com/</link>\n';
     output += '        </image>\n';
     output += '        <copyright>All rights reserved 2013, John Doe</copyright>\n';
-    output += '        <generator>Feed for Node.js</generator>\n';
+    output += '        <generator>awesome</generator>\n';
     output += '    </channel>\n';
     output += '</rss>';
 
