@@ -147,3 +147,33 @@ test('it should generate an Atom 1.0 feed', () => {
 
   expect(actual).toBe(expected)
 });
+
+test('it should generate a JSON v1 Feed', () => {
+    let expected = {
+        "author": {
+            "name": "John Doe",
+            "url": "https://example.com/johndoe"
+        },
+        "description": "This is my personnal feed!",
+        "home_page_url": "http://example.com/",
+        "icon": "http://example.com/image.png",
+        "items": [{
+            "author": {
+                "name": "Jane Doe",
+                "url": "https://example.com/janedoe"
+            },
+            "date_modified": "2013-07-13T23:00:00Z",
+            "id": "https://example.com/hello-world",
+            "image": "https://example.com/hello-world.jpg",
+            "summary": "This is an article about Hello World.",
+            "title": "Hello World",
+            "url": "https://example.com/hello-world"
+        }],
+        "title": "Feed Title",
+        "version": "https://jsonfeed.org/version/1"
+    };
+
+    let actual = JSON.parse(feed.json1());
+
+    expect(actual).toEqual(expected)
+});
