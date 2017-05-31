@@ -36,6 +36,7 @@ let feed = new Feed({
   image: 'http://example.com/image.png',
   copyright: 'All rights reserved 2013, John Doe',
   updated: new Date(2013, 06, 14), // optional, default = today
+  generator: 'awesome', // optional, default = 'Feed for Node.js'
 
   author: {
     name: 'John Doe',

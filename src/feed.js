@@ -41,7 +41,7 @@ class Feed {
       { id: options.id },
       { title: options.title },
       { updated: (options.updated ? this.ISODateString(options.updated) : this.ISODateString(new Date())) },
-      { generator: GENERATOR },
+      { generator: options.generator || GENERATOR },
     ]
 
     let root = [{ feed }]
@@ -230,7 +230,7 @@ class Feed {
       { description: options.description },
       { lastBuildDate: (options.updated ? options.updated.toUTCString() : new Date().toUTCString()) },
       { docs: 'http://blogs.law.harvard.edu/tech/rss'},
-      { generator: GENERATOR },
+      { generator: options.generator || GENERATOR },
     ]
 
     let rss = [

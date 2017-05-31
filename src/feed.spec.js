@@ -11,6 +11,7 @@ let feed = new Feed({
   image: 'http://example.com/image.png',
   copyright: 'All rights reserved 2013, John Doe',
   updated: sampleDate, // optional, default = today
+  generator: 'awesome', // optional, default = 'Feed for Node.js'
 
   author: {
     name: 'John Doe',
@@ -63,7 +64,7 @@ test('it should generate an RSS 2.0 feed', () => {
         <description>This is my personnal feed!</description>
         <lastBuildDate>Sat, 13 Jul 2013 23:00:00 GMT</lastBuildDate>
         <docs>http://blogs.law.harvard.edu/tech/rss</docs>
-        <generator>Feed for Node.js</generator>
+        <generator>awesome</generator>
         <image>
             <title>Feed Title</title>
             <url>http://example.com/image.png</url>
@@ -94,7 +95,7 @@ test('it should generate an Atom 1.0 feed', () => {
     <id>http://example.com/</id>
     <title>Feed Title</title>
     <updated>2013-07-13T23:00:00Z</updated>
-    <generator>Feed for Node.js</generator>
+    <generator>awesome</generator>
     <author>
         <name>John Doe</name>
         <email>johndoe@example.com</email>
