@@ -38,13 +38,13 @@
     "blog"
   ],
   "dependencies": {
-    "xml": ">= 0.0.5"
+    "xml": "^1.0.1"
   },
   "devDependencies": {
-    "babel-cli": "^6.24.0",
-    "babel-preset-latest": "^6.24.0",
-    "coveralls": "^2.13.0",
-    "jest": "^19.0.2"
+    "babel-cli": "^6.24.1",
+    "babel-preset-env": "^1.5.1",
+    "coveralls": "^2.13.1",
+    "jest": "^20.0.4"
   },
   "engines": {
     "node": ">=0.4.0"
