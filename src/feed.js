@@ -71,8 +71,9 @@ class Feed {
     }
 
     // link (rel="self")
-    if(options.feed) {
-      feed.push({ "link": { _attr: { rel: 'self', href: options.feed }}});
+    const atomLink = options.feed || (options.feedLinks && options.feedLinks.atom);
+    if(atomLink) {
+      feed.push({ "link": { _attr: { rel: 'self', href: atomLink }}});
     }
 
     // link (rel="hub")
@@ -83,13 +84,17 @@ class Feed {
     /**************************************************************************
      * "feed" node: optional elements
      *************************************************************************/
-    
+
     if(options.description) {
       feed.push({ subtitle: options.description });
     }
 
     if(options.image) {
       feed.push({ logo: options.image });
+    }
+
+    if(options.favicon) {
+      feed.push({ icon: options.favicon });
     }
 
     if(options.copyright) {
@@ -99,35 +104,35 @@ class Feed {
     this.categories.forEach(category => {
       feed.push({ category: [{ _attr: { term: category } }] });
     })
-      
+
     this.contributors.forEach(item => {
       const { name, email, link } = item
       let contributor = [];
-  
+
       if(name) {
         contributor.push({ name });
       }
-  
+
       if(email) {
         contributor.push({ email });
       }
-  
+
       if(link) {
         contributor.push({ uri: link });
       }
 
       feed.push({ contributor });
     })
-    
+
     // icon
 
     /**************************************************************************
      * "entry" nodes
      *************************************************************************/
     this.items.forEach(item => {
-      // 
+      //
       // entry: required elements
-      // 
+      //
 
       let entry = [
         { title: { _attr: { type: 'html' }, _cdata: item.title }},
@@ -136,9 +141,9 @@ class Feed {
         { updated: this.ISODateString(item.date) }
       ]
 
-      // 
+      //
       // entry: recommended elements
-      // 
+      //
       if(item.description) {
         entry.push({ summary: { _attr: { type: 'html' }, _cdata: item.description }});
       }
@@ -152,15 +157,15 @@ class Feed {
         item.author.forEach(oneAuthor => {
           const { name, email, link } = oneAuthor
           let author = [];
-      
+
           if(name) {
             author.push({ name });
           }
-      
+
           if(email) {
             author.push({ email });
           }
-      
+
           if(link) {
             author.push({ uri: link });
           }
@@ -175,7 +180,7 @@ class Feed {
 
       //
       // entry: optional elements
-      // 
+      //
 
       // category
 
@@ -184,19 +189,19 @@ class Feed {
         item.contributor.forEach(item => {
           const { name, email, link } = item
           let contributor = [];
-      
+
           if(name) {
             contributor.push({ name });
           }
-      
+
           if(email) {
             contributor.push({ email });
           }
-      
+
           if(link) {
             contributor.push({ uri: link });
           }
-      
+
           entry.push({ contributor });
         })
       }
@@ -216,7 +221,7 @@ class Feed {
       feed.push({ entry: entry });
     })
 
-    return DOCTYPE + xml(root, true);       
+    return DOCTYPE + xml(root, true);
   }
 
   rss2() {
@@ -261,7 +266,7 @@ class Feed {
     if(options.copyright) {
       channel.push({ copyright: options.copyright });
     }
-    
+
     /**
      * Channel Categories
      * http://cyber.law.harvard.edu/rss/rss.html#comments
@@ -274,20 +279,21 @@ class Feed {
      * Feed URL
      * http://validator.w3.org/feed/docs/warning/MissingAtomSelfLink.html
      */
-    if(options.feed) {
+    const atomLink = options.feed || (options.feedLinks && options.feedLinks.atom);
+    if(atomLink) {
       isAtom = true
 
       channel.push({
         "atom:link": {
           _attr: {
-            href: options.feed,
+            href: atomLink,
             rel: 'self',
             type: 'application/rss+xml',
           },
         },
       })
     }
-    
+
     /**
      * Hub for PubSubHubbub
      * https://code.google.com/p/pubsubhubbub/
@@ -368,6 +374,87 @@ class Feed {
     }
 
     return DOCTYPE + xml(root, true);
+  }
+
+  json1() {
+    const { options, items } = this
+    let feed = {
+      version: 'https://jsonfeed.org/version/1',
+      title: options.title,
+    };
+
+    if (options.link) {
+      feed.home_page_url = options.link;
+    }
+
+    if (options.feedLinks && options.feedLinks.json) {
+      feed.feed_url = options.feedLinks.json;
+    }
+
+    if (options.description) {
+      feed.description = options.description;
+    }
+
+
+    if (options.image) {
+      feed.icon = options.image;
+    }
+
+    if (options.author) {
+      feed.author = {};
+      if (options.author.name) {
+          feed.author.name = options.author.name;
+      }
+      if (options.author.link) {
+          feed.author.url = options.author.link;
+      }
+    }
+    feed.items = items.map(item => {
+      let feedItem = {
+        id: item.id,
+        // json_feed distinguishes between html and text content
+        // but since we only take a single type, we'll assume HTML
+        html_content: item.content,
+      }
+      if (item.link) {
+        feedItem.url = item.link;
+      }
+      if(item.title) {
+        feedItem.title = item.title;
+      }
+      if (item.description) {
+        feedItem.summary = item.description;
+      }
+
+      if (item.image) {
+        feedItem.image = item.image
+      }
+
+      if (item.date) {
+        feedItem.date_modified = this.ISODateString(item.date);
+      }
+      if (item.published) {
+        feedItem.date_published = this.ISODateString(item.published);
+      }
+
+      if (item.author) {
+        let author = item.author;
+        if (author instanceof Array) {
+          // json feed only supports 1 author per post
+          author = author[0];
+        }
+        feedItem.author = {};
+        if (author.name) {
+            feedItem.author.name = author.name;
+        }
+        if (author.link) {
+            feedItem.author.url = author.link;
+        }
+      }
+      return feedItem;
+    });
+
+    return JSON.stringify(feed, null, 4);
   }
 
   ISODateString(d) {

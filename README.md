@@ -1,8 +1,8 @@
 # Feed for Node.js
 
-> [Feed](http://projets.jpmonette.net/en/feed) is a *RSS 2.0* and *Atom 1.0* generator for **Node.js**, making content syndication simple and intuitive!
+> [Feed](http://projets.jpmonette.net/en/feed) is a *RSS 2.0*, *JSON Feed 1.0*, and *Atom 1.0* generator for **Node.js**, making content syndication simple and intuitive!
 
-[![Build Status](https://travis-ci.org/jpmonette/feed.svg?branch=master)](https://travis-ci.org/jpmonette/feed) 
+[![Build Status](https://travis-ci.org/jpmonette/feed.svg?branch=master)](https://travis-ci.org/jpmonette/feed)
 [![Coverage Status](https://coveralls.io/repos/github/jpmonette/feed/badge.svg?branch=master)](https://coveralls.io/github/jpmonette/feed?branch=master)
 
 ## Installation
@@ -30,14 +30,18 @@ Insert feed-specific information:
 ```js
 let feed = new Feed({
   title: 'Feed Title',
-  description: 'This is my personnal feed!',
+  description: 'This is my personal feed!',
   id: 'http://example.com/',
   link: 'http://example.com/',
   image: 'http://example.com/image.png',
+  favicon: 'http://example.com/favicon.ico',
   copyright: 'All rights reserved 2013, John Doe',
   updated: new Date(2013, 06, 14), // optional, default = today
   generator: 'awesome', // optional, default = 'Feed for Node.js'
-
+  feedLinks: {
+    json: 'https://example.com/json',
+    atom: 'https://example.com/atom',
+  },
   author: {
     name: 'John Doe',
     email: 'johndoe@example.com',
@@ -55,6 +59,7 @@ posts.forEach(post => {
     id: post.url,
     link: post.url,
     description: post.description,
+    content: post.content,
     author: [{
       name: 'Jane Doe',
       email: 'janedoe@example.com',
@@ -105,6 +110,12 @@ Output an Atom 1.0 feed:
 
 ```js
 feed.atom1()
+```
+
+Output a JSON Feed 1.0 feed:
+
+```js
+feed.json1()
 ```
 
 Yes, it's that simple :)!
