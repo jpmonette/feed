@@ -6,6 +6,8 @@ cache:
     - node_modules
 before_install:
 - export TZ=Europe/London
-script: "npm run-script test-travis"
-# Send coverage data to Coveralls
-after_script: "cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js"
+script:
+- "npm run-script test-travis"
+after_script:
+- "cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js"
+- "codeclimate-test-reporter < ./coverage/lcov.info"
