@@ -51,6 +51,20 @@ feed.addItem({
     email: 'reggiemiller@example.com',
     link: 'https://example.com/reggiemiller'
   }],
+  extensions: [{
+    name: '_item_extension_1',
+    objects: {
+      about: 'just an item extension example',
+      dummy1: 'example'
+    }
+  },
+  {
+    name: '_item_extension_2',
+    objects: {
+      about: 'just a second item extension example',
+      dummy1: 'example'
+    }
+  }],
   date: sampleDate,
   image: 'https://example.com/hello-world.jpg'
 })
@@ -175,7 +189,15 @@ test('it should generate a JSON v1 Feed', () => {
             "image": "https://example.com/hello-world.jpg",
             "summary": "This is an article about Hello World.",
             "title": "Hello World",
-            "url": "https://example.com/hello-world"
+            "url": "https://example.com/hello-world",
+            "_item_extension_1": {
+              "about": "just an item extension example",
+              "dummy1": "example"
+            },
+            "_item_extension_2": {
+              "about": "just a second item extension example",
+              "dummy1": "example"
+            }
         }],
         "_example_extension": {
           "about": "just an extension example",

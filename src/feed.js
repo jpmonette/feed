@@ -461,6 +461,13 @@ class Feed {
             feedItem.author.url = author.link;
         }
       }
+
+      if(item.extensions) {
+        item.extensions.forEach(e => {
+          feedItem[e.name] = e.objects;
+        });
+      }
+
       return feedItem;
     });
 
