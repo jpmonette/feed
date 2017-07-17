@@ -55,6 +55,14 @@ feed.addItem({
   image: 'https://example.com/hello-world.jpg'
 })
 
+feed.addExtension({
+  name: '_example_extension',
+  objects: {
+    about: 'just an extension example',
+    dummy: 'example',
+  }
+});
+
 test('it should generate an RSS 2.0 feed', () => {
   let expected = `<?xml version=\"1.0\" encoding=\"utf-8\"?>
 <rss version=\"2.0\" xmlns:atom=\"http://www.w3.org/2005/Atom\">
@@ -169,6 +177,10 @@ test('it should generate a JSON v1 Feed', () => {
             "title": "Hello World",
             "url": "https://example.com/hello-world"
         }],
+        "_example_extension": {
+          "about": "just an extension example",
+          "dummy": "example"
+        },
         "title": "Feed Title",
         "version": "https://jsonfeed.org/version/1"
     };
