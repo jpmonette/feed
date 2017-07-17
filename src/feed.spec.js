@@ -59,7 +59,7 @@ feed.addExtension({
   name: '_example_extension',
   objects: {
     about: 'just an extension example',
-    dummy: 'example',
+    dummy: 'example'
   }
 });
 
