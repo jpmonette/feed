@@ -65,6 +65,7 @@ feed.addItem({
       dummy1: 'example'
     }
   }],
+  tags: ['tag1', 'tag2'],
   date: sampleDate,
   image: 'https://example.com/hello-world.jpg'
 })
@@ -197,7 +198,8 @@ test('it should generate a JSON v1 Feed', () => {
             "_item_extension_2": {
               "about": "just a second item extension example",
               "dummy1": "example"
-            }
+            },
+            "tags": ["tag1", "tag2"]
         }],
         "_example_extension": {
           "about": "just an extension example",

@@ -468,6 +468,10 @@ class Feed {
         });
       }
 
+      if (item.tags) {
+        feedItem.tags = item.tags
+      }
+
       return feedItem;
     });
 
