@@ -238,6 +238,14 @@ class Feed {
       { generator: options.generator || GENERATOR },
     ]
 
+    if (options.ttl) {
+      channel.push({ttl: options.ttl});
+    }
+
+    if (options.language) {
+      channel.push({language: options.language});
+    }
+
     let rss = [
       { _attr: { version: '2.0' } },
       { channel },
@@ -352,14 +360,22 @@ class Feed {
           if (author.email && author.name) {
             item.push({ author: author.email + ' (' + author.name + ')' })
             return true
-          } else {
-            return false
+          } else if (author.name) {
+            item.push({ author: author.name });
+            return true;
           }
+          return false;
         })
       }
 
-      if(item.image) {
+      if(entry.image) {
         item.push({ enclosure: [{ _attr: { url: entry.image } }] });
+      }
+      
+      if (entry.categories) {
+        entry.categories.forEach(function (category) {
+          item.push({ category: category });
+        });
       }
 
       channel.push({ item });
