@@ -287,7 +287,7 @@ class Feed {
      * Feed URL
      * http://validator.w3.org/feed/docs/warning/MissingAtomSelfLink.html
      */
-    const atomLink = options.feed || (options.feedLinks && options.feedLinks.atom);
+    const atomLink = options.feed || (options.feedLinks && options.feedLinks.rss);
     if(atomLink) {
       isAtom = true
 
@@ -334,7 +334,11 @@ class Feed {
       }
 
       if(entry.guid) {
-        item.push({ guid: entry.guid });
+        if (entry.guid.indexOf('http') === -1) {
+          item.push({ guid: { _cdata: entry.guid, _attr: {isPermaLink: 'false'} } });
+        } else {
+          item.push({ guid: entry.guid });
+        }
       } else if (entry.link) {
         item.push({ guid: entry.link });
       }
@@ -361,7 +365,7 @@ class Feed {
             item.push({ author: author.email + ' (' + author.name + ')' })
             return true
           } else if (author.name) {
-            item.push({ author: author.name });
+            item.push({ 'dc:creator': author.name  });
             return true;
           }
           return false;
@@ -369,7 +373,8 @@ class Feed {
       }
 
       if(entry.image) {
-        item.push({ enclosure: [{ _attr: { url: entry.image } }] });
+        var type = entry.image.split('.').pop().replace('jpg', 'jpeg');
+        item.push({ enclosure: [{ _attr: { url: entry.image, length: 0, type: 'image/' + type } }] });
       }
       
       if (entry.categories) {
@@ -382,6 +387,7 @@ class Feed {
     })
 
     if(isContent) {
+      rss[0]._attr['xmlns:dc'] = 'http://purl.org/dc/elements/1.1/';
       rss[0]._attr['xmlns:content'] = 'http://purl.org/rss/1.0/modules/content/';
     }
 
