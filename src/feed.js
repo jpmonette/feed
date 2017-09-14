@@ -358,7 +358,7 @@ class Feed {
         })
       }
 
-      if(item.image) {
+      if(entry.image) {
         item.push({ enclosure: [{ _attr: { url: entry.image } }] });
       }
 

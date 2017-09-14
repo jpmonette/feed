@@ -80,6 +80,8 @@ test('it should generate an RSS 2.0 feed', () => {
             <pubDate>Sat, 13 Jul 2013 23:00:00 GMT</pubDate>
             <description><![CDATA[This is an article about Hello World.]]></description>
             <author>janedoe@example.com (Jane Doe)</author>
+            <enclosure url="https://example.com/hello-world.jpg">
+            </enclosure>
         </item>
     </channel>
 </rss>`;
