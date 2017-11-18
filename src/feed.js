@@ -10,6 +10,7 @@ class Feed {
     this.items = []
     this.categories = []
     this.contributors = []
+    this.extensions = []
   }
 
   addItem(item) {
@@ -22,6 +23,10 @@ class Feed {
 
   addContributor(contributor) {
     this.contributors.push(contributor)
+  }
+
+  addExtension(extension) {
+    this.extensions.push(extension)
   }
 
   render(format) {
@@ -377,7 +382,7 @@ class Feed {
   }
 
   json1() {
-    const { options, items } = this
+    const { options, items, extensions } = this
     let feed = {
       version: 'https://jsonfeed.org/version/1',
       title: options.title,
@@ -409,6 +414,11 @@ class Feed {
           feed.author.url = options.author.link;
       }
     }
+
+    extensions.forEach(e => {
+      feed[e.name] = e.objects;
+    });
+
     feed.items = items.map(item => {
       let feedItem = {
         id: item.id,
@@ -451,6 +461,13 @@ class Feed {
             feedItem.author.url = author.link;
         }
       }
+
+      if(item.extensions) {
+        item.extensions.forEach(e => {
+          feedItem[e.name] = e.objects;
+        });
+      }
+
       return feedItem;
     });
 
