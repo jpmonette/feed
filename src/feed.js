@@ -11,10 +11,15 @@ class Feed {
     this.categories = []
     this.contributors = []
     this.extensions = []
+    this.custom_fields = []
   }
 
   addItem(item) {
     this.items.push(item)
+  }
+
+  addCustomField(field_name) {
+    this.custom_fields.push(field_name)
   }
 
   addCategory(category) {
@@ -321,6 +326,14 @@ class Feed {
      */
     this.items.forEach(entry => {
       let item = [];
+
+      // Handle custom fields
+      this.custom_fields.forEach(field_name => {
+        if(entry[field_name]){
+          item.push({ [field_name]: entry[field_name]});
+        }
+
+      });
 
       if(entry.title) {
         item.push({ title: { _cdata: entry.title }});

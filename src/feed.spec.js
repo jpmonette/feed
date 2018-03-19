@@ -12,7 +12,6 @@ let feed = new Feed({
   copyright: 'All rights reserved 2013, John Doe',
   updated: sampleDate, // optional, default = today
   generator: 'awesome', // optional, default = 'Feed for Node.js'
-
   author: {
     name: 'John Doe',
     email: 'johndoe@example.com',
@@ -21,6 +20,7 @@ let feed = new Feed({
 })
 
 feed.addCategory('Technology')
+feed.addCustomField('geo:lat')
 
 feed.addContributor({
   name: 'Johan Cruyff',
@@ -33,6 +33,7 @@ feed.addItem({
   id: 'https://example.com/hello-world',
   link: 'https://example.com/hello-world',
   description: 'This is an article about Hello World.',
+  'geo:lat': 23,
   author: [{
     name: 'Jane Doe',
     email: 'janedoe@example.com',
@@ -96,6 +97,7 @@ test('it should generate an RSS 2.0 feed', () => {
         <category>Technology</category>
         <atom:link href=\"http://example.com/feed.rss\" rel=\"self\" type=\"application/rss+xml\"/>
         <item>
+            <geo:lat>23</geo:lat>
             <title><![CDATA[Hello World]]></title>
             <link>https://example.com/hello-world</link>
             <guid>https://example.com/hello-world</guid>
