@@ -5,9 +5,4 @@ describe("atom 1.0", () => {
     let actual = sampleFeed.atom1();
     expect(actual).toMatchSnapshot();
   });
-
-  it("should generate a valid feed - legacy", () => {
-    let actual = sampleFeed.render("atom-1.0");
-    expect(actual).toMatchSnapshot();
-  });
 });
