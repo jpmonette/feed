@@ -6,7 +6,7 @@ exports[`atom 1.0 should generate a valid feed 1`] = `
     <id>http://example.com/</id>
     <title>Feed Title</title>
     <updated>2013-07-13T23:00:00.000Z</updated>
-    <generator>awesome</generator>
+    <generator>https://github.com/jpmonette/feed</generator>
     <author>
         <name>John Doe</name>
         <email>johndoe@example.com</email>
@@ -104,7 +104,7 @@ exports[`rss 2.0 should generate a valid feed 1`] = `
         <description>This is my personnal feed!</description>
         <lastBuildDate>Sat, 13 Jul 2013 23:00:00 GMT</lastBuildDate>
         <docs>http://blogs.law.harvard.edu/tech/rss</docs>
-        <generator>awesome</generator>
+        <generator>https://github.com/jpmonette/feed</generator>
         <image>
             <title>Feed Title</title>
             <url>http://example.com/image.png</url>

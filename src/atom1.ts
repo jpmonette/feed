@@ -1,6 +1,6 @@
 import * as xml from "xml";
+import { generator } from "./config";
 
-const GENERATOR = "Feed for Node.js";
 const DOCTYPE = '<?xml version="1.0" encoding="utf-8"?>\n';
 
 export default (ins: Feed) => {
@@ -18,7 +18,7 @@ export default (ins: Feed) => {
     feed.push({ updated: new Date().toISOString() });
   }
 
-  feed.push({ generator: options.generator || GENERATOR });
+  feed.push({ generator: options.generator || generator });
 
   if (options.author) {
     feed.push({ author: formatAuthor(options.author) });

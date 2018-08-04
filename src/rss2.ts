@@ -1,5 +1,7 @@
 import * as xml from "xml";
-const GENERATOR = "Feed for Node.js";
+
+import { generator } from "./config";
+
 const DOCTYPE = '<?xml version="1.0" encoding="utf-8"?>\n';
 
 export default (ins: Feed) => {
@@ -15,7 +17,7 @@ export default (ins: Feed) => {
       lastBuildDate: options.updated ? options.updated.toUTCString() : new Date().toUTCString()
     },
     { docs: "http://blogs.law.harvard.edu/tech/rss" },
-    { generator: options.generator || GENERATOR }
+    { generator: options.generator || generator }
   ];
 
   const rss: any[] = [{ _attr: { version: "2.0" } }, { channel }];
