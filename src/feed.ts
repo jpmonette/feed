@@ -2,7 +2,7 @@ import renderAtom from "./atom1";
 import renderJSON from "./json";
 import renderRSS from "./rss2";
 
-export default class Feed {
+export class Feed {
   options: FeedOptions;
   items: Item[] = [];
   categories: string[] = [];
