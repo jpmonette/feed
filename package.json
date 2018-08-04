@@ -17,7 +17,6 @@
   "license": "MIT",
   "main": "lib/feed.js",
   "scripts": {
-    "build": "rm -rf lib/ && mkdir lib && babel -d lib/ src/ --ignore **/*.spec.js -s",
     "prepublish": "npm run build",
     "test": "export NODE_ENV=test && jest",
     "test-travis": "export NODE_ENV=test && jest --coverage"
@@ -45,8 +44,6 @@
     "xml": "^1.0.1"
   },
   "devDependencies": {
-    "babel-cli": "^6.24.1",
-    "babel-preset-env": "^1.5.1",
     "codeclimate-test-reporter": "^0.5.0",
     "coveralls": "^2.13.1",
     "jest": "^20.0.4"
