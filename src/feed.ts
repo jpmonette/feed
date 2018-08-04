@@ -21,15 +21,6 @@ export default class Feed {
 
   public addExtension = (extension: Extension) => this.extensions.push(extension);
 
-  public render(format: "atom-1.0" | "rss-2.0") {
-    console.warn("DEPRECATED: use atom1() or rss2() instead of render()");
-    if (format === "atom-1.0") {
-      return this.atom1();
-    } else {
-      return this.rss2();
-    }
-  }
-
   /**
    * Returns a Atom 1.0 feed
    */
@@ -44,4 +35,13 @@ export default class Feed {
    * Returns a JSON1 feed
    */
   public json1 = (): string => renderJSON(this);
+
+  public render(format: "atom-1.0" | "rss-2.0") {
+    console.warn("DEPRECATED: use atom1() or rss2() instead of render()");
+    if (format === "atom-1.0") {
+      return this.atom1();
+    } else {
+      return this.rss2();
+    }
+  }
 }
