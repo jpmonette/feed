@@ -1,26 +1,16 @@
 {
   "name": "feed",
-  "version": "1.1.1",
-  "description": "Feed is a RSS and Atom feed generator for Node.js, making content syndication simple and intuitive!",
-  "homepage": "http://projets.jpmonette.net/en/feed",
+  "version": "2.0.0",
+  "description": "Feed is a RSS, Atom and JSON feed generator for Node.js, making content syndication simple and intuitive!",
+  "homepage": "https://github.com/jpmonette",
   "author": "Jean-Philippe Monette <contact@jpmonette.net>",
-  "contributors": [
-    {
-      "name": "Ben McCormick",
-      "email": "ben.mccormick@windsorcircle.com"
-    },
-    {
-      "name": "Pierre Galvez",
-      "email": "contact@pierre-galvez.fr"
-    }
-  ],
   "license": "MIT",
   "main": "lib/feed.js",
   "types": "dist/feed.d.ts",
   "scripts": {
     "build": "rm -rf lib/ && mkdir lib && tsc",
     "prepublish": "npm run build",
-    "test": "export NODE_ENV=test && jest",
+    "test": "export NODE_ENV=test && jest --silent",
     "test-travis": "export NODE_ENV=test && jest --coverage"
   },
   "keywords": [
