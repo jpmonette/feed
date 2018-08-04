@@ -1,14 +1,14 @@
 import Feed from "../feed";
 
-let updated = new Date("Sat, 13 Jul 2013 23:00:00 GMT");
-let published = new Date("Sat, 10 Jul 2013 23:00:00 GMT");
+const updated = new Date("Sat, 13 Jul 2013 23:00:00 GMT");
+const published = new Date("Sat, 10 Jul 2013 23:00:00 GMT");
 
-let feed = new Feed({
+export const sampleFeed = new Feed({
   title: "Feed Title",
   description: "This is my personnal feed!",
   link: "http://example.com/",
   id: "http://example.com/",
-  feed: "http://example.com/feed.rss",
+  feed: "http://example.com/sampleFeed.rss",
   image: "http://example.com/image.png",
   copyright: "All rights reserved 2013, John Doe",
   updated, // optional, default = today
@@ -20,15 +20,15 @@ let feed = new Feed({
   }
 });
 
-feed.addCategory("Technology");
+sampleFeed.addCategory("Technology");
 
-feed.addContributor({
+sampleFeed.addContributor({
   name: "Johan Cruyff",
   email: "johancruyff@example.com",
   link: "https://example.com/johancruyff"
 });
 
-feed.addItem({
+sampleFeed.addItem({
   title: "Hello World",
   id: "https://example.com/hello-world",
   link: "https://example.com/hello-world",
@@ -79,41 +79,10 @@ feed.addItem({
   published
 });
 
-feed.addExtension({
+sampleFeed.addExtension({
   name: "_example_extension",
   objects: {
     about: "just an extension example",
     dummy: "example"
   }
-});
-
-describe("rss 2.0", () => {
-  it("should generate a valid feed", () => {
-    let actual = feed.rss2();
-    expect(actual).toMatchSnapshot();
-  });
-
-  it("should generate a valid feed - legacy", () => {
-    let actual = feed.render("rss-2.0");
-    expect(actual).toMatchSnapshot();
-  });
-});
-
-describe("atom 1.0", () => {
-  it("should generate a valid feed", () => {
-    let actual = feed.atom1();
-    expect(actual).toMatchSnapshot();
-  });
-
-  it("should generate a valid feed - legacy", () => {
-    let actual = feed.render("atom-1.0");
-    expect(actual).toMatchSnapshot();
-  });
-});
-
-describe("json 1", () => {
-  it("should generate a valid feed", () => {
-    let actual = JSON.parse(feed.json1());
-    expect(actual).toMatchSnapshot();
-  });
 });

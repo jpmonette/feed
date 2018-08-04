@@ -31,6 +31,7 @@ export default (ins: Feed) => {
 
   // link (rel="self")
   const atomLink = options.feed || (options.feedLinks && options.feedLinks.atom);
+
   if (atomLink) {
     feed.push({ link: { _attr: { rel: "self", href: atomLink } } });
   }
