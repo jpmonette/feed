@@ -1,58 +1,53 @@
-# Feed for Node.js
+<p align="center">
+  <img src="./assets/title.png" alt="Feed for Node.js" width="326">
+  <br>
+  <a href="https://travis-ci.org/jpmonette/feed"><img src="https://travis-ci.org/jpmonette/feed.svg?branch=master" alt="Build Status"></a> <a href='https://coveralls.io/github/jpmonette/feed?branch=master'><img src='https://coveralls.io/repos/github/jpmonette/feed/badge.svg?branch=master' alt='Coverage Status' /></a> <a href="https://badge.fury.io/js/feed"><img src="https://badge.fury.io/js/feed.svg" alt="npm version" height="18"></a> <a href="https://github.com/facebook/jest"><img src="https://img.shields.io/badge/tested_with-jest-99424f.svg" alt="Tested with Jest"></a> <a href="https://opensource.org/licenses/MIT"><img src="https://img.shields.io/badge/License-MIT-yellow.svg" alt="License: MIT"></a>
+</p>
+<p align="center"><code>jpmonette/feed</code> - <strong>RSS 2.0, JSON Feed 1.0, and Atom 1.0</strong> generator for <strong>Node.js</strong><br>
+Making content syndication simple and intuitive!</p>
 
-> [Feed](http://projets.jpmonette.net/en/feed) is a *RSS 2.0*, *JSON Feed 1.0*, and *Atom 1.0* generator for **Node.js**, making content syndication simple and intuitive!
+---
 
-[![Build Status](https://travis-ci.org/jpmonette/feed.svg?branch=master)](https://travis-ci.org/jpmonette/feed)
-[![Coverage Status](https://coveralls.io/repos/github/jpmonette/feed/badge.svg?branch=master)](https://coveralls.io/github/jpmonette/feed?branch=master)
+**👩🏻‍💻 Developer Ready**: Quickly generate syndication feeds for your Website.
+
+**💪🏼 Strongly Typed**: Developed using TypeScript / type-safe.
+
+**🔒 Tested**: Tests & snapshot for each syndication format to avoid regressions.
+
+# Getting Started
 
 ## Installation
 
 ```bash
-$ npm install feed
+$ yarn add feed
 ```
 
-## Features
-
-* Pure JavaScript
-* Support for Atom 1.0 and RSS 2.0
-* Lightweight - Only 1 dependency!
-
-## Quick Start
-
-First, add the module:
+## Example
 
 ```js
-const Feed = require('feed')
-```
+import { Feed } from "feed";
 
-Insert feed-specific information:
-
-```js
-let feed = new Feed({
-  title: 'Feed Title',
-  description: 'This is my personal feed!',
-  id: 'http://example.com/',
-  link: 'http://example.com/',
-  image: 'http://example.com/image.png',
-  favicon: 'http://example.com/favicon.ico',
-  copyright: 'All rights reserved 2013, John Doe',
+const feed = new Feed({
+  title: "Feed Title",
+  description: "This is my personal feed!",
+  id: "http://example.com/",
+  link: "http://example.com/",
+  image: "http://example.com/image.png",
+  favicon: "http://example.com/favicon.ico",
+  copyright: "All rights reserved 2013, John Doe",
   updated: new Date(2013, 6, 14), // optional, default = today
-  generator: 'awesome', // optional, default = 'Feed for Node.js'
+  generator: "awesome", // optional, default = 'Feed for Node.js'
   feedLinks: {
-    json: 'https://example.com/json',
-    atom: 'https://example.com/atom',
+    json: "https://example.com/json",
+    atom: "https://example.com/atom"
   },
   author: {
-    name: 'John Doe',
-    email: 'johndoe@example.com',
-    link: 'https://example.com/johndoe'
+    name: "John Doe",
+    email: "johndoe@example.com",
+    link: "https://example.com/johndoe"
   }
-})
-```
+});
 
-Insert items using the item function:
-
-```js
 posts.forEach(post => {
   feed.addItem({
     title: post.title,
@@ -60,72 +55,57 @@ posts.forEach(post => {
     link: post.url,
     description: post.description,
     content: post.content,
-    author: [{
-      name: 'Jane Doe',
-      email: 'janedoe@example.com',
-      link: 'https://example.com/janedoe'
-    }, {
-      name: 'Joe Smith',
-      email: 'joesmith@example.com',
-      link: 'https://example.com/joesmith'
-    }],
-    contributor: [{
-      name: 'Shawn Kemp',
-      email: 'shawnkemp@example.com',
-      link: 'https://example.com/shawnkemp'
-    }, {
-      name: 'Reggie Miller',
-      email: 'reggiemiller@example.com',
-      link: 'https://example.com/reggiemiller'
-    }],
+    author: [
+      {
+        name: "Jane Doe",
+        email: "janedoe@example.com",
+        link: "https://example.com/janedoe"
+      },
+      {
+        name: "Joe Smith",
+        email: "joesmith@example.com",
+        link: "https://example.com/joesmith"
+      }
+    ],
+    contributor: [
+      {
+        name: "Shawn Kemp",
+        email: "shawnkemp@example.com",
+        link: "https://example.com/shawnkemp"
+      },
+      {
+        name: "Reggie Miller",
+        email: "reggiemiller@example.com",
+        link: "https://example.com/reggiemiller"
+      }
+    ],
     date: post.date,
     image: post.image
-  })
-})
-```
+  });
+});
 
-Insert categories using:
+feed.addCategory("Technologie");
 
-```js
-feed.addCategory('Technologie')
-```
-
-Insert contributors using:
-
-```js
 feed.addContributor({
-  name: 'Johan Cruyff',
-  email: 'johancruyff@example.com',
-  link: 'https://example.com/johancruyff'
-})
+  name: "Johan Cruyff",
+  email: "johancruyff@example.com",
+  link: "https://example.com/johancruyff"
+});
+
+console.log(feed.rss2());
+// Output: RSS 2.0
+
+console.log(feed.atom1());
+// Output: Atom 1.0
+
+console.log(feed.json1());
+// Output: JSON Feed 1.0
 ```
-
-Output a RSS 2.0 feed:
-
-```js
-feed.rss2()
-```
-
-Output an Atom 1.0 feed:
-
-```js
-feed.atom1()
-```
-
-Output a JSON Feed 1.0 feed:
-
-```js
-feed.json1()
-```
-
-Yes, it's that simple :)!
 
 ## More Information
 
-* [Feed for Node.js](http://projets.jpmonette.net/en/feed) (English)
-* [Feed pour Node.js](http://projets.jpmonette.net/feed) (French)
-* Follow [@jpmonette](https://twitter.com/jpmonette) on Twitter for updates
-* Read my personal blog [Blogue de Jean-Philippe Monette](http://blogue.jpmonette.net/) to learn more about what I do!
+- Follow [@jpmonette](https://twitter.com/jpmonette) on Twitter for updates
+- Read my personal blog [Blogue de Jean-Philippe Monette](http://blogue.jpmonette.net/) to learn more about what I do!
 
 ## License
 

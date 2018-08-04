@@ -1,4 +1,4 @@
-import Feed from "../feed";
+import { Feed } from "../feed";
 
 const updated = new Date("Sat, 13 Jul 2013 23:00:00 GMT");
 const published = new Date("Sat, 10 Jul 2013 23:00:00 GMT");
