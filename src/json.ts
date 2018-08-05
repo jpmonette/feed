@@ -1,3 +1,5 @@
+/// <reference path="types/index.ts" />
+
 export default (ins: Feed) => {
   const { options, items, extensions } = ins;
   let feed: any = {

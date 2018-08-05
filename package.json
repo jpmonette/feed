@@ -6,7 +6,7 @@
   "author": "Jean-Philippe Monette <contact@jpmonette.net>",
   "license": "MIT",
   "main": "lib/feed.js",
-  "types": "dist/feed.d.ts",
+  "types": "lib/feed.d.ts",
   "scripts": {
     "build": "rm -rf lib/ && mkdir lib && tsc",
     "prepublish": "npm run build",
