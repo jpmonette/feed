@@ -1,3 +1,5 @@
+/// <reference path="types/index.ts" />
+
 import * as xml from "xml";
 
 import { generator } from "./config";
