@@ -102,6 +102,24 @@ console.log(feed.json1());
 // Output: JSON Feed 1.0
 ```
 
+## Migrating from `< 3.0.0`
+
+If you are migrating from a version older than `3.0.0`, be sure to update your import as we migrated to ES6 named imports.
+
+If your environment supports the ES6 module syntax, you can `import` as described above:
+
+```ts
+import { Feed } from 'feed';
+```
+
+Otherwise, you can stick with `require()`:
+
+```diff
+- const Feed = require('feed');
++ const Feed = require('feed').Feed;
+```
+
+
 ## More Information
 
 - Follow [@jpmonette](https://twitter.com/jpmonette) on Twitter for updates
