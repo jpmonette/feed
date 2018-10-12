@@ -18,7 +18,7 @@ exports[`json 1 should generate a valid feed 1`] = `
     \\"items\\": [
         {
             \\"id\\": \\"https://example.com/hello-world\\",
-            \\"html_content\\": \\"Content of my item\\",
+            \\"content_html\\": \\"Content of my item\\",
             \\"url\\": \\"https://example.com/hello-world\\",
             \\"title\\": \\"Hello World\\",
             \\"summary\\": \\"This is an article about Hello World.\\",
