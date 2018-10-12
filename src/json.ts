@@ -42,7 +42,7 @@ export default (ins: Feed) => {
       id: item.id,
       // json_feed distinguishes between html and text content
       // but since we only take a single type, we'll assume HTML
-      html_content: item.content
+      content_html: item.content
     };
     if (item.link) {
       feedItem.url = item.link;
