@@ -102,6 +102,51 @@ console.log(feed.json1());
 // Output: JSON Feed 1.0
 ```
 
+## Custom Namespace
+
+```js
+feed.namespaces = {
+  "xmlns:dcterms": "https://purl.org/dc/terms/",
+  "xmlns:media": "https://search.yahoo.com/mrss/"
+};
+```
+
+## Custom Elements at Root
+
+```js
+feed.elements = [{
+  'custom1': [{
+    _attr: {
+      attr1: 'value1'
+    }
+  }, {
+    'custom2': 'value2'
+  }]
+}];
+```
+
+## Custom Elements in Item
+
+```js
+posts.forEach(post => {
+  feed.addItem({
+    title: post.title,
+    id: post.url,
+    elements: [{
+      'media:content': [{
+        _attr: {
+          url: 'https://v3spec.msn.com/image1.jpg',
+          type: 'image/jpeg',
+          medium: 'image'
+        }
+      }, {
+        'media:credit': 'Joe Gargery/Fabrikam Images'
+      }]
+    }]
+  });
+});
+```
+
 ## Migrating from `< 3.0.0`
 
 If you are migrating from a version older than `3.0.0`, be sure to update your import as we migrated to ES6 named imports.
