@@ -2,7 +2,7 @@
 
 exports[`rss 2.0 should generate a valid feed 1`] = `
 "<?xml version=\\"1.0\\" encoding=\\"utf-8\\"?>
-<rss version=\\"2.0\\" xmlns:content=\\"http://purl.org/rss/1.0/modules/content/\\" xmlns:atom=\\"http://www.w3.org/2005/Atom\\">
+<rss version=\\"2.0\\" xmlns:content=\\"http://purl.org/rss/1.0/modules/content/\\" xmlns:atom=\\"http://www.w3.org/2005/Atom\\" xmlns:dcterms=\\"https://purl.org/dc/terms/\\" xmlns:media=\\"https://search.yahoo.com/mrss/\\">
     <channel>
         <title>Feed Title</title>
         <link>http://example.com/</link>
@@ -29,7 +29,13 @@ exports[`rss 2.0 should generate a valid feed 1`] = `
             <author>joesmith@example.com (Joe Smith)</author>
             <enclosure url=\\"https://example.com/hello-world.jpg\\">
             </enclosure>
+            <media:content url=\\"https://v3spec.msn.com/image1.jpg\\" type=\\"image/jpeg\\" medium=\\"image\\">
+                <media:credit>Joe Gargery/Fabrikam Images</media:credit>
+            </media:content>
         </item>
+        <media:content url=\\"https://v3spec.msn.com/image1.jpg\\" type=\\"image/jpeg\\" medium=\\"image\\">
+            <media:credit>Joe Gargery/Fabrikam Images</media:credit>
+        </media:content>
     </channel>
 </rss>"
 `;

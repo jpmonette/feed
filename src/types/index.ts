@@ -18,6 +18,7 @@ interface Item {
   copyright?: string;
 
   extensions?: Extension[];
+  elements?: any[];
 }
 
 interface Author {
@@ -50,6 +51,8 @@ interface Feed {
   categories: string[];
   contributors: Author[];
   extensions: Extension[];
+  namespaces: any;
+  elements?: any[];
 }
 
 interface Extension {

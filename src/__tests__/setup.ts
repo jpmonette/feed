@@ -76,7 +76,18 @@ sampleFeed.addItem({
   ],
   date: updated,
   image: "https://example.com/hello-world.jpg",
-  published
+  published,
+  elements: [{
+    'media:content': [{
+      _attr: {
+        url: 'https://v3spec.msn.com/image1.jpg',
+        type: 'image/jpeg',
+        medium: 'image'
+      }
+    }, {
+      'media:credit': 'Joe Gargery/Fabrikam Images'
+    }]
+  }]
 });
 
 sampleFeed.addExtension({
@@ -86,3 +97,20 @@ sampleFeed.addExtension({
     dummy: "example"
   }
 });
+
+sampleFeed.namespaces = {
+  "xmlns:dcterms": "https://purl.org/dc/terms/",
+  "xmlns:media": "https://search.yahoo.com/mrss/"
+};
+
+sampleFeed.elements = [{
+  'media:content': [{
+    _attr: {
+      url: 'https://v3spec.msn.com/image1.jpg',
+      type: 'image/jpeg',
+      medium: 'image'
+    }
+  }, {
+    'media:credit': 'Joe Gargery/Fabrikam Images'
+  }]
+}];

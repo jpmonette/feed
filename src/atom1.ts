@@ -2,6 +2,7 @@
 
 import * as xml from "xml";
 import { generator } from "./config";
+import { ifTruePush, ifTruePushArray } from './feed';
 
 const DOCTYPE = '<?xml version="1.0" encoding="utf-8"?>\n';
 
@@ -11,6 +12,11 @@ export default (ins: Feed) => {
   let feed: any = [];
 
   feed.push({ _attr: { xmlns: "http://www.w3.org/2005/Atom" } });
+
+  Object.keys(ins.namespaces).forEach(function (ns) {
+    feed[0]._attr[ns] = ins.namespaces[ns];
+  });
+
   feed.push({ id: options.id });
   feed.push({ title: options.title });
 
@@ -133,8 +139,12 @@ export default (ins: Feed) => {
       entry.push({ rights: item.copyright });
     }
 
+    ifTruePushArray(item.elements, entry);
+
     feed.push({ entry });
   });
+
+  ifTruePushArray(ins.elements, feed);
 
   return DOCTYPE + xml([{ feed }], true);
 };

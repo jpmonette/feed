@@ -9,6 +9,8 @@ export class Feed {
   items: Item[] = [];
   categories: string[] = [];
   contributors: Author[] = [];
+  namespaces: any = {};
+  elements: any[] = [];
   extensions: Extension[] = [];
 
   constructor(options: FeedOptions) {
@@ -37,4 +39,28 @@ export class Feed {
    * Returns a JSON1 feed
    */
   public json1 = (): string => renderJSON(this);
+}
+
+export function ifTruePush(data: any, array: any) {
+  if (data) {
+    if (data.isCdata) {
+      Object.keys(data).forEach(function (key) {
+        if (key !== 'isCdata') {
+          data = {};
+          data[key] = { _cdata: data[key] };
+        }
+      });
+    }
+    array.push(data);
+  }
+}
+
+export function ifTruePushArray(dataArray: any[] | undefined, array: any) {
+  if (!dataArray) {
+    return;
+  }
+
+  dataArray.forEach(function (item) {
+    ifTruePush(item, array);
+  });
 }
