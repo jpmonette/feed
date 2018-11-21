@@ -86,6 +86,8 @@ export default (ins: Feed) => {
     });
   }
 
+  ifTruePushArray(ins.elements, channel);
+
   /**
    * Channel Categories
    * http://cyber.law.harvard.edu/rss/rss.html#hrelementsOfLtitemgt
@@ -139,8 +141,6 @@ export default (ins: Feed) => {
 
     channel.push({ item });
   });
-
-  ifTruePushArray(ins.elements, channel);
 
   if (isContent) {
     rss[0]._attr["xmlns:content"] = "http://purl.org/rss/1.0/modules/content/";
