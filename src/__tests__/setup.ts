@@ -17,6 +17,11 @@ export const sampleFeed = new Feed({
     name: "John Doe",
     email: "johndoe@example.com",
     link: "https://example.com/johndoe"
+  },
+
+  feedLinks: {
+    json: "https://example.com/json",
+    atom: "https://example.com/atom"
   }
 });
 

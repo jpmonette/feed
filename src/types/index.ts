@@ -57,5 +57,5 @@ interface Feed {
 
 interface Extension {
   name: string;
-  objects: string;
+  objects: any;
 }

@@ -18,6 +18,9 @@ exports[`rss 2.0 should generate a valid feed 1`] = `
         <copyright>All rights reserved 2013, John Doe</copyright>
         <category>Technology</category>
         <atom:link href=\\"http://example.com/sampleFeed.rss\\" rel=\\"self\\" type=\\"application/rss+xml\\"/>
+        <media:content url=\\"https://v3spec.msn.com/image1.jpg\\" type=\\"image/jpeg\\" medium=\\"image\\">
+            <media:credit>Joe Gargery/Fabrikam Images</media:credit>
+        </media:content>
         <item>
             <title><![CDATA[Hello World]]></title>
             <link>https://example.com/hello-world</link>
@@ -33,9 +36,6 @@ exports[`rss 2.0 should generate a valid feed 1`] = `
                 <media:credit>Joe Gargery/Fabrikam Images</media:credit>
             </media:content>
         </item>
-        <media:content url=\\"https://v3spec.msn.com/image1.jpg\\" type=\\"image/jpeg\\" medium=\\"image\\">
-            <media:credit>Joe Gargery/Fabrikam Images</media:credit>
-        </media:content>
     </channel>
 </rss>"
 `;
