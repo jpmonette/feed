@@ -5,13 +5,26 @@ const published = new Date("Sat, 10 Jul 2013 23:00:00 GMT");
 
 export const sampleFeed = new Feed({
   title: "Feed Title",
-  description: "This is my personnal feed!",
+  description: "This is my personal feed!",
   link: "http://example.com/",
   id: "http://example.com/",
   feed: "http://example.com/sampleFeed.rss",
+  feedLinks: {
+    json: "http://example.com/sampleFeed.rss",
+    atom: "http://example.com/sampleFeed.rss",
+    rss: "http://example.com/sampleFeed.rss",
+  },
   image: "http://example.com/image.png",
+  favicon: "http://example.com/feed.ico",
   copyright: "All rights reserved 2013, John Doe",
   updated, // optional, default = today
+
+  hub: "http://example.com/hub",
+
+  next: "http://example.com/sampleFeed.rss?page=3",
+  last: "http://example.com/sampleFeed.rss?page=10",
+  first: "http://example.com/sampleFeed.rss",
+  previous: "http://example.com/sampleFeed.rss?page=1",
 
   author: {
     name: "John Doe",
@@ -34,6 +47,7 @@ sampleFeed.addItem({
   link: "https://example.com/hello-world",
   description: "This is an article about Hello World.",
   content: "Content of my item",
+  copyright: "All rights reserved 2013, John Doe",
   author: [
     {
       name: "Jane Doe",

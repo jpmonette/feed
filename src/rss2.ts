@@ -85,6 +85,54 @@ export default (ins: Feed) => {
     });
   }
 
+  if (options.next) {
+    isAtom = true;
+    channel.push({
+      "atom:link": {
+        _attr: {
+          href: options.next,
+          rel: "next"
+        }
+      }
+    });
+  }
+
+  if (options.next) {
+    isAtom = true;
+    channel.push({
+      "atom:link": {
+        _attr: {
+          href: options.previous,
+          rel: "previous"
+        }
+      }
+    });
+  }
+
+  if (options.next) {
+    isAtom = true;
+    channel.push({
+      "atom:link": {
+        _attr: {
+          href: options.first,
+          rel: "first"
+        }
+      }
+    });
+  }
+
+  if (options.next) {
+    isAtom = true;
+    channel.push({
+      "atom:link": {
+        _attr: {
+          href: options.last,
+          rel: "last"
+        }
+      }
+    });
+  }
+
   /**
    * Channel Categories
    * http://cyber.law.harvard.edu/rss/rss.html#hrelementsOfLtitemgt

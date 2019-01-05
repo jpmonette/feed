@@ -14,8 +14,14 @@ exports[`atom 1.0 should generate a valid feed 1`] = `
     </author>
     <link rel=\\"alternate\\" href=\\"http://example.com/\\"/>
     <link rel=\\"self\\" href=\\"http://example.com/sampleFeed.rss\\"/>
-    <subtitle>This is my personnal feed!</subtitle>
+    <link rel=\\"hub\\" href=\\"http://example.com/hub\\"/>
+    <link rel=\\"next\\" href=\\"http://example.com/sampleFeed.rss?page=3\\"/>
+    <link rel=\\"previous\\" href=\\"http://example.com/sampleFeed.rss?page=1\\"/>
+    <link rel=\\"first\\" href=\\"http://example.com/sampleFeed.rss\\"/>
+    <link rel=\\"last\\" href=\\"http://example.com/sampleFeed.rss?page=10\\"/>
+    <subtitle>This is my personal feed!</subtitle>
     <logo>http://example.com/image.png</logo>
+    <icon>http://example.com/feed.ico</icon>
     <rights>All rights reserved 2013, John Doe</rights>
     <category term=\\"Technology\\">
     </category>
@@ -53,6 +59,7 @@ exports[`atom 1.0 should generate a valid feed 1`] = `
             <uri>https://example.com/reggiemiller</uri>
         </contributor>
         <published>2013-07-10T23:00:00.000Z</published>
+        <rights>All rights reserved 2013, John Doe</rights>
     </entry>
 </feed>"
 `;

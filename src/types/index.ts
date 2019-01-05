@@ -32,7 +32,7 @@ interface FeedOptions {
   updated?: Date;
   generator?: string;
 
-  feed: string;
+  feed?: string;
   feedLinks: any;
   hub?: string;
 
@@ -42,6 +42,10 @@ interface FeedOptions {
   image?: string;
   favicon?: string;
   copyright: string;
+  next?: string;
+  previous?: string;
+  first?: string;
+  last?: string;
 }
 
 interface Feed {

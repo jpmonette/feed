@@ -43,6 +43,22 @@ export default (ins: Feed) => {
     feed.push({ link: { _attr: { rel: "hub", href: options.hub } } });
   }
 
+  if (options.next) {
+    feed.push({ link: { _attr: { rel: "next", href: options.next } } });
+  }
+
+  if (options.previous) {
+    feed.push({ link: { _attr: { rel: "previous", href: options.previous } } });
+  }
+
+  if (options.first) {
+    feed.push({ link: { _attr: { rel: "first", href: options.first } } });
+  }
+
+  if (options.last) {
+    feed.push({ link: { _attr: { rel: "last", href: options.last } } });
+  }
+
   /**************************************************************************
    * "feed" node: optional elements
    *************************************************************************/

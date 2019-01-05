@@ -33,6 +33,10 @@ export default (ins: Feed) => {
     }
   }
 
+  if (options.next && options.next !== feed.feed_url) {
+    feed.next_url = options.next;
+  }
+
   extensions.forEach((e: Extension) => {
     feed[e.name] = e.objects;
   });
