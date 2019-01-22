@@ -32,7 +32,7 @@ interface FeedOptions {
   updated?: Date;
   generator?: string;
 
-  feed: string;
+  feed?: string;
   feedLinks: any;
   hub?: string;
 
