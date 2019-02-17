@@ -10,6 +10,7 @@ exports[`rss 2.0 should generate a valid feed 1`] = `
         <lastBuildDate>Sat, 13 Jul 2013 23:00:00 GMT</lastBuildDate>
         <docs>http://blogs.law.harvard.edu/tech/rss</docs>
         <generator>https://github.com/jpmonette/feed</generator>
+        <language>en</language>
         <image>
             <title>Feed Title</title>
             <url>http://example.com/image.png</url>

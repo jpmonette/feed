@@ -25,6 +25,16 @@ export default (ins: Feed) => {
   const rss: any[] = [{ _attr: { version: "2.0" } }, { channel }];
 
   /**
+   * Channel language
+   * https://validator.w3.org/feed/docs/rss2.html#ltimagegtSubelementOfLtchannelgt
+   */
+  if (options.language) {
+    channel.push({
+      language: options.language
+    });
+  }
+
+  /**
    * Channel Image
    * http://cyber.law.harvard.edu/rss/rss.html#ltimagegtSubelementOfLtchannelgt
    */

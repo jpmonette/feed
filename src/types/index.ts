@@ -31,6 +31,7 @@ interface FeedOptions {
   title: string;
   updated?: Date;
   generator?: string;
+  language?: string;
 
   feed?: string;
   feedLinks: any;
