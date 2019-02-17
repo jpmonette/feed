@@ -9,6 +9,7 @@ export const sampleFeed = new Feed({
   link: "http://example.com/",
   id: "http://example.com/",
   feed: "http://example.com/sampleFeed.rss",
+  language: "en",
   image: "http://example.com/image.png",
   copyright: "All rights reserved 2013, John Doe",
   updated, // optional, default = today

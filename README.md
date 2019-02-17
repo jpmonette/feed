@@ -32,6 +32,7 @@ const feed = new Feed({
   description: "This is my personal feed!",
   id: "http://example.com/",
   link: "http://example.com/",
+  language: "en", // optional, used only in RSS 2.0, possible values: http://www.w3.org/TR/REC-html40/struct/dirlang.html#langcodes
   image: "http://example.com/image.png",
   favicon: "http://example.com/favicon.ico",
   copyright: "All rights reserved 2013, John Doe",
