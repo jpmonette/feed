@@ -111,7 +111,16 @@ export default (ins: Feed) => {
     }
 
     if (entry.guid) {
-      item.push({ guid: entry.guid });
+      let guidItem: { guid: [any] } = { guid: [entry.guid] };
+
+      /**
+       * GUID isPermaLink
+       * https://validator.w3.org/feed/docs/error/InvalidHttpGUID.html
+       */
+      if (entry.guidIsPermaLink) {
+        guidItem.guid.push({ _attr: { isPermaLink: entry.guidIsPermaLink } });
+      }
+      item.push(guidItem);
     } else if (entry.link) {
       item.push({ guid: entry.link });
     }

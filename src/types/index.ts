@@ -8,6 +8,7 @@ interface Item {
   content?: string;
 
   guid?: string;
+  guidIsPermaLink?: boolean;
 
   image?: string;
 
