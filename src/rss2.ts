@@ -128,6 +128,14 @@ export default (ins: Feed) => {
 
     if (entry.guid) {
       item.guid = { _text: entry.guid };
+
+      /**
+       * GUID isPermaLink
+       * https://validator.w3.org/feed/docs/error/InvalidHttpGUID.html
+       */
+       if (entry.guidIsPermaLink !== undefined) {
+        item.guid._attr = { isPermaLink: entry.guidIsPermaLink };
+      }
     } else if (entry.id) {
       item.guid = { _text: entry.id };
     } else if (entry.link) {

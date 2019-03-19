@@ -9,6 +9,7 @@ export interface Item {
   category?: Category[];
 
   guid?: string;
+  guidIsPermaLink?: boolean;
 
   image?: string | Enclosure;
   audio?: string | Enclosure;
