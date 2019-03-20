@@ -99,6 +99,17 @@ sampleFeed.addItem({
   published,
 });
 
+sampleFeed.addItem({
+  title: "Hello World 2",
+  id: "https://example.com/hello-world-2",
+  link: "https://example.com/hello-world-2",
+  guid: "58f618d7a56f2f745291a473",
+  guidIsPermaLink: false,
+  description: "This is another article about Hello World.",
+  date: new Date("Sat, 13 Jul 2013 22:00:00 GMT"),
+  published
+});
+
 sampleFeed.addExtension({
   name: "_example_extension",
   objects: {

@@ -258,6 +258,13 @@ exports[`rss 2.0 should generate a valid feed with video 1`] = `
             <category domain=\\"http://www.fool.com/cusips\\">MSFT</category>
             <enclosure url=\\"https://example.com/hello-world.mp4\\" length=\\"0\\" type=\\"video/mp4\\"/>
         </item>
+        <item>
+            <title><![CDATA[Hello World 2]]></title>
+            <link>https://example.com/hello-world-2</link>
+            <guid isPermaLink=\\"false\\">58f618d7a56f2f745291a473</guid>
+            <pubDate>Sat, 13 Jul 2013 22:00:00 GMT</pubDate>
+            <description><![CDATA[This is another article about Hello World.]]></description>
+        </item>
     </channel>
 </rss>"
 `;
