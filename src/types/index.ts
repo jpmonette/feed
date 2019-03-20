@@ -35,7 +35,7 @@ interface FeedOptions {
   language?: string;
 
   feed?: string;
-  feedLinks: any;
+  feedLinks?: any;
   hub?: string;
 
   author?: Author;
@@ -56,5 +56,5 @@ interface Feed {
 
 interface Extension {
   name: string;
-  objects: string;
+  objects: { [key: string]: string };
 }
