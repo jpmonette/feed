@@ -37,6 +37,14 @@ exports[`json 1 should generate a valid feed 1`] = `
                 \\"about\\": \\"just a second item extension example\\",
                 \\"dummy1\\": \\"example\\"
             }
+        },
+        {
+            \\"id\\": \\"https://example.com/hello-world-2\\",
+            \\"url\\": \\"https://example.com/hello-world-2\\",
+            \\"title\\": \\"Hello World 2\\",
+            \\"summary\\": \\"This is another article about Hello World.\\",
+            \\"date_modified\\": \\"2013-07-13T22:00:00.000Z\\",
+            \\"date_published\\": \\"2013-07-10T23:00:00.000Z\\"
         }
     ]
 }"

@@ -54,5 +54,14 @@ exports[`atom 1.0 should generate a valid feed 1`] = `
         </contributor>
         <published>2013-07-10T23:00:00.000Z</published>
     </entry>
+    <entry>
+        <title type=\\"html\\"><![CDATA[Hello World 2]]></title>
+        <id>https://example.com/hello-world-2</id>
+        <link href=\\"https://example.com/hello-world-2\\">
+        </link>
+        <updated>2013-07-13T22:00:00.000Z</updated>
+        <summary type=\\"html\\"><![CDATA[This is another article about Hello World.]]></summary>
+        <published>2013-07-10T23:00:00.000Z</published>
+    </entry>
 </feed>"
 `;
