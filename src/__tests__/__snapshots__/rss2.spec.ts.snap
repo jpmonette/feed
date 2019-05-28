@@ -28,8 +28,7 @@ exports[`rss 2.0 should generate a valid feed 1`] = `
             <content:encoded><![CDATA[Content of my item]]></content:encoded>
             <author>janedoe@example.com (Jane Doe)</author>
             <author>joesmith@example.com (Joe Smith)</author>
-            <enclosure url=\\"https://example.com/hello-world.jpg\\">
-            </enclosure>
+            <enclosure url=\\"https://example.com/hello-world.jpg\\"/>
         </item>
     </channel>
 </rss>"
