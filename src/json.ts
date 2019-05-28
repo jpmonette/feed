@@ -1,7 +1,9 @@
-/// <reference path="types/index.ts" />
+import { Extension, Item, Author } from "./typings";
+import { Feed } from "./feed";
 
 export default (ins: Feed) => {
   const { options, items, extensions } = ins;
+
   let feed: any = {
     version: "https://jsonfeed.org/version/1",
     title: options.title
@@ -33,7 +35,7 @@ export default (ins: Feed) => {
     }
   }
 
-  extensions.forEach((e: Extension) => {
+  extensions.map((e: Extension) => {
     feed[e.name] = e.objects;
   });
 
@@ -81,7 +83,7 @@ export default (ins: Feed) => {
     }
 
     if (item.extensions) {
-      item.extensions.forEach((e: Extension) => {
+      item.extensions.map((e: Extension) => {
         feedItem[e.name] = e.objects;
       });
     }
