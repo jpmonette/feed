@@ -27,8 +27,6 @@
   },
   "devDependencies": {
     "@types/jest": "^23.3.1",
-    "@types/xml": "^1.0.2",
-    "awesome-typescript-loader": "^5.2.0",
     "codeclimate-test-reporter": "^0.5.0",
     "coveralls": "^2.13.1",
     "jest": "^23.4.2",
