@@ -17,8 +17,7 @@ exports[`atom 1.0 should generate a valid feed 1`] = `
     <subtitle>This is my personnal feed!</subtitle>
     <logo>http://example.com/image.png</logo>
     <rights>All rights reserved 2013, John Doe</rights>
-    <category term=\\"Technology\\">
-    </category>
+    <category term=\\"Technology\\"/>
     <contributor>
         <name>Johan Cruyff</name>
         <email>johancruyff@example.com</email>
@@ -27,8 +26,7 @@ exports[`atom 1.0 should generate a valid feed 1`] = `
     <entry>
         <title type=\\"html\\"><![CDATA[Hello World]]></title>
         <id>https://example.com/hello-world</id>
-        <link href=\\"https://example.com/hello-world\\">
-        </link>
+        <link href=\\"https://example.com/hello-world\\"/>
         <updated>2013-07-13T23:00:00.000Z</updated>
         <summary type=\\"html\\"><![CDATA[This is an article about Hello World.]]></summary>
         <content type=\\"html\\"><![CDATA[Content of my item]]></content>

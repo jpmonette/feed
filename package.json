@@ -1,6 +1,6 @@
 {
   "name": "feed",
-  "version": "2.0.4",
+  "version": "3.0.0",
   "description": "Feed is a RSS, Atom and JSON feed generator for Node.js, making content syndication simple and intuitive!",
   "homepage": "https://github.com/jpmonette",
   "author": "Jean-Philippe Monette <contact@jpmonette.net>",
@@ -23,8 +23,7 @@
     "blog"
   ],
   "dependencies": {
-    "luxon": "^1.3.3",
-    "xml": "^1.0.1"
+    "xml-js": "^1.6.11"
   },
   "devDependencies": {
     "@types/jest": "^23.3.1",

@@ -1,4 +1,4 @@
-interface Item {
+export interface Item {
   title: string;
   id?: string;
   link: string;
@@ -20,13 +20,13 @@ interface Item {
   extensions?: Extension[];
 }
 
-interface Author {
+export interface Author {
   name?: string;
   email?: string;
   link?: string;
 }
 
-interface FeedOptions {
+export interface FeedOptions {
   id: string;
   title: string;
   updated?: Date;
@@ -34,7 +34,7 @@ interface FeedOptions {
   language?: string;
 
   feed?: string;
-  feedLinks: any;
+  feedLinks?: any;
   hub?: string;
 
   author?: Author;
@@ -45,15 +45,7 @@ interface FeedOptions {
   copyright: string;
 }
 
-interface Feed {
-  options: FeedOptions;
-  items: Item[];
-  categories: string[];
-  contributors: Author[];
-  extensions: Extension[];
-}
-
-interface Extension {
+export interface Extension {
   name: string;
-  objects: string;
+  objects: any;
 }
