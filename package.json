@@ -2,7 +2,7 @@
   "name": "feed",
   "version": "3.0.0",
   "description": "Feed is a RSS, Atom and JSON feed generator for Node.js, making content syndication simple and intuitive!",
-  "homepage": "https://github.com/jpmonette",
+  "homepage": "https://github.com/jpmonette/feed",
   "author": "Jean-Philippe Monette <contact@jpmonette.net>",
   "license": "MIT",
   "main": "lib/feed.js",
