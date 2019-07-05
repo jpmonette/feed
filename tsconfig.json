@@ -4,6 +4,7 @@
     "allowUnusedLabels": false,
     "baseUrl": ".",
     "declaration": true,
+    "lib": ["es2015"],
     "module": "commonjs",
     "noFallthroughCasesInSwitch": true,
     "noImplicitAny": true,
