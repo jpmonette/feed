@@ -33,7 +33,7 @@ export default (ins: Feed) => {
 
   /**
    * Channel Image
-   * http://cyber.law.harvard.edu/rss/rss.html#ltimagegtSubelementOfLtchannelgt
+   * https://validator.w3.org/feed/docs/rss2.html#ltimagegtSubelementOfLtchannelgt
    */
   if (options.image) {
     base.rss.channel.image = {
@@ -45,7 +45,7 @@ export default (ins: Feed) => {
 
   /**
    * Channel Copyright
-   * http://cyber.law.harvard.edu/rss/rss.html#optionalChannelElements
+   * https://validator.w3.org/feed/docs/rss2.html#optionalChannelElements
    */
   if (options.copyright) {
     base.rss.channel.copyright = { _text: options.copyright };
@@ -53,7 +53,7 @@ export default (ins: Feed) => {
 
   /**
    * Channel Categories
-   * http://cyber.law.harvard.edu/rss/rss.html#comments
+   * https://validator.w3.org/feed/docs/rss2.html#comments
    */
   ins.categories.map(category => {
     if (!base.rss.channel.category) {
@@ -99,7 +99,7 @@ export default (ins: Feed) => {
 
   /**
    * Channel Categories
-   * http://cyber.law.harvard.edu/rss/rss.html#hrelementsOfLtitemgt
+   * https://validator.w3.org/feed/docs/rss2.html#hrelementsOfLtitemgt
    */
   base.rss.channel.item = [];
 
@@ -134,7 +134,7 @@ export default (ins: Feed) => {
     }
     /**
      * Item Author
-     * http://cyber.law.harvard.edu/rss/rss.html#ltauthorgtSubelementOfLtitemgt
+     * https://validator.w3.org/feed/docs/rss2.html#ltauthorgtSubelementOfLtitemgt
      */
     if (Array.isArray(entry.author)) {
       item.author = [];
