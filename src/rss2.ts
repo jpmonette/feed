@@ -17,7 +17,7 @@ export default (ins: Feed) => {
         link: { _text: options.link },
         description: { _text: options.description },
         lastBuildDate: { _text: options.updated ? options.updated.toUTCString() : new Date().toUTCString() },
-        docs: { _text: "http://blogs.law.harvard.edu/tech/rss" },
+        docs: { _text: "https://validator.w3.org/feed/docs/rss2.html" },
         generator: { _text: options.generator || generator }
       }
     }
