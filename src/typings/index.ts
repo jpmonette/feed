@@ -36,6 +36,7 @@ export interface FeedOptions {
   feed?: string;
   feedLinks?: any;
   hub?: string;
+  docs?: string;
 
   author?: Author;
   link?: string;
