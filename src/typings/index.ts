@@ -11,6 +11,8 @@ export interface Item {
 
   image?: string;
 
+  type?: string;
+
   author?: Author[];
   contributor?: Author[];
 
