@@ -146,7 +146,7 @@ export default (ins: Feed) => {
     }
 
     if (entry.image) {
-      item.enclosure = { _attributes: { url: entry.image } };
+      item.enclosure = { _attributes: { url: entry.image, type: entry.type } };
     }
 
     base.rss.channel.item.push(item);
