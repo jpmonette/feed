@@ -148,7 +148,13 @@ export default (ins: Feed) => {
     if (entry.image) {
       item.enclosure = { _attributes: { url: entry.image } };
     }
-
+    
+    if(entry.categories) {
+      entry.categories.map((singleCategory) => {
+        item.category = { _cdata: singleCategory };
+      });
+    }
+    
     base.rss.channel.item.push(item);
   });
 
