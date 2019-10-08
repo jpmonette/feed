@@ -2,6 +2,7 @@ import * as convert from "xml-js";
 import { generator } from "./config";
 import { Feed } from "./feed";
 import { Item, Author } from "./typings";
+import { sanitize } from "./utils";
 
 export default (ins: Feed) => {
   const { options } = ins;
@@ -14,7 +15,7 @@ export default (ins: Feed) => {
       _attributes: { version: "2.0" },
       channel: {
         title: { _text: options.title },
-        link: { _text: options.link },
+        link: { _text: sanitize(options.link) },
         description: { _text: options.description },
         lastBuildDate: { _text: options.updated ? options.updated.toUTCString() : new Date().toUTCString() },
         docs: { _text: options.docs ? options.docs : "https://validator.w3.org/feed/docs/rss2.html" },
@@ -39,7 +40,7 @@ export default (ins: Feed) => {
     base.rss.channel.image = {
       title: { _text: options.title },
       url: { _text: options.image },
-      link: { _text: options.link }
+      link: { _text: sanitize(options.link) }
     };
   }
 
@@ -72,7 +73,7 @@ export default (ins: Feed) => {
     base.rss.channel["atom:link"] = [
       {
         _attributes: {
-          href: atomLink,
+          href: sanitize(atomLink),
           rel: "self",
           type: "application/rss+xml"
         }
@@ -91,7 +92,7 @@ export default (ins: Feed) => {
     }
     base.rss.channel["atom:link"] = {
       _attributes: {
-        href: options.hub,
+        href: sanitize(options.hub),
         rel: "hub"
       }
     };
@@ -111,13 +112,13 @@ export default (ins: Feed) => {
     }
 
     if (entry.link) {
-      item.link = { _text: entry.link };
+      item.link = { _text: sanitize(entry.link) };
     }
 
-    if (entry.guid) {
-      item.guid = { _text: entry.guid };
+    if (entry.id) {
+      item.guid = { _text: sanitize(entry.id) };
     } else if (entry.link) {
-      item.guid = { _text: entry.link };
+      item.guid = { _text: sanitize(entry.link) };
     }
 
     if (entry.date) {

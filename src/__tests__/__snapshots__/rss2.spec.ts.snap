@@ -21,8 +21,8 @@ exports[`rss 2.0 should generate a valid feed 1`] = `
         <atom:link href=\\"http://example.com/sampleFeed.rss\\" rel=\\"self\\" type=\\"application/rss+xml\\"/>
         <item>
             <title><![CDATA[Hello World]]></title>
-            <link>https://example.com/hello-world</link>
-            <guid>https://example.com/hello-world</guid>
+            <link>https://example.com/hello-world?link=sanitized&amp;value=2</link>
+            <guid>https://example.com/hello-world?id=this&amp;that=true</guid>
             <pubDate>Sat, 13 Jul 2013 23:00:00 GMT</pubDate>
             <description><![CDATA[This is an article about Hello World.]]></description>
             <content:encoded><![CDATA[Content of my item]]></content:encoded>

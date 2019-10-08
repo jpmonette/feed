@@ -9,7 +9,7 @@ exports[`json 1 should generate a valid feed 1`] = `
     \\"icon\\": \\"http://example.com/image.png\\",
     \\"author\\": {
         \\"name\\": \\"John Doe\\",
-        \\"url\\": \\"https://example.com/johndoe\\"
+        \\"url\\": \\"https://example.com/johndoe?link=sanitized&value=2\\"
     },
     \\"_example_extension\\": {
         \\"about\\": \\"just an extension example\\",
@@ -17,9 +17,9 @@ exports[`json 1 should generate a valid feed 1`] = `
     },
     \\"items\\": [
         {
-            \\"id\\": \\"https://example.com/hello-world\\",
+            \\"id\\": \\"https://example.com/hello-world?id=this&that=true\\",
             \\"content_html\\": \\"Content of my item\\",
-            \\"url\\": \\"https://example.com/hello-world\\",
+            \\"url\\": \\"https://example.com/hello-world?link=sanitized&value=2\\",
             \\"title\\": \\"Hello World\\",
             \\"summary\\": \\"This is an article about Hello World.\\",
             \\"image\\": \\"https://example.com/hello-world.jpg\\",
@@ -27,7 +27,7 @@ exports[`json 1 should generate a valid feed 1`] = `
             \\"date_published\\": \\"2013-07-10T23:00:00.000Z\\",
             \\"author\\": {
                 \\"name\\": \\"Jane Doe\\",
-                \\"url\\": \\"https://example.com/janedoe\\"
+                \\"url\\": \\"https://example.com/janedoe?link=sanitized&value=2\\"
             },
             \\"_item_extension_1\\": {
                 \\"about\\": \\"just an item extension example\\",

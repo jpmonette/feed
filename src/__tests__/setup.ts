@@ -17,7 +17,7 @@ export const sampleFeed = new Feed({
   author: {
     name: "John Doe",
     email: "johndoe@example.com",
-    link: "https://example.com/johndoe"
+    link: "https://example.com/johndoe?link=sanitized&value=2"
   }
 });
 
@@ -31,15 +31,15 @@ sampleFeed.addContributor({
 
 sampleFeed.addItem({
   title: "Hello World",
-  id: "https://example.com/hello-world",
-  link: "https://example.com/hello-world",
+  id: "https://example.com/hello-world?id=this&that=true",
+  link: "https://example.com/hello-world?link=sanitized&value=2",
   description: "This is an article about Hello World.",
   content: "Content of my item",
   author: [
     {
       name: "Jane Doe",
       email: "janedoe@example.com",
-      link: "https://example.com/janedoe"
+      link: "https://example.com/janedoe?link=sanitized&value=2"
     },
     {
       name: "Joe Smith",
