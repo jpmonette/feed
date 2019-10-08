@@ -76,7 +76,9 @@ sampleFeed.addItem({
     }
   ],
   date: updated,
-  image: "https://example.com/hello-world.jpg",
+  image: {
+    url: "https://example.com/hello-world.jpg",
+  },
   published
 });
 

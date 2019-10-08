@@ -9,7 +9,7 @@ export interface Item {
 
   guid?: string;
 
-  image?: string;
+  image?: Image;
 
   author?: Author[];
   contributor?: Author[];
@@ -18,6 +18,12 @@ export interface Item {
   copyright?: string;
 
   extensions?: Extension[];
+}
+
+export interface Image {
+  url: string;
+  size?: number;
+  type?: string;
 }
 
 export interface Author {

@@ -57,7 +57,7 @@ export default (ins: Feed) => {
     }
 
     if (item.image) {
-      feedItem.image = item.image;
+      feedItem.image = item.image.url;
     }
 
     if (item.date) {

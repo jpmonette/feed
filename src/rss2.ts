@@ -147,7 +147,7 @@ export default (ins: Feed) => {
     }
 
     if (entry.image) {
-      item.enclosure = { _attributes: { url: entry.image } };
+      item.enclosure = { _attributes: { url: entry.image.url, type: entry.image.type, length: entry.image.size } };
     }
 
     base.rss.channel.item.push(item);
