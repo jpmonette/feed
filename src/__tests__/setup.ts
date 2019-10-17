@@ -31,7 +31,7 @@ sampleFeed.addContributor({
 
 sampleFeed.addItem({
   title: "Hello World",
-  id: "https://example.com/hello-world",
+  id: "419c523a-28f4-489c-877e-9604be64c002",
   link: "https://example.com/hello-world",
   description: "This is an article about Hello World.",
   content: "Content of my item",
