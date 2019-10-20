@@ -115,8 +115,10 @@ export default (ins: Feed) => {
       item.link = { _text: sanitize(entry.link) };
     }
 
-    if (entry.id) {
-      item.guid = { _text: sanitize(entry.id) };
+    if (entry.guid) {
+      item.guid = { _text: entry.guid };
+    } else if (entry.id) {
+      item.guid = { _text: entry.id };
     } else if (entry.link) {
       item.guid = { _text: sanitize(entry.link) };
     }
