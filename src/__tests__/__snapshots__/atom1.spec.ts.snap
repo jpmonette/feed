@@ -25,7 +25,7 @@ exports[`atom 1.0 should generate a valid feed 1`] = `
     </contributor>
     <entry>
         <title type=\\"html\\"><![CDATA[Hello World]]></title>
-        <id>https://example.com/hello-world</id>
+        <id>419c523a-28f4-489c-877e-9604be64c002</id>
         <link href=\\"https://example.com/hello-world\\"/>
         <updated>2013-07-13T23:00:00.000Z</updated>
         <summary type=\\"html\\"><![CDATA[This is an article about Hello World.]]></summary>

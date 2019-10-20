@@ -116,6 +116,8 @@ export default (ins: Feed) => {
 
     if (entry.guid) {
       item.guid = { _text: entry.guid };
+    } else if (entry.id) {
+      item.guid = { _text: entry.id };
     } else if (entry.link) {
       item.guid = { _text: entry.link };
     }

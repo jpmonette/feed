@@ -22,7 +22,7 @@ exports[`rss 2.0 should generate a valid feed 1`] = `
         <item>
             <title><![CDATA[Hello World]]></title>
             <link>https://example.com/hello-world</link>
-            <guid>https://example.com/hello-world</guid>
+            <guid>419c523a-28f4-489c-877e-9604be64c002</guid>
             <pubDate>Sat, 13 Jul 2013 23:00:00 GMT</pubDate>
             <description><![CDATA[This is an article about Hello World.]]></description>
             <content:encoded><![CDATA[Content of my item]]></content:encoded>
