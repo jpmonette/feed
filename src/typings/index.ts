@@ -6,6 +6,7 @@ export interface Item {
 
   description?: string;
   content?: string;
+  category?: Category[];
 
   guid?: string;
 
@@ -30,6 +31,13 @@ export interface Author {
   name?: string;
   email?: string;
   link?: string;
+}
+
+export interface Category {
+  name?: string;
+  domain?: string;
+  scheme?: string;
+  term?: string;
 }
 
 export interface FeedOptions {

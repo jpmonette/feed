@@ -1,4 +1,4 @@
-import { Extension, Item, Author } from "./typings";
+import { Extension, Item, Author, Category } from "./typings";
 import { Feed } from "./feed";
 
 export default (ins: Feed) => {
@@ -80,6 +80,15 @@ export default (ins: Feed) => {
       if (author.link) {
         feedItem.author.url = author.link;
       }
+    }
+
+    if (Array.isArray(item.category)) {
+      feedItem.tags = [];
+      item.category.map((category: Category) => {
+        if (category.name) {
+          feedItem.tags.push(category.name);
+        }
+      });
     }
 
     if (item.extensions) {

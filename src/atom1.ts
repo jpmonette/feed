@@ -1,7 +1,7 @@
 import { generator } from "./config";
 import * as convert from "xml-js";
 import { Feed } from "./feed";
-import { Author, Item } from "./typings";
+import { Author, Item, Category } from "./typings";
 import { sanitize } from "./utils";
 
 export default (ins: Feed) => {
@@ -127,6 +127,13 @@ export default (ins: Feed) => {
     //
 
     // category
+    if (Array.isArray(item.category)) {
+      entry.category = [];
+
+      item.category.map((category: Category) => {
+        entry.category.push(formatCategory(category));
+      });
+    }
 
     // contributor
     if (item.contributor && Array.isArray(item.contributor)) {
@@ -162,5 +169,17 @@ const formatAuthor = (author: Author) => {
     name,
     email,
     uri: sanitize(link)
+  };
+};
+
+const formatCategory = (category: Category) => {
+  const { name, scheme, term } = category;
+
+  return {
+    _attributes: {
+      label: name,
+      scheme,
+      term
+    }
   };
 };

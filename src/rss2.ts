@@ -1,7 +1,7 @@
 import * as convert from "xml-js";
 import { generator } from "./config";
 import { Feed } from "./feed";
-import { Item, Author } from "./typings";
+import { Item, Author, Category } from "./typings";
 import { sanitize } from "./utils";
 
 export default (ins: Feed) => {
@@ -147,6 +147,16 @@ export default (ins: Feed) => {
         }
       });
     }
+    /**
+     * Item Category
+     * https://validator.w3.org/feed/docs/rss2.html#ltcategorygtSubelementOfLtitemgt
+     */
+    if (Array.isArray(entry.category)) {
+      item.category = [];
+      entry.category.map((category: Category) => {
+        item.category.push(formatCategory(category));
+      });
+    }
 
     if (entry.image) {
       item.enclosure = { _attributes: { url: entry.image.url, type: entry.image.type, length: entry.image.size } };
@@ -164,3 +174,14 @@ export default (ins: Feed) => {
   }
   return convert.js2xml(base, { compact: true, ignoreComment: true, spaces: 4 });
 };
+
+const formatCategory = (category: Category) => {
+  const { name, domain } = category;
+  return {
+    _text: name,
+    _attributes: {
+      domain
+    }
+  };
+};
+
