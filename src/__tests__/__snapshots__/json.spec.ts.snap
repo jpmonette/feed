@@ -29,6 +29,10 @@ exports[`json 1 should generate a valid feed 1`] = `
                 \\"name\\": \\"Jane Doe\\",
                 \\"url\\": \\"https://example.com/janedoe\\"
             },
+            \\"tags\\": [
+                \\"Grateful Dead\\",
+                \\"MSFT\\"
+            ],
             \\"_item_extension_1\\": {
                 \\"about\\": \\"just an item extension example\\",
                 \\"dummy1\\": \\"example\\"

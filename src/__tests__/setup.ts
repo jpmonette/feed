@@ -75,6 +75,15 @@ sampleFeed.addItem({
       }
     }
   ],
+  category: [
+    {
+      name: 'Grateful Dead'
+    },
+    {
+      name: 'MSFT',
+      domain: 'http://www.fool.com/cusips'
+    }
+  ],
   date: updated,
   image: "https://example.com/hello-world.jpg",
   published
