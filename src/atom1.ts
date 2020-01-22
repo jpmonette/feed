@@ -167,21 +167,26 @@ export default (ins: Feed) => {
 };
 
 /**
- * Returns a formated author
+ * Returns a formatted author
  * @param author
  */
 const formatAuthor = (author: Author) => {
   const { name, email, link } = author;
 
-  return {
-    name,
-    email,
-    uri: sanitize(link)
-  };
+  const out: { name?: string, email?: string, uri?: string } = { name };
+  if (email) {
+    out.email = email;
+  }
+
+  if (link) {
+    out.uri = sanitize(link);
+  }
+
+  return out;
 };
 
 /**
- * Returns a formated category
+ * Returns a formatted category
  * @param category
  */
 const formatCategory = (category: Category) => {

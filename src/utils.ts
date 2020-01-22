@@ -1,4 +1,4 @@
-export function sanitize(url: String | undefined): String | undefined {
+export function sanitize(url: string | undefined): string | undefined {
   if (typeof (url) === 'undefined') {
     return;
   }

@@ -45,7 +45,7 @@ sampleFeed.addItem({
     {
       name: "Jane Doe",
       email: "janedoe@example.com",
-      link: "https://example.com/janedoe?link=sanitized&value=2"
+      link: "https://example.com/janedoe?link=sanitized&value=2",
     },
     {
       name: "Joe Smith",
