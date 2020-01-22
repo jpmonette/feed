@@ -156,8 +156,13 @@ export default (ins: Feed) => {
         item.category.push(formatCategory(category));
       });
     }
-
-    if (entry.image) {
+    /**
+     * Item Enclosure
+     * https://validator.w3.org/feed/docs/rss2.html#ltenclosuregtSubelementOfLtitemgt
+     */
+    if (entry.enclosure) {
+      item.enclosure = { _attributes: { url: entry.enclosure.url, length: entry.enclosure.length || 0, type: entry.enclosure.type } };
+    } else if (entry.image) {
       item.enclosure = { _attributes: { url: entry.image } };
     }
 
