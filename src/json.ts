@@ -97,6 +97,17 @@ export default (ins: Feed) => {
       });
     }
 
+    if (item.enclosure) {
+      feedItem.attachments = [];
+      feedItem.attachments.push({
+        url: item.enclosure.url,
+        mime_type: item.enclosure.type,
+        title: item.enclosure.title,
+        size_in_bytes: item.enclosure.length,
+        duration_in_seconts: item.enclosure.duration
+      });
+    }
+
     return feedItem;
   });
 

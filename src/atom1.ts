@@ -155,6 +155,11 @@ export default (ins: Feed) => {
       entry.rights = item.copyright;
     }
 
+    // enclosure
+    if (item.enclosure) {
+      entry.link.push({ _attributes: { href: item.enclosure.url, length: item.enclosure.length || 0, type: item.enclosure.type, rel: 'enclosure' } })
+    }
+
     base.feed.entry.push(entry);
   });
 
