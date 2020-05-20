@@ -1,7 +1,7 @@
 import * as convert from "xml-js";
 import { generator } from "./config";
 import { Feed } from "./feed";
-import { Item, Author, Category } from "./typings";
+import { Item, Author, Category, Enclosure } from "./typings";
 
 export default (ins: Feed) => {
   const { options } = ins;
@@ -25,10 +25,18 @@ export default (ins: Feed) => {
 
   /**
    * Channel language
-   * https://validator.w3.org/feed/docs/rss2.html#ltimagegtSubelementOfLtchannelgt
+   * https://validator.w3.org/feed/docs/rss2.html#ltlanguagegtSubelementOfLtchannelgt
    */
   if (options.language) {
     base.rss.channel.language = { _text: options.language };
+  }
+
+  /**
+   * Channel ttl
+   * https://validator.w3.org/feed/docs/rss2.html#ltttlgtSubelementOfLtchannelgt
+   */
+  if (options.ttl) {
+    base.rss.channel.ttl = { _text: options.ttl };
   }
 
   /**
@@ -157,14 +165,31 @@ export default (ins: Feed) => {
       });
     }
 
+    /**
+     * Item Category
+     * https://validator.w3.org/feed/docs/rss2.html#ltenclosuregtSubelementOfLtitemgt
+     */
+    if (entry.enclosure) {
+      item.enclosure = formatEnclosure(entry.enclosure)
+    }
+
     if (entry.image) {
-      item.enclosure = { _attributes: { url: entry.image } };
+      item.enclosure = formatEnclosure(entry.image, 'image');
+    }
+
+    if (entry.audio) {
+      item.enclosure = formatEnclosure(entry.audio, 'audio');
+    }
+
+    if (entry.video) {
+      item.enclosure = formatEnclosure(entry.video, 'video');
     }
 
     base.rss.channel.item.push(item);
   });
 
   if (isContent) {
+    base.rss._attributes["xmlns:dc"] = "http://purl.org/dc/elements/1.1/";
     base.rss._attributes["xmlns:content"] = "http://purl.org/rss/1.0/modules/content/";
   }
 
@@ -172,6 +197,16 @@ export default (ins: Feed) => {
     base.rss._attributes["xmlns:atom"] = "http://www.w3.org/2005/Atom";
   }
   return convert.js2xml(base, { compact: true, ignoreComment: true, spaces: 4 });
+};
+
+const formatEnclosure = (enclosure: string | Enclosure, mimeCategory = 'image') => {
+  if (typeof enclosure === "string") {
+    const type = new URL(enclosure).pathname.split('.').slice(-1)[0];
+    return { _attributes: { url: enclosure, length: 0, type: `${mimeCategory}/${type}` } };
+  }
+
+  const type = new URL(enclosure.url).pathname.split('.').slice(-1)[0];
+  return { _attributes: { length: 0, type: `${mimeCategory}/${type}`, ...enclosure } };
 };
 
 const formatCategory = (category: Category) => {

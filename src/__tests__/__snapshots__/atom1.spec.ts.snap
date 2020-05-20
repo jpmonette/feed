@@ -14,6 +14,7 @@ exports[`atom 1.0 should generate a valid feed 1`] = `
     </author>
     <link rel=\\"alternate\\" href=\\"http://example.com/\\"/>
     <link rel=\\"self\\" href=\\"http://example.com/sampleFeed.rss\\"/>
+    <link rel=\\"hub\\" href=\\"wss://example.com/\\"/>
     <subtitle>This is my personnal feed!</subtitle>
     <logo>http://example.com/image.png</logo>
     <rights>All rights reserved 2013, John Doe</rights>
