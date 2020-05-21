@@ -137,6 +137,10 @@ export default (ins: Feed) => {
       item.pubDate = { _text: entry.date.toUTCString() };
     }
 
+    if (entry.published) {
+      item.pubDate = { _text: entry.published.toUTCString() };
+    }
+
     if (entry.description) {
       item.description = { _cdata: entry.description };
     }

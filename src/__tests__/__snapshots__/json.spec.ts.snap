@@ -5,6 +5,7 @@ exports[`json 1 should generate a valid feed 1`] = `
     \\"version\\": \\"https://jsonfeed.org/version/1\\",
     \\"title\\": \\"Feed Title\\",
     \\"home_page_url\\": \\"http://example.com/\\",
+    \\"feed_url\\": \\"http://example.com/sampleFeed.json\\",
     \\"description\\": \\"This is my personnal feed!\\",
     \\"icon\\": \\"http://example.com/image.png\\",
     \\"author\\": {
