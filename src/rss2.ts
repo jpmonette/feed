@@ -66,7 +66,7 @@ export default (ins: Feed) => {
    * Feed URL
    * http://validator.w3.org/feed/docs/warning/MissingAtomSelfLink.html
    */
-  const atomLink = options.feed || (options.feedLinks && options.feedLinks.atom);
+  const atomLink = options.feed || (options.feedLinks && options.feedLinks.rss);
   if (atomLink) {
     isAtom = true;
     base.rss.channel["atom:link"] = [
