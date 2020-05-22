@@ -42,6 +42,9 @@ exports[`atom 1.0 should generate a valid feed 1`] = `
             <email>joesmith@example.com</email>
             <uri>https://example.com/joesmith</uri>
         </author>
+        <author>
+            <name>Joe Smith, Name Only</name>
+        </author>
         <category label=\\"Grateful Dead\\"/>
         <category label=\\"MSFT\\"/>
         <contributor>
