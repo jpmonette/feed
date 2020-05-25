@@ -26,15 +26,15 @@
     "xml-js": "^1.6.11"
   },
   "devDependencies": {
-    "@types/jest": "^24.0.15",
-    "codeclimate-test-reporter": "^0.5.0",
-    "coveralls": "^3.0.4",
-    "jest": "^24.8.0",
-    "prettier": "^1.18.2",
+    "@types/jest": "^25.2.3",
+    "codeclimate-test-reporter": "^0.5.1",
+    "coveralls": "^3.1.0",
+    "jest": "^26.0.1",
+    "prettier": "^2.0.5",
     "source-map-loader": "^0.2.4",
-    "ts-jest": "^24.0.2",
-    "tslint": "^5.18.0",
-    "typescript": "^3.5.2"
+    "ts-jest": "^26.0.0",
+    "tslint": "^6.1.2",
+    "typescript": "^3.9.3"
   },
   "engines": {
     "node": ">=0.4.0"

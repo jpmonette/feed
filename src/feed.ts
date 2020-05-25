@@ -1,8 +1,11 @@
 import renderAtom from "./atom1";
 import renderJSON from "./json";
 import renderRSS from "./rss2";
-import { FeedOptions, Item, Author, Extension } from "./typings";
+import { Author, Extension, FeedOptions, Item } from "./typings";
 
+/**
+ * Class used to generate Feeds
+ */
 export class Feed {
   options: FeedOptions;
   items: Item[] = [];
@@ -14,12 +17,28 @@ export class Feed {
     this.options = options;
   }
 
+  /**
+   * Add a feed item
+   * @param item
+   */
   public addItem = (item: Item) => this.items.push(item);
 
+  /**
+   * Add a category
+   * @param category
+   */
   public addCategory = (category: string) => this.categories.push(category);
 
+  /**
+   * Add a contributor
+   * @param contributor
+   */
   public addContributor = (contributor: Author) => this.contributors.push(contributor);
 
+  /**
+   * Adds an extension
+   * @param extension
+   */
   public addExtension = (extension: Extension) => this.extensions.push(extension);
 
   /**
