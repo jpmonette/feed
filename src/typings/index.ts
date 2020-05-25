@@ -10,7 +10,10 @@ export interface Item {
 
   guid?: string;
 
-  image?: Image;
+  image?: string | Enclosure;
+  audio?: string | Enclosure;
+  video?: string | Enclosure;
+  enclosure?: Enclosure;
 
   author?: Author[];
   contributor?: Author[];
@@ -21,10 +24,12 @@ export interface Item {
   extensions?: Extension[];
 }
 
-export interface Image {
+export interface Enclosure {
   url: string;
-  size?: number;
   type?: string;
+  length?: number;
+  title?: string;
+  duration?: number
 }
 
 export interface Author {
@@ -46,6 +51,7 @@ export interface FeedOptions {
   updated?: Date;
   generator?: string;
   language?: string;
+  ttl?: number;
 
   feed?: string;
   feedLinks?: any;

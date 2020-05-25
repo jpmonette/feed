@@ -1,7 +1,7 @@
 import { Feed } from "../feed";
 
-const updated = new Date("Sat, 13 Jul 2013 23:00:00 GMT");
-const published = new Date("Sat, 10 Jul 2013 23:00:00 GMT");
+export const updated = new Date("Sat, 13 Jul 2013 23:00:00 GMT");
+export const published = new Date("Sat, 10 Jul 2013 23:00:00 GMT");
 
 export const sampleFeed = new Feed({
   title: "Feed Title",
@@ -10,8 +10,10 @@ export const sampleFeed = new Feed({
   id: "http://example.com/",
   feed: "http://example.com/sampleFeed.rss",
   language: "en",
+  ttl: 60,
   image: "http://example.com/image.png",
   copyright: "All rights reserved 2013, John Doe",
+  hub: "wss://example.com/",
   updated, // optional, default = today
 
   author: {
