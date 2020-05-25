@@ -1,5 +1,5 @@
-import { sampleFeed, updated, published } from "./setup";
 import { Feed } from "../feed";
+import { published, sampleFeed, updated } from "./setup";
 
 describe("rss 2.0", () => {
   it("should generate a valid feed", () => {
@@ -17,42 +17,42 @@ describe("rss 2.0", () => {
         {
           name: "Jane Doe",
           email: "janedoe@example.com",
-          link: "https://example.com/janedoe"
+          link: "https://example.com/janedoe",
         },
         {
           name: "Joe Smith",
           email: "joesmith@example.com",
-          link: "https://example.com/joesmith"
-        }
+          link: "https://example.com/joesmith",
+        },
       ],
       extensions: [
         {
           name: "_item_extension_1",
           objects: {
             about: "just an item extension example",
-            dummy1: "example"
-          }
+            dummy1: "example",
+          },
         },
         {
           name: "_item_extension_2",
           objects: {
             about: "just a second item extension example",
-            dummy1: "example"
-          }
-        }
+            dummy1: "example",
+          },
+        },
       ],
       category: [
         {
-          name: 'Grateful Dead'
+          name: "Grateful Dead",
         },
         {
-          name: 'MSFT',
-          domain: 'http://www.fool.com/cusips'
-        }
+          name: "MSFT",
+          domain: "http://www.fool.com/cusips",
+        },
       ],
       date: updated,
-      image: {url: "https://example.com/hello-world.jpg", length: 12665 },
-      published
+      image: { url: "https://example.com/hello-world.jpg", length: 12665 },
+      published,
     });
     const actual = sampleFeed.rss2();
     expect(actual).toMatchSnapshot();
@@ -68,42 +68,42 @@ describe("rss 2.0", () => {
         {
           name: "Jane Doe",
           email: "janedoe@example.com",
-          link: "https://example.com/janedoe"
+          link: "https://example.com/janedoe",
         },
         {
           name: "Joe Smith",
           email: "joesmith@example.com",
-          link: "https://example.com/joesmith"
-        }
+          link: "https://example.com/joesmith",
+        },
       ],
       extensions: [
         {
           name: "_item_extension_1",
           objects: {
             about: "just an item extension example",
-            dummy1: "example"
-          }
+            dummy1: "example",
+          },
         },
         {
           name: "_item_extension_2",
           objects: {
             about: "just a second item extension example",
-            dummy1: "example"
-          }
-        }
+            dummy1: "example",
+          },
+        },
       ],
       category: [
         {
-          name: 'Grateful Dead'
+          name: "Grateful Dead",
         },
         {
-          name: 'MSFT',
-          domain: 'http://www.fool.com/cusips'
-        }
+          name: "MSFT",
+          domain: "http://www.fool.com/cusips",
+        },
       ],
       date: updated,
-      enclosure: {url: "https://example.com/hello-world.jpg", length: 12665 },
-      published
+      enclosure: { url: "https://example.com/hello-world.jpg", length: 12665 },
+      published,
     });
     const actual = sampleFeed.rss2();
     expect(actual).toMatchSnapshot();
@@ -118,42 +118,42 @@ describe("rss 2.0", () => {
         {
           name: "Jane Doe",
           email: "janedoe@example.com",
-          link: "https://example.com/janedoe"
+          link: "https://example.com/janedoe",
         },
         {
           name: "Joe Smith",
           email: "joesmith@example.com",
-          link: "https://example.com/joesmith"
-        }
+          link: "https://example.com/joesmith",
+        },
       ],
       extensions: [
         {
           name: "_item_extension_1",
           objects: {
             about: "just an item extension example",
-            dummy1: "example"
-          }
+            dummy1: "example",
+          },
         },
         {
           name: "_item_extension_2",
           objects: {
             about: "just a second item extension example",
-            dummy1: "example"
-          }
-        }
+            dummy1: "example",
+          },
+        },
       ],
       category: [
         {
-          name: 'Grateful Dead'
+          name: "Grateful Dead",
         },
         {
-          name: 'MSFT',
-          domain: 'http://www.fool.com/cusips'
-        }
+          name: "MSFT",
+          domain: "http://www.fool.com/cusips",
+        },
       ],
       date: updated,
-      audio: {url: "https://example.com/hello-world.mp3", length: 12665, type: "audio/mpeg" },
-      published
+      audio: { url: "https://example.com/hello-world.mp3", length: 12665, type: "audio/mpeg" },
+      published,
     });
     const actual = sampleFeed.rss2();
     expect(actual).toMatchSnapshot();
@@ -174,8 +174,8 @@ describe("rss 2.0", () => {
       author: {
         name: "John Doe",
         email: "johndoe@example.com",
-        link: "https://example.com/johndoe"
-      }
+        link: "https://example.com/johndoe",
+      },
     });
     sampleFeed.addItem({
       title: "Hello World",
@@ -187,42 +187,42 @@ describe("rss 2.0", () => {
         {
           name: "Jane Doe",
           email: "janedoe@example.com",
-          link: "https://example.com/janedoe"
+          link: "https://example.com/janedoe",
         },
         {
           name: "Joe Smith",
           email: "joesmith@example.com",
-          link: "https://example.com/joesmith"
-        }
+          link: "https://example.com/joesmith",
+        },
       ],
       extensions: [
         {
           name: "_item_extension_1",
           objects: {
             about: "just an item extension example",
-            dummy1: "example"
-          }
+            dummy1: "example",
+          },
         },
         {
           name: "_item_extension_2",
           objects: {
             about: "just a second item extension example",
-            dummy1: "example"
-          }
-        }
+            dummy1: "example",
+          },
+        },
       ],
       category: [
         {
-          name: 'Grateful Dead'
+          name: "Grateful Dead",
         },
         {
-          name: 'MSFT',
-          domain: 'http://www.fool.com/cusips'
-        }
+          name: "MSFT",
+          domain: "http://www.fool.com/cusips",
+        },
       ],
       date: updated,
       video: "https://example.com/hello-world.mp4",
-      published
+      published,
     });
     const actual = sampleFeed.rss2();
     expect(actual).toMatchSnapshot();

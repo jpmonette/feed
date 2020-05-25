@@ -1,9 +1,13 @@
-import { generator } from "./config";
 import * as convert from "xml-js";
+import { generator } from "./config";
 import { Feed } from "./feed";
-import { Author, Item, Category } from "./typings";
+import { Author, Category, Item } from "./typings";
 import { sanitize } from "./utils";
 
+/**
+ * Returns an Atom feed
+ * @param ins
+ */
 export default (ins: Feed) => {
   const { options } = ins;
 
@@ -98,14 +102,14 @@ export default (ins: Feed) => {
     if (item.description) {
       entry.summary = {
         _attributes: { type: "html" },
-        _cdata: item.description
+        _cdata: item.description,
       };
     }
 
     if (item.content) {
       entry.content = {
         _attributes: { type: "html" },
-        _cdata: item.content
+        _cdata: item.content,
       };
     }
 
@@ -162,6 +166,10 @@ export default (ins: Feed) => {
   return convert.js2xml(base, { compact: true, ignoreComment: true, spaces: 4 });
 };
 
+/**
+ * Returns a formated author
+ * @param author
+ */
 const formatAuthor = (author: Author) => {
   const { name, email, link } = author;
 
@@ -172,6 +180,10 @@ const formatAuthor = (author: Author) => {
   };
 };
 
+/**
+ * Returns a formated category
+ * @param category
+ */
 const formatCategory = (category: Category) => {
   const { name, scheme, term } = category;
 
@@ -179,7 +191,7 @@ const formatCategory = (category: Category) => {
     _attributes: {
       label: name,
       scheme,
-      term
-    }
+      term,
+    },
   };
 };

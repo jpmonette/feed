@@ -1,9 +1,12 @@
 import * as convert from "xml-js";
 import { generator } from "./config";
 import { Feed } from "./feed";
-import { Item, Author, Category, Enclosure } from "./typings";
+import { Author, Category, Enclosure, Item } from "./typings";
 import { sanitize } from "./utils";
 
+/**
+ * Returns a RSS 2.0 feed
+ */
 export default (ins: Feed) => {
   const { options } = ins;
   let isAtom = false;
@@ -19,9 +22,9 @@ export default (ins: Feed) => {
         description: { _text: options.description },
         lastBuildDate: { _text: options.updated ? options.updated.toUTCString() : new Date().toUTCString() },
         docs: { _text: options.docs ? options.docs : "https://validator.w3.org/feed/docs/rss2.html" },
-        generator: { _text: options.generator || generator }
-      }
-    }
+        generator: { _text: options.generator || generator },
+      },
+    },
   };
 
   /**
@@ -64,7 +67,7 @@ export default (ins: Feed) => {
    * Channel Categories
    * https://validator.w3.org/feed/docs/rss2.html#comments
    */
-  ins.categories.map(category => {
+  ins.categories.map((category) => {
     if (!base.rss.channel.category) {
       base.rss.channel.category = [];
     }
@@ -83,9 +86,9 @@ export default (ins: Feed) => {
         _attributes: {
           href: sanitize(atomLink),
           rel: "self",
-          type: "application/rss+xml"
-        }
-      }
+          type: "application/rss+xml",
+        },
+      },
     ];
   }
 
@@ -170,19 +173,19 @@ export default (ins: Feed) => {
      -     * https://validator.w3.org/feed/docs/rss2.html#ltenclosuregtSubelementOfLtitemgt
      -     */
     if (entry.enclosure) {
-      item.enclosure = formatEnclosure(entry.enclosure)
+      item.enclosure = formatEnclosure(entry.enclosure);
     }
 
     if (entry.image) {
-      item.enclosure = formatEnclosure(entry.image, 'image');
+      item.enclosure = formatEnclosure(entry.image, "image");
     }
 
     if (entry.audio) {
-      item.enclosure = formatEnclosure(entry.audio, 'audio');
+      item.enclosure = formatEnclosure(entry.audio, "audio");
     }
 
     if (entry.video) {
-      item.enclosure = formatEnclosure(entry.video, 'video');
+      item.enclosure = formatEnclosure(entry.video, "video");
     }
 
     base.rss.channel.item.push(item);
@@ -199,23 +202,31 @@ export default (ins: Feed) => {
   return convert.js2xml(base, { compact: true, ignoreComment: true, spaces: 4 });
 };
 
-const formatEnclosure = (enclosure: string | Enclosure, mimeCategory = 'image') => {
+/**
+ * Returns a formated enclosure
+ * @param enclosure
+ * @param mimeCategory
+ */
+const formatEnclosure = (enclosure: string | Enclosure, mimeCategory = "image") => {
   if (typeof enclosure === "string") {
-    const type = new URL(enclosure).pathname.split('.').slice(-1)[0];
+    const type = new URL(enclosure).pathname.split(".").slice(-1)[0];
     return { _attributes: { url: enclosure, length: 0, type: `${mimeCategory}/${type}` } };
   }
 
-  const type = new URL(enclosure.url).pathname.split('.').slice(-1)[0];
+  const type = new URL(enclosure.url).pathname.split(".").slice(-1)[0];
   return { _attributes: { length: 0, type: `${mimeCategory}/${type}`, ...enclosure } };
 };
 
+/**
+ * Returns a formated category
+ * @param category
+ */
 const formatCategory = (category: Category) => {
   const { name, domain } = category;
   return {
     _text: name,
     _attributes: {
-      domain
-    }
+      domain,
+    },
   };
 };
-

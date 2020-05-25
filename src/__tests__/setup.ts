@@ -28,7 +28,7 @@ sampleFeed.addCategory("Technology");
 sampleFeed.addContributor({
   name: "Johan Cruyff",
   email: "johancruyff@example.com",
-  link: "https://example.com/johancruyff"
+  link: "https://example.com/johancruyff",
 });
 
 sampleFeed.addItem({
@@ -46,57 +46,56 @@ sampleFeed.addItem({
     {
       name: "Joe Smith",
       email: "joesmith@example.com",
-      link: "https://example.com/joesmith"
-    }
+      link: "https://example.com/joesmith",
+    },
   ],
   contributor: [
     {
       name: "Shawn Kemp",
       email: "shawnkemp@example.com",
-      link: "https://example.com/shawnkemp"
+      link: "https://example.com/shawnkemp",
     },
     {
       name: "Reggie Miller",
       email: "reggiemiller@example.com",
-      link: "https://example.com/reggiemiller"
-    }
+      link: "https://example.com/reggiemiller",
+    },
   ],
   extensions: [
     {
       name: "_item_extension_1",
       objects: {
         about: "just an item extension example",
-        dummy1: "example"
-      }
+        dummy1: "example",
+      },
     },
     {
       name: "_item_extension_2",
       objects: {
         about: "just a second item extension example",
-        dummy1: "example"
-      }
-    }
+        dummy1: "example",
+      },
+    },
   ],
   category: [
     {
-      name: 'Grateful Dead'
+      name: "Grateful Dead",
     },
     {
-      name: 'MSFT',
-      domain: 'http://www.fool.com/cusips'
-    }
+      name: "MSFT",
+      domain: "http://www.fool.com/cusips",
+    },
   ],
   date: updated,
-  image: {
-    url: "https://example.com/hello-world.jpg",
-  },
-  published
+  image: "https://example.com/hello-world.jpg",
+  enclosure: { url: "https://example.com/hello-world.jpg", length: 12665, type: "image/jpeg" },
+  published,
 });
 
 sampleFeed.addExtension({
   name: "_example_extension",
   objects: {
     about: "just an extension example",
-    dummy: "example"
-  }
+    dummy: "example",
+  },
 });
