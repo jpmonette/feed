@@ -1,7 +1,7 @@
 import renderAtom from "./atom1";
 import renderJSON from "./json";
 import renderRSS from "./rss2";
-import { FeedOptions, Item, Author, Extension } from "./typings";
+import { Author, Extension, FeedOptions, Item } from "./typings";
 
 export class Feed {
   options: FeedOptions;

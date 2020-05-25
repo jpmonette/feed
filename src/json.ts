@@ -1,12 +1,12 @@
-import { Extension, Item, Author, Category } from "./typings";
 import { Feed } from "./feed";
+import { Author, Category, Extension, Item } from "./typings";
 
 export default (ins: Feed) => {
   const { options, items, extensions } = ins;
 
   let feed: any = {
     version: "https://jsonfeed.org/version/1",
-    title: options.title
+    title: options.title,
   };
 
   if (options.link) {
@@ -44,7 +44,7 @@ export default (ins: Feed) => {
       id: item.id,
       // json_feed distinguishes between html and text content
       // but since we only take a single type, we'll assume HTML
-      content_html: item.content
+      content_html: item.content,
     };
     if (item.link) {
       feedItem.url = item.link;
