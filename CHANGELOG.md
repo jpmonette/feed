@@ -1,5 +1,20 @@
 # Change Log
 
+## [4.2.0](https://github.com/jpmonette/feed/tree/4.2.0) (2020-05-25)
+[Full Changelog](https://github.com/jpmonette/feed/compare/4.1.0...4.2.0)
+
+**Closed issues:**
+
+- Getting an error during Netlify deploy \(and npm run build\) [\#118](https://github.com/jpmonette/feed/issues/118)
+- atom:link in RSS feed should point to self, not atom [\#113](https://github.com/jpmonette/feed/issues/113)
+
+**Merged pull requests:**
+
+- Update dependencies + Formatting + Add Comments [\#123](https://github.com/jpmonette/feed/pull/123) ([jpmonette](https://github.com/jpmonette))
+- fix: 🐛 atom link needs to point to self [\#122](https://github.com/jpmonette/feed/pull/122) ([decebal](https://github.com/decebal))
+- feat: 🎸 add mandatory rss2 attributes on enclosure [\#120](https://github.com/jpmonette/feed/pull/120) ([decebal](https://github.com/decebal))
+- Bump acorn from 5.7.3 to 5.7.4 [\#116](https://github.com/jpmonette/feed/pull/116) ([dependabot[bot]](https://github.com/apps/dependabot))
+
 ## [4.1.0](https://github.com/jpmonette/feed/tree/4.1.0) (2019-12-29)
 [Full Changelog](https://github.com/jpmonette/feed/compare/4.0.0...4.1.0)
 
