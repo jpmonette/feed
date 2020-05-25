@@ -3,6 +3,10 @@ import { generator } from "./config";
 import { Feed } from "./feed";
 import { Author, Category, Item } from "./typings";
 
+/**
+ * Returns an Atom feed
+ * @param ins
+ */
 export default (ins: Feed) => {
   const { options } = ins;
 
@@ -161,6 +165,10 @@ export default (ins: Feed) => {
   return convert.js2xml(base, { compact: true, ignoreComment: true, spaces: 4 });
 };
 
+/**
+ * Returns a formated author
+ * @param author
+ */
 const formatAuthor = (author: Author) => {
   const { name, email, link } = author;
 
@@ -171,6 +179,10 @@ const formatAuthor = (author: Author) => {
   };
 };
 
+/**
+ * Returns a formated category
+ * @param category
+ */
 const formatCategory = (category: Category) => {
   const { name, scheme, term } = category;
 

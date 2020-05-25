@@ -1,6 +1,10 @@
 import { Feed } from "./feed";
 import { Author, Category, Extension, Item } from "./typings";
 
+/**
+ * Returns a JSON feed
+ * @param ins
+ */
 export default (ins: Feed) => {
   const { options, items, extensions } = ins;
 
