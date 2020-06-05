@@ -2,6 +2,7 @@ import * as convert from "xml-js";
 import { generator } from "./config";
 import { Feed } from "./feed";
 import { Author, Category, Item } from "./typings";
+import { sanitize } from "./utils";
 
 /**
  * Returns an Atom feed
@@ -17,8 +18,8 @@ export default (ins: Feed) => {
       id: options.id,
       title: options.title,
       updated: options.updated ? options.updated.toISOString() : new Date().toISOString(),
-      generator: options.generator || generator,
-    },
+      generator: sanitize(options.generator || generator)
+    }
   };
 
   if (options.author) {
@@ -29,19 +30,19 @@ export default (ins: Feed) => {
 
   // link (rel="alternate")
   if (options.link) {
-    base.feed.link.push({ _attributes: { rel: "alternate", href: options.link } });
+    base.feed.link.push({ _attributes: { rel: "alternate", href: sanitize(options.link) } });
   }
 
   // link (rel="self")
-  const atomLink = options.feed || (options.feedLinks && options.feedLinks.atom);
+  const atomLink = sanitize(options.feed || (options.feedLinks && options.feedLinks.atom));
 
   if (atomLink) {
-    base.feed.link.push({ _attributes: { rel: "self", href: atomLink } });
+    base.feed.link.push({ _attributes: { rel: "self", href: sanitize(atomLink) } });
   }
 
   // link (rel="hub")
   if (options.hub) {
-    base.feed.link.push({ _attributes: { rel: "hub", href: options.hub } });
+    base.feed.link.push({ _attributes: { rel: "hub", href: sanitize(options.hub) } });
   }
 
   /**************************************************************************
@@ -90,9 +91,9 @@ export default (ins: Feed) => {
 
     let entry: convert.ElementCompact = {
       title: { _attributes: { type: "html" }, _cdata: item.title },
-      id: item.id || item.link,
-      link: [{ _attributes: { href: item.link } }],
-      updated: item.date.toISOString(),
+      id: sanitize(item.id || item.link),
+      link: [{ _attributes: { href: sanitize(item.link) } }],
+      updated: item.date.toISOString()
     };
 
     //
@@ -175,7 +176,7 @@ const formatAuthor = (author: Author) => {
   return {
     name,
     email,
-    uri: link,
+    uri: sanitize(link)
   };
 };
 
