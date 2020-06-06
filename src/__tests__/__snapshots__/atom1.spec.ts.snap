@@ -17,6 +17,7 @@ exports[`atom 1.0 should generate a valid feed 1`] = `
     <link rel=\\"hub\\" href=\\"wss://example.com/\\"/>
     <subtitle>This is my personnal feed!</subtitle>
     <logo>http://example.com/image.png</logo>
+    <icon>http://example.com/image.ico</icon>
     <rights>All rights reserved 2013, John Doe</rights>
     <category term=\\"Technology\\"/>
     <contributor>
