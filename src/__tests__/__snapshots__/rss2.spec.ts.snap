@@ -24,7 +24,7 @@ exports[`rss 2.0 should generate a valid feed 1`] = `
             <title><![CDATA[Hello World]]></title>
             <link>https://example.com/hello-world?link=sanitized&amp;value=2</link>
             <guid>https://example.com/hello-world?id=this&amp;that=true</guid>
-            <pubDate>Sat, 13 Jul 2013 23:00:00 GMT</pubDate>
+            <pubDate>Wed, 10 Jul 2013 23:00:00 GMT</pubDate>
             <description><![CDATA[This is an article about Hello World.]]></description>
             <content:encoded><![CDATA[Content of my item]]></content:encoded>
             <author>janedoe@example.com (Jane Doe)</author>
@@ -61,7 +61,7 @@ exports[`rss 2.0 should generate a valid feed with audio 1`] = `
             <title><![CDATA[Hello World]]></title>
             <link>https://example.com/hello-world?link=sanitized&amp;value=2</link>
             <guid>https://example.com/hello-world?id=this&amp;that=true</guid>
-            <pubDate>Sat, 13 Jul 2013 23:00:00 GMT</pubDate>
+            <pubDate>Wed, 10 Jul 2013 23:00:00 GMT</pubDate>
             <description><![CDATA[This is an article about Hello World.]]></description>
             <content:encoded><![CDATA[Content of my item]]></content:encoded>
             <author>janedoe@example.com (Jane Doe)</author>
@@ -74,7 +74,7 @@ exports[`rss 2.0 should generate a valid feed with audio 1`] = `
             <title><![CDATA[Hello World]]></title>
             <link>https://example.com/hello-world2</link>
             <guid>419c523a-28f4-489c-877e-9604be64c001</guid>
-            <pubDate>Sat, 13 Jul 2013 23:00:00 GMT</pubDate>
+            <pubDate>Wed, 10 Jul 2013 23:00:00 GMT</pubDate>
             <description><![CDATA[This is an article about Hello World.]]></description>
             <content:encoded><![CDATA[Content of my item]]></content:encoded>
             <author>janedoe@example.com (Jane Doe)</author>
@@ -87,7 +87,7 @@ exports[`rss 2.0 should generate a valid feed with audio 1`] = `
             <title><![CDATA[Hello World]]></title>
             <link>https://example.com/hello-world2</link>
             <guid>419c523a-28f4-489c-877e-9604be64c001</guid>
-            <pubDate>Sat, 13 Jul 2013 23:00:00 GMT</pubDate>
+            <pubDate>Wed, 10 Jul 2013 23:00:00 GMT</pubDate>
             <description><![CDATA[This is an article about Hello World.]]></description>
             <content:encoded><![CDATA[Content of my item]]></content:encoded>
             <author>janedoe@example.com (Jane Doe)</author>
@@ -100,7 +100,7 @@ exports[`rss 2.0 should generate a valid feed with audio 1`] = `
             <title><![CDATA[Hello World]]></title>
             <link>https://example.com/hello-world3</link>
             <guid>https://example.com/hello-world3</guid>
-            <pubDate>Sat, 13 Jul 2013 23:00:00 GMT</pubDate>
+            <pubDate>Wed, 10 Jul 2013 23:00:00 GMT</pubDate>
             <description><![CDATA[This is an article about Hello World.]]></description>
             <content:encoded><![CDATA[Content of my item]]></content:encoded>
             <author>janedoe@example.com (Jane Doe)</author>
@@ -137,7 +137,7 @@ exports[`rss 2.0 should generate a valid feed with enclosure 1`] = `
             <title><![CDATA[Hello World]]></title>
             <link>https://example.com/hello-world?link=sanitized&amp;value=2</link>
             <guid>https://example.com/hello-world?id=this&amp;that=true</guid>
-            <pubDate>Sat, 13 Jul 2013 23:00:00 GMT</pubDate>
+            <pubDate>Wed, 10 Jul 2013 23:00:00 GMT</pubDate>
             <description><![CDATA[This is an article about Hello World.]]></description>
             <content:encoded><![CDATA[Content of my item]]></content:encoded>
             <author>janedoe@example.com (Jane Doe)</author>
@@ -150,7 +150,7 @@ exports[`rss 2.0 should generate a valid feed with enclosure 1`] = `
             <title><![CDATA[Hello World]]></title>
             <link>https://example.com/hello-world2</link>
             <guid>419c523a-28f4-489c-877e-9604be64c001</guid>
-            <pubDate>Sat, 13 Jul 2013 23:00:00 GMT</pubDate>
+            <pubDate>Wed, 10 Jul 2013 23:00:00 GMT</pubDate>
             <description><![CDATA[This is an article about Hello World.]]></description>
             <content:encoded><![CDATA[Content of my item]]></content:encoded>
             <author>janedoe@example.com (Jane Doe)</author>
@@ -163,7 +163,7 @@ exports[`rss 2.0 should generate a valid feed with enclosure 1`] = `
             <title><![CDATA[Hello World]]></title>
             <link>https://example.com/hello-world2</link>
             <guid>419c523a-28f4-489c-877e-9604be64c001</guid>
-            <pubDate>Sat, 13 Jul 2013 23:00:00 GMT</pubDate>
+            <pubDate>Wed, 10 Jul 2013 23:00:00 GMT</pubDate>
             <description><![CDATA[This is an article about Hello World.]]></description>
             <content:encoded><![CDATA[Content of my item]]></content:encoded>
             <author>janedoe@example.com (Jane Doe)</author>
@@ -200,7 +200,7 @@ exports[`rss 2.0 should generate a valid feed with image properties 1`] = `
             <title><![CDATA[Hello World]]></title>
             <link>https://example.com/hello-world?link=sanitized&amp;value=2</link>
             <guid>https://example.com/hello-world?id=this&amp;that=true</guid>
-            <pubDate>Sat, 13 Jul 2013 23:00:00 GMT</pubDate>
+            <pubDate>Wed, 10 Jul 2013 23:00:00 GMT</pubDate>
             <description><![CDATA[This is an article about Hello World.]]></description>
             <content:encoded><![CDATA[Content of my item]]></content:encoded>
             <author>janedoe@example.com (Jane Doe)</author>
@@ -213,7 +213,7 @@ exports[`rss 2.0 should generate a valid feed with image properties 1`] = `
             <title><![CDATA[Hello World]]></title>
             <link>https://example.com/hello-world2</link>
             <guid>419c523a-28f4-489c-877e-9604be64c001</guid>
-            <pubDate>Sat, 13 Jul 2013 23:00:00 GMT</pubDate>
+            <pubDate>Wed, 10 Jul 2013 23:00:00 GMT</pubDate>
             <description><![CDATA[This is an article about Hello World.]]></description>
             <content:encoded><![CDATA[Content of my item]]></content:encoded>
             <author>janedoe@example.com (Jane Doe)</author>
@@ -249,7 +249,7 @@ exports[`rss 2.0 should generate a valid feed with video 1`] = `
             <title><![CDATA[Hello World]]></title>
             <link>https://example.com/hello-world4</link>
             <guid>419c523a-28f4-489c-877e-9604be64c005</guid>
-            <pubDate>Sat, 13 Jul 2013 23:00:00 GMT</pubDate>
+            <pubDate>Wed, 10 Jul 2013 23:00:00 GMT</pubDate>
             <description><![CDATA[This is an article about Hello World.]]></description>
             <content:encoded><![CDATA[Content of my item]]></content:encoded>
             <author>janedoe@example.com (Jane Doe)</author>
