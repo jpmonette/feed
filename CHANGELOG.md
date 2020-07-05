@@ -1,5 +1,18 @@
 # Change Log
 
+## [4.2.1](https://github.com/jpmonette/feed/tree/4.2.1) (2020-07-05)
+[Full Changelog](https://github.com/jpmonette/feed/compare/4.2.0...4.2.1)
+
+**Closed issues:**
+
+- RSS pubDate set to "date" rather than "published", unlike Atom [\#117](https://github.com/jpmonette/feed/issues/117)
+
+**Merged pull requests:**
+
+- Sanitizing XML feeds [\#125](https://github.com/jpmonette/feed/pull/125) ([decebal](https://github.com/decebal))
+- author.uri and author.email should be optional in atom \#115 [\#124](https://github.com/jpmonette/feed/pull/124) ([decebal](https://github.com/decebal))
+- fix: 🐛 overwrite pubDate on rss when published is specified [\#121](https://github.com/jpmonette/feed/pull/121) ([decebal](https://github.com/decebal))
+
 ## [4.2.0](https://github.com/jpmonette/feed/tree/4.2.0) (2020-05-25)
 [Full Changelog](https://github.com/jpmonette/feed/compare/4.1.0...4.2.0)
 
@@ -41,7 +54,6 @@
 **Merged pull requests:**
 
 - Push to 4.0.0 [\#95](https://github.com/jpmonette/feed/pull/95) ([jpmonette](https://github.com/jpmonette))
-- Update homepage to github repo [\#92](https://github.com/jpmonette/feed/pull/92) ([kevinsimper](https://github.com/kevinsimper))
 
 ## [3.0.0](https://github.com/jpmonette/feed/tree/3.0.0) (2019-05-28)
 [Full Changelog](https://github.com/jpmonette/feed/compare/2.0.4...3.0.0)
@@ -141,6 +153,7 @@
 
 **Merged pull requests:**
 
+- Update homepage to github repo [\#92](https://github.com/jpmonette/feed/pull/92) ([kevinsimper](https://github.com/kevinsimper))
 - Initial Babel migration commit [\#49](https://github.com/jpmonette/feed/pull/49) ([jpmonette](https://github.com/jpmonette))
 - Resolves \#41 - Fix “author” tag based on W3 Validator [\#48](https://github.com/jpmonette/feed/pull/48) ([jpmonette](https://github.com/jpmonette))
 - fixed the failing test due to date provided [\#45](https://github.com/jpmonette/feed/pull/45) ([parit](https://github.com/parit))
