@@ -1,6 +1,6 @@
 {
   "name": "feed",
-  "version": "4.2.0",
+  "version": "4.2.1",
   "description": "Feed is a RSS, Atom and JSON feed generator for Node.js, making content syndication simple and intuitive!",
   "homepage": "https://github.com/jpmonette/feed",
   "author": "Jean-Philippe Monette <contact@jpmonette.net>",
