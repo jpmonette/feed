@@ -2,7 +2,7 @@
 
 exports[`rss 2.0 should generate a valid feed 1`] = `
 "<?xml version=\\"1.0\\" encoding=\\"utf-8\\"?>
-<rss version=\\"2.0\\" xmlns:dc=\\"http://purl.org/dc/elements/1.1/\\" xmlns:content=\\"http://purl.org/rss/1.0/modules/content/\\" xmlns:atom=\\"http://www.w3.org/2005/Atom\\">
+<rss version=\\"2.0\\" xmlns:dcterms=\\"https://purl.org/dc/terms/\\" xmlns:media=\\"https://search.yahoo.com/mrss/\\" xmlns:dc=\\"http://purl.org/dc/elements/1.1/\\" xmlns:content=\\"http://purl.org/rss/1.0/modules/content/\\" xmlns:atom=\\"http://www.w3.org/2005/Atom\\">
     <channel>
         <title>Feed Title</title>
         <link>http://example.com/</link>
@@ -20,6 +20,8 @@ exports[`rss 2.0 should generate a valid feed 1`] = `
         <copyright>All rights reserved 2013, John Doe</copyright>
         <category>Technology</category>
         <atom:link href=\\"wss://example.com/\\" rel=\\"hub\\"/>
+        <media:content url=\\"https://v3spec.msn.com/image1.jpg\\" type=\\"image/jpeg\\" medium=\\"image\\"/>
+        <media:credit>Joe Gargery/Fabrikam Images</media:credit>
         <item>
             <title><![CDATA[Hello World]]></title>
             <link>https://example.com/hello-world?link=sanitized&amp;value=2</link>
@@ -32,6 +34,9 @@ exports[`rss 2.0 should generate a valid feed 1`] = `
             <category>Grateful Dead</category>
             <category domain=\\"http://www.fool.com/cusips\\">MSFT</category>
             <enclosure url=\\"https://example.com/hello-world.jpg\\" length=\\"0\\" type=\\"image/jpg\\"/>
+            <media:content url=\\"https://v3spec.msn.com/image1.jpg\\" type=\\"image/jpeg\\" medium=\\"image\\">
+                <media:credit>Joe Gargery/Fabrikam Images</media:credit>
+            </media:content>
         </item>
     </channel>
 </rss>"
@@ -39,7 +44,7 @@ exports[`rss 2.0 should generate a valid feed 1`] = `
 
 exports[`rss 2.0 should generate a valid feed with audio 1`] = `
 "<?xml version=\\"1.0\\" encoding=\\"utf-8\\"?>
-<rss version=\\"2.0\\" xmlns:dc=\\"http://purl.org/dc/elements/1.1/\\" xmlns:content=\\"http://purl.org/rss/1.0/modules/content/\\" xmlns:atom=\\"http://www.w3.org/2005/Atom\\">
+<rss version=\\"2.0\\" xmlns:dcterms=\\"https://purl.org/dc/terms/\\" xmlns:media=\\"https://search.yahoo.com/mrss/\\" xmlns:dc=\\"http://purl.org/dc/elements/1.1/\\" xmlns:content=\\"http://purl.org/rss/1.0/modules/content/\\" xmlns:atom=\\"http://www.w3.org/2005/Atom\\">
     <channel>
         <title>Feed Title</title>
         <link>http://example.com/</link>
@@ -57,6 +62,8 @@ exports[`rss 2.0 should generate a valid feed with audio 1`] = `
         <copyright>All rights reserved 2013, John Doe</copyright>
         <category>Technology</category>
         <atom:link href=\\"wss://example.com/\\" rel=\\"hub\\"/>
+        <media:content url=\\"https://v3spec.msn.com/image1.jpg\\" type=\\"image/jpeg\\" medium=\\"image\\"/>
+        <media:credit>Joe Gargery/Fabrikam Images</media:credit>
         <item>
             <title><![CDATA[Hello World]]></title>
             <link>https://example.com/hello-world?link=sanitized&amp;value=2</link>
@@ -69,6 +76,9 @@ exports[`rss 2.0 should generate a valid feed with audio 1`] = `
             <category>Grateful Dead</category>
             <category domain=\\"http://www.fool.com/cusips\\">MSFT</category>
             <enclosure url=\\"https://example.com/hello-world.jpg\\" length=\\"0\\" type=\\"image/jpg\\"/>
+            <media:content url=\\"https://v3spec.msn.com/image1.jpg\\" type=\\"image/jpeg\\" medium=\\"image\\">
+                <media:credit>Joe Gargery/Fabrikam Images</media:credit>
+            </media:content>
         </item>
         <item>
             <title><![CDATA[Hello World]]></title>
@@ -115,7 +125,7 @@ exports[`rss 2.0 should generate a valid feed with audio 1`] = `
 
 exports[`rss 2.0 should generate a valid feed with enclosure 1`] = `
 "<?xml version=\\"1.0\\" encoding=\\"utf-8\\"?>
-<rss version=\\"2.0\\" xmlns:dc=\\"http://purl.org/dc/elements/1.1/\\" xmlns:content=\\"http://purl.org/rss/1.0/modules/content/\\" xmlns:atom=\\"http://www.w3.org/2005/Atom\\">
+<rss version=\\"2.0\\" xmlns:dcterms=\\"https://purl.org/dc/terms/\\" xmlns:media=\\"https://search.yahoo.com/mrss/\\" xmlns:dc=\\"http://purl.org/dc/elements/1.1/\\" xmlns:content=\\"http://purl.org/rss/1.0/modules/content/\\" xmlns:atom=\\"http://www.w3.org/2005/Atom\\">
     <channel>
         <title>Feed Title</title>
         <link>http://example.com/</link>
@@ -133,6 +143,8 @@ exports[`rss 2.0 should generate a valid feed with enclosure 1`] = `
         <copyright>All rights reserved 2013, John Doe</copyright>
         <category>Technology</category>
         <atom:link href=\\"wss://example.com/\\" rel=\\"hub\\"/>
+        <media:content url=\\"https://v3spec.msn.com/image1.jpg\\" type=\\"image/jpeg\\" medium=\\"image\\"/>
+        <media:credit>Joe Gargery/Fabrikam Images</media:credit>
         <item>
             <title><![CDATA[Hello World]]></title>
             <link>https://example.com/hello-world?link=sanitized&amp;value=2</link>
@@ -145,6 +157,9 @@ exports[`rss 2.0 should generate a valid feed with enclosure 1`] = `
             <category>Grateful Dead</category>
             <category domain=\\"http://www.fool.com/cusips\\">MSFT</category>
             <enclosure url=\\"https://example.com/hello-world.jpg\\" length=\\"0\\" type=\\"image/jpg\\"/>
+            <media:content url=\\"https://v3spec.msn.com/image1.jpg\\" type=\\"image/jpeg\\" medium=\\"image\\">
+                <media:credit>Joe Gargery/Fabrikam Images</media:credit>
+            </media:content>
         </item>
         <item>
             <title><![CDATA[Hello World]]></title>
@@ -178,7 +193,7 @@ exports[`rss 2.0 should generate a valid feed with enclosure 1`] = `
 
 exports[`rss 2.0 should generate a valid feed with image properties 1`] = `
 "<?xml version=\\"1.0\\" encoding=\\"utf-8\\"?>
-<rss version=\\"2.0\\" xmlns:dc=\\"http://purl.org/dc/elements/1.1/\\" xmlns:content=\\"http://purl.org/rss/1.0/modules/content/\\" xmlns:atom=\\"http://www.w3.org/2005/Atom\\">
+<rss version=\\"2.0\\" xmlns:dcterms=\\"https://purl.org/dc/terms/\\" xmlns:media=\\"https://search.yahoo.com/mrss/\\" xmlns:dc=\\"http://purl.org/dc/elements/1.1/\\" xmlns:content=\\"http://purl.org/rss/1.0/modules/content/\\" xmlns:atom=\\"http://www.w3.org/2005/Atom\\">
     <channel>
         <title>Feed Title</title>
         <link>http://example.com/</link>
@@ -196,6 +211,8 @@ exports[`rss 2.0 should generate a valid feed with image properties 1`] = `
         <copyright>All rights reserved 2013, John Doe</copyright>
         <category>Technology</category>
         <atom:link href=\\"wss://example.com/\\" rel=\\"hub\\"/>
+        <media:content url=\\"https://v3spec.msn.com/image1.jpg\\" type=\\"image/jpeg\\" medium=\\"image\\"/>
+        <media:credit>Joe Gargery/Fabrikam Images</media:credit>
         <item>
             <title><![CDATA[Hello World]]></title>
             <link>https://example.com/hello-world?link=sanitized&amp;value=2</link>
@@ -208,6 +225,9 @@ exports[`rss 2.0 should generate a valid feed with image properties 1`] = `
             <category>Grateful Dead</category>
             <category domain=\\"http://www.fool.com/cusips\\">MSFT</category>
             <enclosure url=\\"https://example.com/hello-world.jpg\\" length=\\"0\\" type=\\"image/jpg\\"/>
+            <media:content url=\\"https://v3spec.msn.com/image1.jpg\\" type=\\"image/jpeg\\" medium=\\"image\\">
+                <media:credit>Joe Gargery/Fabrikam Images</media:credit>
+            </media:content>
         </item>
         <item>
             <title><![CDATA[Hello World]]></title>

@@ -2,7 +2,7 @@
 
 exports[`atom 1.0 should generate a valid feed 1`] = `
 "<?xml version=\\"1.0\\" encoding=\\"utf-8\\"?>
-<feed xmlns=\\"http://www.w3.org/2005/Atom\\">
+<feed xmlns=\\"http://www.w3.org/2005/Atom\\" xmlns:dcterms=\\"https://purl.org/dc/terms/\\" xmlns:media=\\"https://search.yahoo.com/mrss/\\">
     <id>http://example.com/</id>
     <title>Feed Title</title>
     <updated>2013-07-13T23:00:00.000Z</updated>
@@ -25,6 +25,8 @@ exports[`atom 1.0 should generate a valid feed 1`] = `
         <email>johancruyff@example.com</email>
         <uri>https://example.com/johancruyff</uri>
     </contributor>
+    <media:content url=\\"https://v3spec.msn.com/image1.jpg\\" type=\\"image/jpeg\\" medium=\\"image\\"/>
+    <media:credit>Joe Gargery/Fabrikam Images</media:credit>
     <entry>
         <title type=\\"html\\"><![CDATA[Hello World]]></title>
         <id>https://example.com/hello-world?id=this&amp;that=true</id>
@@ -58,6 +60,9 @@ exports[`atom 1.0 should generate a valid feed 1`] = `
             <uri>https://example.com/reggiemiller</uri>
         </contributor>
         <published>2013-07-10T23:00:00.000Z</published>
+        <media:content url=\\"https://v3spec.msn.com/image1.jpg\\" type=\\"image/jpeg\\" medium=\\"image\\">
+            <media:credit>Joe Gargery/Fabrikam Images</media:credit>
+        </media:content>
     </entry>
 </feed>"
 `;
