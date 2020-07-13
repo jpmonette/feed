@@ -76,4 +76,4 @@ export interface Extension {
   objects: any;
 }
 
-export type ExtraItem = Element | ElementCompact;
+export type ExtraItem = Element | ElementCompact | string;
