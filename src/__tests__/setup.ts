@@ -24,6 +24,11 @@ export const sampleFeed = new Feed({
     name: "John Doe",
     email: "johndoe@example.com",
     link: "https://example.com/johndoe?link=sanitized&value=2"
+  },
+
+  namespaces: {
+    "xmlns:dcterms": "https://purl.org/dc/terms/",
+    "xmlns:media": "https://search.yahoo.com/mrss/"
   }
 });
 
@@ -97,6 +102,16 @@ sampleFeed.addItem({
   image: "https://example.com/hello-world.jpg",
   enclosure: { url: "https://example.com/hello-world.jpg", length: 12665, type: "image/jpeg" },
   published,
+  extra: {
+    'media:content': {
+      _attributes: {
+        url: 'https://v3spec.msn.com/image1.jpg',
+        type: 'image/jpeg',
+        medium: 'image'
+      },
+      'media:credit': 'Joe Gargery/Fabrikam Images'
+    }
+  }
 });
 
 sampleFeed.addExtension({
@@ -106,3 +121,16 @@ sampleFeed.addExtension({
     dummy: "example",
   },
 });
+
+sampleFeed.addExtra(
+  'media:content',
+  {
+    _attributes: {
+      url: 'https://v3spec.msn.com/image1.jpg',
+      type: 'image/jpeg',
+      medium: 'image'
+    }
+  }
+)
+
+sampleFeed.addExtra('media:credit', 'Joe Gargery/Fabrikam Images')

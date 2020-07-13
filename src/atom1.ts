@@ -22,6 +22,12 @@ export default (ins: Feed) => {
     }
   };
 
+
+  const namespaces = options.namespaces || {}
+  for (const key in namespaces) {
+    base.feed._attributes[key] = namespaces[key];
+  }
+
   if (options.author) {
     base.feed.author = formatAuthor(options.author);
   }
@@ -78,6 +84,10 @@ export default (ins: Feed) => {
   });
 
   // icon
+
+  for (const key in ins.extra) {
+    base.feed[key] = ins.extra[key];
+  }
 
   base.feed.entry = [];
 
@@ -158,6 +168,12 @@ export default (ins: Feed) => {
     // rights
     if (item.copyright) {
       entry.rights = item.copyright;
+    }
+
+    if (item.extra) {
+      for (const key in item.extra) {
+        entry[key] = item.extra[key];
+      }
     }
 
     base.feed.entry.push(entry);
