@@ -58,7 +58,7 @@ export class Feed {
   public json1 = (): string => renderJSON(this);
 
   /**
-   * Returns a JSON1 feed
+   * Returns a flipboard feed
    */
   public flipboard = (): string => renderFlipboard(this);
 }
