@@ -1,6 +1,7 @@
 import renderAtom from "./atom1";
 import renderJSON from "./json";
 import renderRSS from "./rss2";
+import renderFlipboard from "./flipboard";
 import { Author, Extension, FeedOptions, Item } from "./typings";
 
 /**
@@ -55,4 +56,9 @@ export class Feed {
    * Returns a JSON1 feed
    */
   public json1 = (): string => renderJSON(this);
+
+  /**
+   * Returns a JSON1 feed
+   */
+  public flipboard = (): string => renderFlipboard(this);
 }
