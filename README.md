@@ -3,7 +3,7 @@
   <br>
   <a href="https://travis-ci.org/jpmonette/feed"><img src="https://travis-ci.org/jpmonette/feed.svg?branch=master" alt="Build Status"></a> <a href='https://coveralls.io/github/jpmonette/feed?branch=master'><img src='https://coveralls.io/repos/github/jpmonette/feed/badge.svg?branch=master' alt='Coverage Status' /></a> <a href="https://badge.fury.io/js/feed"><img src="https://badge.fury.io/js/feed.svg" alt="npm version" height="18"></a> <a href="https://github.com/facebook/jest"><img src="https://img.shields.io/badge/tested_with-jest-99424f.svg" alt="Tested with Jest"></a> <a href="https://opensource.org/licenses/MIT"><img src="https://img.shields.io/badge/License-MIT-yellow.svg" alt="License: MIT"></a>
 </p>
-<p align="center"><code>jpmonette/feed</code> - <strong>RSS 2.0, JSON Feed 1.0, and Atom 1.0</strong> generator for <strong>Node.js</strong><br>
+<p align="center"><code>jpmonette/feed</code> - <strong>RSS 2.0, JSON Feed 1.0, Atom 1.0 and Flipboard</strong> generator for <strong>Node.js</strong><br>
 Making content syndication simple and intuitive!</p>
 
 ---
