@@ -1,9 +1,9 @@
+import { URL } from "url";
 import * as convert from "xml-js";
 import { generator } from "./config";
 import { Feed } from "./feed";
 import { Author, Category, Enclosure, Item } from "./typings";
 import { sanitize } from "./utils";
-
 /**
  * Returns a RSS 2.0 feed
  */
@@ -51,7 +51,7 @@ export default (ins: Feed) => {
     base.rss.channel.image = {
       title: { _text: options.title },
       url: { _text: options.image },
-      link: { _text: sanitize(options.link) }
+      link: { _text: sanitize(options.link) },
     };
   }
 
@@ -104,8 +104,8 @@ export default (ins: Feed) => {
     base.rss.channel["atom:link"] = {
       _attributes: {
         href: sanitize(options.hub),
-        rel: "hub"
-      }
+        rel: "hub",
+      },
     };
   }
 
