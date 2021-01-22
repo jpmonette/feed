@@ -157,6 +157,7 @@ export default (ins: Feed) => {
     if (Array.isArray(entry.author)) {
       item.author = [];
       entry.author.map((author: Author) => {
+        item["dc:creator"] = { _cdata: author.name };
         if (author.email && author.name) {
           item.author.push({ _text: author.email + " (" + author.name + ")" });
         }
