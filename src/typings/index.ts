@@ -1,3 +1,5 @@
+import { Element, ElementCompact } from 'xml-js';
+
 export interface Item {
   title: string;
   id?: string;
@@ -22,6 +24,8 @@ export interface Item {
   copyright?: string;
 
   extensions?: Extension[];
+
+  extra?: { [key: string]: ExtraItem };
 }
 
 export interface Enclosure {
@@ -52,6 +56,7 @@ export interface FeedOptions {
   generator?: string;
   language?: string;
   ttl?: number;
+  namespaces?: Record<string, string>;
 
   feed?: string;
   feedLinks?: any;
@@ -70,3 +75,5 @@ export interface Extension {
   name: string;
   objects: any;
 }
+
+export type ExtraItem = Element | ElementCompact | string;
