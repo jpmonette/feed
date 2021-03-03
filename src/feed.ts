@@ -44,6 +44,12 @@ export class Feed {
   public addExtension = (extension: Extension) => this.extensions.push(extension);
 
   /**
+   * Set updated of a feed
+   * @param date
+   */
+  public setUpdated = (date: Date) => this.options.updated = date;
+
+  /**
    * Returns a Atom 1.0 feed
    */
   public atom1 = (): string => renderAtom(this);

@@ -18,7 +18,6 @@ export const sampleFeed = new Feed({
   favicon: "http://example.com/image.ico",
   copyright: "All rights reserved 2013, John Doe",
   hub: "wss://example.com/",
-  updated, // optional, default = today
 
   author: {
     name: "John Doe",
@@ -106,3 +105,5 @@ sampleFeed.addExtension({
     dummy: "example",
   },
 });
+
+sampleFeed.setUpdated(updated);
