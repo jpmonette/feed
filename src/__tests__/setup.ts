@@ -6,16 +6,16 @@ export const published = new Date("Sat, 10 Jul 2013 23:00:00 GMT");
 export const sampleFeed = new Feed({
   title: "Feed Title",
   description: "This is my personnal feed!",
-  link: "http://example.com/",
-  id: "http://example.com/",
+  link: "http://example.com/?link=sanitized&value=3",
+  id: "http://example.com/?link=sanitized&value=4",
   feed: "http://example.com/sampleFeed.rss?link=sanitized&value=2",
   feedLinks: {
-    json: "http://example.com/sampleFeed.json",
+    json: "http://example.com/sampleFeed.json?link=sanitized&value=5",
   },
   language: "en",
   ttl: 60,
-  image: "http://example.com/image.png",
-  favicon: "http://example.com/image.ico",
+  image: "http://example.com/image.png?link=sanitized&value=6",
+  favicon: "http://example.com/image.ico?link=sanitized&value=7",
   copyright: "All rights reserved 2013, John Doe",
   hub: "wss://example.com/",
   updated, // optional, default = today

@@ -4,10 +4,10 @@ exports[`json 1 should generate a valid feed 1`] = `
 "{
     \\"version\\": \\"https://jsonfeed.org/version/1\\",
     \\"title\\": \\"Feed Title\\",
-    \\"home_page_url\\": \\"http://example.com/\\",
-    \\"feed_url\\": \\"http://example.com/sampleFeed.json\\",
+    \\"home_page_url\\": \\"http://example.com/?link=sanitized&value=3\\",
+    \\"feed_url\\": \\"http://example.com/sampleFeed.json?link=sanitized&value=5\\",
     \\"description\\": \\"This is my personnal feed!\\",
-    \\"icon\\": \\"http://example.com/image.png\\",
+    \\"icon\\": \\"http://example.com/image.png?link=sanitized&value=6\\",
     \\"author\\": {
         \\"name\\": \\"John Doe\\",
         \\"url\\": \\"https://example.com/johndoe?link=sanitized&value=2\\"
