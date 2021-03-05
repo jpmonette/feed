@@ -13,7 +13,7 @@ exports[`atom 1.0 should generate a valid feed 1`] = `
         <uri>https://example.com/johndoe?link=sanitized&amp;value=2</uri>
     </author>
     <link rel=\\"alternate\\" href=\\"http://example.com/\\"/>
-    <link rel=\\"self\\" href=\\"http://example.com/sampleFeed.rss\\"/>
+    <link rel=\\"self\\" href=\\"http://example.com/sampleFeed.rss?link=sanitized&amp;value=2\\"/>
     <link rel=\\"hub\\" href=\\"wss://example.com/\\"/>
     <subtitle>This is my personnal feed!</subtitle>
     <logo>http://example.com/image.png</logo>

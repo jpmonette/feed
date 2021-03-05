@@ -8,7 +8,7 @@ export const sampleFeed = new Feed({
   description: "This is my personnal feed!",
   link: "http://example.com/",
   id: "http://example.com/",
-  feed: "http://example.com/sampleFeed.rss",
+  feed: "http://example.com/sampleFeed.rss?link=sanitized&value=2",
   feedLinks: {
     json: "http://example.com/sampleFeed.json",
   },
