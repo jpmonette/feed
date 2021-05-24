@@ -40,16 +40,16 @@ const feed = new Feed({
   generator: "awesome", // optional, default = 'Feed for Node.js'
   feedLinks: {
     json: "https://example.com/json",
-    atom: "https://example.com/atom"
+    atom: "https://example.com/atom",
   },
   author: {
     name: "John Doe",
     email: "johndoe@example.com",
-    link: "https://example.com/johndoe"
-  }
+    link: "https://example.com/johndoe",
+  },
 });
 
-posts.forEach(post => {
+posts.forEach((post) => {
   feed.addItem({
     title: post.title,
     id: post.url,
@@ -60,28 +60,28 @@ posts.forEach(post => {
       {
         name: "Jane Doe",
         email: "janedoe@example.com",
-        link: "https://example.com/janedoe"
+        link: "https://example.com/janedoe",
       },
       {
         name: "Joe Smith",
         email: "joesmith@example.com",
-        link: "https://example.com/joesmith"
-      }
+        link: "https://example.com/joesmith",
+      },
     ],
     contributor: [
       {
         name: "Shawn Kemp",
         email: "shawnkemp@example.com",
-        link: "https://example.com/shawnkemp"
+        link: "https://example.com/shawnkemp",
       },
       {
         name: "Reggie Miller",
         email: "reggiemiller@example.com",
-        link: "https://example.com/reggiemiller"
-      }
+        link: "https://example.com/reggiemiller",
+      },
     ],
     date: post.date,
-    image: post.image
+    image: post.image,
   });
 });
 
@@ -90,7 +90,7 @@ feed.addCategory("Technologie");
 feed.addContributor({
   name: "Johan Cruyff",
   email: "johancruyff@example.com",
-  link: "https://example.com/johancruyff"
+  link: "https://example.com/johancruyff",
 });
 
 console.log(feed.rss2());

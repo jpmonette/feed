@@ -23,8 +23,8 @@ export const sampleFeed = new Feed({
   author: {
     name: "John Doe",
     email: "johndoe@example.com",
-    link: "https://example.com/johndoe?link=sanitized&value=2"
-  }
+    link: "https://example.com/johndoe?link=sanitized&value=2",
+  },
 });
 
 sampleFeed.addCategory("Technology");
@@ -54,7 +54,7 @@ sampleFeed.addItem({
     },
     {
       name: "Joe Smith, Name Only",
-    }
+    },
   ],
   contributor: [
     {
