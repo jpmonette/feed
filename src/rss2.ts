@@ -1,7 +1,7 @@
 import * as convert from "xml-js";
 import { generator } from "./config";
 import { Feed } from "./feed";
-import { Author, Category, Enclosure, Item } from "./typings";
+import { Category, Enclosure, Item } from "./typings";
 import { sanitize } from "./utils";
 
 /**
@@ -21,7 +21,7 @@ export default (ins: Feed) => {
         link: { _text: sanitize(options.link) },
         description: { _text: options.description },
         lastBuildDate: { _text: options.updated ? options.updated.toUTCString() : new Date().toUTCString() },
-        docs: { _text: options.docs ? options.docs : "https://validator.w3.org/feed/docs/rss2.html" },
+        docs: { _text: options.docs || "https://validator.w3.org/feed/docs/rss2.html" },
         generator: { _text: options.generator || generator },
       },
     },
@@ -51,7 +51,7 @@ export default (ins: Feed) => {
     base.rss.channel.image = {
       title: { _text: options.title },
       url: { _text: options.image },
-      link: { _text: sanitize(options.link) }
+      link: { _text: sanitize(options.link) },
     };
   }
 
@@ -67,18 +67,15 @@ export default (ins: Feed) => {
    * Channel Categories
    * https://validator.w3.org/feed/docs/rss2.html#comments
    */
-  ins.categories.map((category) => {
-    if (!base.rss.channel.category) {
-      base.rss.channel.category = [];
-    }
-    base.rss.channel.category.push({ _text: category });
+  base.rss.channel.category = ins.categories.map((category) => {
+    return { _text: category };
   });
 
   /**
    * Feed URL
    * http://validator.w3.org/feed/docs/warning/MissingAtomSelfLink.html
    */
-  const atomLink = options.feed || (options.feedLinks && options.feedLinks.rss);
+  const atomLink = options.feed || options.feedLinks?.rss;
   if (atomLink) {
     isAtom = true;
     base.rss.channel["atom:link"] = [
@@ -104,8 +101,8 @@ export default (ins: Feed) => {
     base.rss.channel["atom:link"] = {
       _attributes: {
         href: sanitize(options.hub),
-        rel: "hub"
-      }
+        rel: "hub",
+      },
     };
   }
 
@@ -113,10 +110,8 @@ export default (ins: Feed) => {
    * Channel Categories
    * https://validator.w3.org/feed/docs/rss2.html#hrelementsOfLtitemgt
    */
-  base.rss.channel.item = [];
-
-  ins.items.map((entry: Item) => {
-    let item: any = {};
+  base.rss.channel.item = ins.items.map((entry: Item) => {
+    const item: any = {};
 
     if (entry.title) {
       item.title = { _cdata: entry.title };
@@ -150,27 +145,23 @@ export default (ins: Feed) => {
       isContent = true;
       item["content:encoded"] = { _cdata: entry.content };
     }
+
     /**
      * Item Author
      * https://validator.w3.org/feed/docs/rss2.html#ltauthorgtSubelementOfLtitemgt
      */
     if (Array.isArray(entry.author)) {
-      item.author = [];
-      entry.author.map((author: Author) => {
-        if (author.email && author.name) {
-          item.author.push({ _text: author.email + " (" + author.name + ")" });
-        }
-      });
+      item.author = entry.author
+        .filter((author) => author.email && author.name)
+        .map((author) => ({ _text: author.email + " (" + author.name + ")" }));
     }
+
     /**
      * Item Category
      * https://validator.w3.org/feed/docs/rss2.html#ltcategorygtSubelementOfLtitemgt
      */
     if (Array.isArray(entry.category)) {
-      item.category = [];
-      entry.category.map((category: Category) => {
-        item.category.push(formatCategory(category));
-      });
+      item.category = entry.category.map((category) => formatCategory(category));
     }
 
     /**
@@ -193,7 +184,7 @@ export default (ins: Feed) => {
       item.enclosure = formatEnclosure(entry.video, "video");
     }
 
-    base.rss.channel.item.push(item);
+    return item;
   });
 
   if (isContent) {

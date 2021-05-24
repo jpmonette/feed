@@ -18,8 +18,8 @@ export default (ins: Feed) => {
       id: options.id,
       title: options.title,
       updated: options.updated ? options.updated.toISOString() : new Date().toISOString(),
-      generator: sanitize(options.generator || generator)
-    }
+      generator: sanitize(options.generator || generator),
+    },
   };
 
   if (options.author) {
@@ -34,7 +34,7 @@ export default (ins: Feed) => {
   }
 
   // link (rel="self")
-  const atomLink = sanitize(options.feed || (options.feedLinks && options.feedLinks.atom));
+  const atomLink = sanitize(options.feed || options.feedLinks?.atom);
 
   if (atomLink) {
     base.feed.link.push({ _attributes: { rel: "self", href: sanitize(atomLink) } });
@@ -65,35 +65,29 @@ export default (ins: Feed) => {
     base.feed.rights = options.copyright;
   }
 
-  base.feed.category = [];
-
-  ins.categories.map((category: string) => {
-    base.feed.category.push({ _attributes: { term: category } });
+  base.feed.category = ins.categories.map((category: string) => {
+    return { _attributes: { term: category } };
   });
 
-  base.feed.contributor = [];
-
-  ins.contributors.map((contributor: Author) => {
-    base.feed.contributor.push(formatAuthor(contributor));
+  base.feed.contributor = ins.contributors.map((contributor: Author) => {
+    return formatAuthor(contributor);
   });
 
   // icon
 
-  base.feed.entry = [];
-
   /**************************************************************************
    * "entry" nodes
    *************************************************************************/
-  ins.items.map((item: Item) => {
+  base.feed.entry = ins.items.map((item: Item) => {
     //
     // entry: required elements
     //
 
-    let entry: convert.ElementCompact = {
+    const entry: convert.ElementCompact = {
       title: { _attributes: { type: "html" }, _cdata: item.title },
       id: sanitize(item.id || item.link),
       link: [{ _attributes: { href: sanitize(item.link) } }],
-      updated: item.date.toISOString()
+      updated: item.date.toISOString(),
     };
 
     //
@@ -115,10 +109,8 @@ export default (ins: Feed) => {
 
     // entry author(s)
     if (Array.isArray(item.author)) {
-      entry.author = [];
-
-      item.author.map((author: Author) => {
-        entry.author.push(formatAuthor(author));
+      entry.author = item.author.map((author: Author) => {
+        return formatAuthor(author);
       });
     }
 
@@ -132,19 +124,15 @@ export default (ins: Feed) => {
 
     // category
     if (Array.isArray(item.category)) {
-      entry.category = [];
-
-      item.category.map((category: Category) => {
-        entry.category.push(formatCategory(category));
+      entry.category = item.category.map((category: Category) => {
+        return formatCategory(category);
       });
     }
 
     // contributor
-    if (item.contributor && Array.isArray(item.contributor)) {
-      entry.contributor = [];
-
-      item.contributor.map((contributor: Author) => {
-        entry.contributor.push(formatAuthor(contributor));
+    if (Array.isArray(item.contributor)) {
+      entry.contributor = item.contributor.map((contributor: Author) => {
+        return formatAuthor(contributor);
       });
     }
 
@@ -160,7 +148,7 @@ export default (ins: Feed) => {
       entry.rights = item.copyright;
     }
 
-    base.feed.entry.push(entry);
+    return entry;
   });
 
   return convert.js2xml(base, { compact: true, ignoreComment: true, spaces: 4 });
@@ -173,10 +161,7 @@ export default (ins: Feed) => {
 const formatAuthor = (author: Author) => {
   const { name, email, link } = author;
 
-  const out: { name?: string, email?: string, uri?: string } = { name };
-  if (email) {
-    out.email = email;
-  }
+  const out: { name?: string; email?: string; uri?: string } = { name, email };
 
   if (link) {
     out.uri = sanitize(link);

@@ -1,5 +1,5 @@
 import { Feed } from "./feed";
-import { Author, Category, Extension, Item } from "./typings";
+import { Author, Extension, Item } from "./typings";
 
 /**
  * Returns a JSON feed
@@ -8,7 +8,7 @@ import { Author, Category, Extension, Item } from "./typings";
 export default (ins: Feed) => {
   const { options, items, extensions } = ins;
 
-  let feed: any = {
+  const feed: any = {
     version: "https://jsonfeed.org/version/1",
     title: options.title,
   };
@@ -17,7 +17,7 @@ export default (ins: Feed) => {
     feed.home_page_url = options.link;
   }
 
-  if (options.feedLinks && options.feedLinks.json) {
+  if (options.feedLinks?.json) {
     feed.feed_url = options.feedLinks.json;
   }
 
@@ -39,12 +39,12 @@ export default (ins: Feed) => {
     }
   }
 
-  extensions.map((e: Extension) => {
+  extensions.forEach((e: Extension) => {
     feed[e.name] = e.objects;
   });
 
   feed.items = items.map((item: Item) => {
-    let feedItem: any = {
+    const feedItem: any = {
       id: item.id,
       // json_feed distinguishes between html and text content
       // but since we only take a single type, we'll assume HTML
@@ -73,7 +73,7 @@ export default (ins: Feed) => {
 
     if (item.author) {
       let author: Author | Author[] = item.author;
-      if (author instanceof Array) {
+      if (Array.isArray(author)) {
         // json feed only supports 1 author per post
         author = author[0];
       }
@@ -87,16 +87,13 @@ export default (ins: Feed) => {
     }
 
     if (Array.isArray(item.category)) {
-      feedItem.tags = [];
-      item.category.map((category: Category) => {
-        if (category.name) {
-          feedItem.tags.push(category.name);
-        }
-      });
+      feedItem.tags = item.category
+        .filter((category) => category.name)
+        .map((category) => category.name);
     }
 
     if (item.extensions) {
-      item.extensions.map((e: Extension) => {
+      item.extensions.forEach((e: Extension) => {
         feedItem[e.name] = e.objects;
       });
     }
