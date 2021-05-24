@@ -153,7 +153,7 @@ export interface FeedOptions {
    * URL to this feed.
    * 
    * - JSON: **unused**
-   * - Atom:
+   * - Atom: `id` (required, string)
    * - RSS: **unused**
    */
   id: string;
@@ -162,7 +162,7 @@ export interface FeedOptions {
    * Name of the feed or your website.
    * 
    * - JSON: `title` (required, string)
-   * - Atom:
+   * - Atom: `title` (required, string)
    * - RSS: `title` (required, string)
    */
   title: string;
@@ -171,7 +171,7 @@ export interface FeedOptions {
    * Last time the content of this feed changed.
    * 
    * - JSON: **unused**
-   * - Atom:
+   * - Atom: `updated` (required, string)
    * - RSS: `lastBuildDate` (optional, Date)
    */
   updated?: Date;
@@ -180,7 +180,7 @@ export interface FeedOptions {
    * Name of the program used to generate this feed.
    * 
    * - JSON: **unused**
-   * - Atom:
+   * - Atom: `generator` (optional, string)
    * - RSS: `generator` (optional, string)
    */
   generator?: string;
@@ -189,7 +189,7 @@ export interface FeedOptions {
    * Language of the content of this feed.
    * 
    * - JSON: `language` (optional, string)
-   * - Atom:
+   * - Atom: **unused**
    * - RSS: `language` (optional, string)
    */
   language?: string;
@@ -198,7 +198,7 @@ export interface FeedOptions {
    * Number of minutes this feed can be cached before refreshing from source.
    * 
    * - JSON: **unused**
-   * - Atom:
+   * - Atom: **unused**
    * - RSS: `ttl` (optional, number)
    */
   ttl?: number;
@@ -208,7 +208,7 @@ export interface FeedOptions {
    * > URLs of the feed, and serves as the unique identifier for the feed. ?
    * 
    * - JSON: **unused**
-   * - Atom:
+   * - Atom: `link` (optional, string)
    * - RSS: `atom:link` (not specified but recommanded by w3c, string) (Atom namespace)
    */
   feed?: string;
@@ -217,7 +217,7 @@ export interface FeedOptions {
    * URLs of the feed, and serves as the unique identifier for the feed.
    * 
    * - JSON: `feed_url` (optional but strongly recommended, string)
-   * - Atom:
+   * - Atom: `link` (optional, string)
    * - RSS: `atom:link` (not specified but recommanded by w3c, string) (Atom namespace)
    */
   feedLinks?: {
@@ -230,7 +230,7 @@ export interface FeedOptions {
    * URL to a hub for this feed.
    * 
    * - JSON: hubs (very optional, array of objects)
-   * - Atom:
+   * - Atom: **unused**
    * - RSS: **unused**
    */
   hub?: string;
