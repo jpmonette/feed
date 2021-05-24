@@ -161,7 +161,11 @@ export default (ins: Feed) => {
 const formatAuthor = (author: Author) => {
   const { name, email, link } = author;
 
-  const out: { name?: string; email?: string; uri?: string } = { name, email };
+  const out: { name?: string; email?: string; uri?: string } = { name };
+
+  if (email) {
+    out.email = email
+  }
 
   if (link) {
     out.uri = sanitize(link);
