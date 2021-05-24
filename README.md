@@ -120,6 +120,13 @@ Otherwise, you can stick with `require()`:
 + const Feed = require('feed').Feed;
 ```
 
+## Ressources
+
+- [RSS 2.0 Specification](https://www.rssboard.org/rss-specification)
+- [Atom RFC 4287 Specification](https://tools.ietf.org/html/rfc4287)
+- [JSON Feed Version 1.1](https://jsonfeed.org/version/1.1)
+- [Mapping RSS and Atom to JSON Feed](https://jsonfeed.org/mappingrssandatom)
+
 ## More Information
 
 - Follow [@jpmonette](https://twitter.com/jpmonette) on Twitter for updates
