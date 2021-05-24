@@ -87,9 +87,7 @@ export default (ins: Feed) => {
     }
 
     if (Array.isArray(item.category)) {
-      feedItem.tags = item.category
-        .filter((category) => category.name)
-        .map((category) => category.name);
+      feedItem.tags = item.category.filter((category) => category.name).map((category) => category.name);
     }
 
     if (item.extensions) {
