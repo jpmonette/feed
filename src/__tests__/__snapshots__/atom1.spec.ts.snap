@@ -31,7 +31,7 @@ exports[`atom 1.0 should generate a valid feed 1`] = `
         <link href=\\"https://example.com/hello-world?link=sanitized&amp;value=2\\"/>
         <updated>2013-07-13T23:00:00.000Z</updated>
         <summary type=\\"html\\"><![CDATA[This is an article about Hello World.]]></summary>
-        <content type=\\"html\\"><![CDATA[Content of my item]]></content>
+        <content type=\\"html\\" xml:base=\\"https://example.com/base/\\"><![CDATA[Content of my item]]></content>
         <author>
             <name>Jane Doe</name>
             <email>janedoe@example.com</email>

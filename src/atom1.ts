@@ -111,6 +111,9 @@ export default (ins: Feed) => {
         _attributes: { type: "html" },
         _cdata: item.content,
       };
+      if (item.baseUrl) {
+        entry.content._attributes["xml:base"] = item.baseUrl;
+      }
     }
 
     // entry author(s)

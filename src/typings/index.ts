@@ -22,6 +22,8 @@ export interface Item {
   copyright?: string;
 
   extensions?: Extension[];
+
+  baseUrl?: string;
 }
 
 export interface Enclosure {
