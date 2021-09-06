@@ -10,8 +10,8 @@
   "scripts": {
     "build": "rimraf lib/ && mkdir lib && tsc",
     "prepublish": "npm run build",
-    "test": "export NODE_ENV=test && jest --silent",
-    "test-travis": "export NODE_ENV=test && jest --coverage"
+    "test": "cross-env NODE_ENV=test && jest --silent",
+    "test-travis": "cross-env NODE_ENV=test && jest --coverage"
   },
   "keywords": [
     "rss",
@@ -29,6 +29,7 @@
     "@types/jest": "^26.0.14",
     "codeclimate-test-reporter": "^0.5.1",
     "coveralls": "^3.1.0",
+    "cross-env": "^7.0.3",
     "jest": "^26.5.3",
     "prettier": "^2.1.2",
     "source-map-loader": "^1.1.1",
