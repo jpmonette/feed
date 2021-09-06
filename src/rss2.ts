@@ -186,7 +186,16 @@ export default (ins: Feed) => {
     }
 
     if (entry.audio) {
+      let duration = undefined;
+      if (options.podcast && typeof entry.audio !== 'string' && entry.audio.duration) {
+        duration = entry.audio.duration;
+        entry.audio.duration = undefined;
+      }
       item.enclosure = formatEnclosure(entry.audio, "audio");
+
+      if (duration) {
+        item["itunes:duration"] = formatDuration(duration);
+      }
     }
 
     if (entry.video) {
@@ -204,6 +213,35 @@ export default (ins: Feed) => {
   if (isAtom) {
     base.rss._attributes["xmlns:atom"] = "http://www.w3.org/2005/Atom";
   }
+
+  /**
+   * Podcast extensions
+   * https://support.google.com/podcast-publishers/answer/9889544?hl=en
+   */
+  if (options.podcast) {
+    base.rss._attributes["xmlns:googleplay"] = "http://www.google.com/schemas/play-podcasts/1.0";
+    base.rss._attributes["xmlns:itunes"] = "http://www.itunes.com/dtds/podcast-1.0.dtd";
+    if (options.category) {
+      base.rss.channel["googleplay:category"] = options.category;
+      base.rss.channel["itunes:category"] = options.category;
+    }
+    if (options.author?.email) {
+      base.rss.channel["googleplay:owner"] = options.author.email;
+      base.rss.channel["itunes:owner"] = {
+        'itunes:email': options.author.email
+      };
+    }
+    if (options.author?.name) {
+      base.rss.channel["googleplay:author"] = options.author.name;
+      base.rss.channel["itunes:author"] = options.author.name;
+    }
+    if (options.image) {
+      base.rss.channel["googleplay:image"] = {
+        _attributes: { href: sanitize(options.image) }
+      };
+    }
+  }
+
   return convert.js2xml(base, { compact: true, ignoreComment: true, spaces: 4 });
 };
 
@@ -235,3 +273,16 @@ const formatCategory = (category: Category) => {
     },
   };
 };
+
+/**
+ * Returns a formated duration from seconds
+ * @param duration
+ */
+const formatDuration = (duration: number) => {
+  const seconds = duration % 60;
+  const totalMinutes = Math.floor(duration / 60);
+  const minutes = totalMinutes % 60;
+  const hours = Math.floor(totalMinutes / 60);
+  const notHours = ("0" + minutes).substr(-2) + ":" + ("0" + seconds).substr(-2);
+  return hours > 0 ? hours + ":" + notHours : notHours;
+}
