@@ -1,10 +1,16 @@
-/// <reference path="types/index.ts" />
+import { Feed } from "./feed";
+import { Author, Category, Extension, Item } from "./typings";
 
+/**
+ * Returns a JSON feed
+ * @param ins
+ */
 export default (ins: Feed) => {
   const { options, items, extensions } = ins;
+
   let feed: any = {
     version: "https://jsonfeed.org/version/1",
-    title: options.title
+    title: options.title,
   };
 
   if (options.link) {
@@ -33,7 +39,7 @@ export default (ins: Feed) => {
     }
   }
 
-  extensions.forEach((e: Extension) => {
+  extensions.map((e: Extension) => {
     feed[e.name] = e.objects;
   });
 
@@ -42,7 +48,7 @@ export default (ins: Feed) => {
       id: item.id,
       // json_feed distinguishes between html and text content
       // but since we only take a single type, we'll assume HTML
-      content_html: item.content
+      content_html: item.content,
     };
     if (item.link) {
       feedItem.url = item.link;
@@ -80,8 +86,17 @@ export default (ins: Feed) => {
       }
     }
 
+    if (Array.isArray(item.category)) {
+      feedItem.tags = [];
+      item.category.map((category: Category) => {
+        if (category.name) {
+          feedItem.tags.push(category.name);
+        }
+      });
+    }
+
     if (item.extensions) {
-      item.extensions.forEach((e: Extension) => {
+      item.extensions.map((e: Extension) => {
         feedItem[e.name] = e.objects;
       });
     }

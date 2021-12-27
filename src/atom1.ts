@@ -1,46 +1,48 @@
-/// <reference path="types/index.ts" />
-
-import * as xml from "xml";
+import * as convert from "xml-js";
 import { generator } from "./config";
+import { Feed } from "./feed";
+import { Author, Category, Item } from "./typings";
+import { sanitize } from "./utils";
 
-const DOCTYPE = '<?xml version="1.0" encoding="utf-8"?>\n';
-
+/**
+ * Returns an Atom feed
+ * @param ins
+ */
 export default (ins: Feed) => {
   const { options } = ins;
 
-  let feed: any = [];
-
-  feed.push({ _attr: { xmlns: "http://www.w3.org/2005/Atom" } });
-  feed.push({ id: options.id });
-  feed.push({ title: options.title });
-
-  if (options.updated) {
-    feed.push({ updated: options.updated.toISOString() });
-  } else {
-    feed.push({ updated: new Date().toISOString() });
-  }
-
-  feed.push({ generator: options.generator || generator });
+  const base: any = {
+    _declaration: { _attributes: { version: "1.0", encoding: "utf-8" } },
+    feed: {
+      _attributes: { xmlns: "http://www.w3.org/2005/Atom" },
+      id: options.id,
+      title: options.title,
+      updated: options.updated ? options.updated.toISOString() : new Date().toISOString(),
+      generator: sanitize(options.generator || generator)
+    }
+  };
 
   if (options.author) {
-    feed.push({ author: formatAuthor(options.author) });
+    base.feed.author = formatAuthor(options.author);
   }
+
+  base.feed.link = [];
 
   // link (rel="alternate")
   if (options.link) {
-    feed.push({ link: { _attr: { rel: "alternate", href: options.link } } });
+    base.feed.link.push({ _attributes: { rel: "alternate", href: sanitize(options.link) } });
   }
 
   // link (rel="self")
-  const atomLink = options.feed || (options.feedLinks && options.feedLinks.atom);
+  const atomLink = sanitize(options.feed || (options.feedLinks && options.feedLinks.atom));
 
   if (atomLink) {
-    feed.push({ link: { _attr: { rel: "self", href: atomLink } } });
+    base.feed.link.push({ _attributes: { rel: "self", href: sanitize(atomLink) } });
   }
 
   // link (rel="hub")
   if (options.hub) {
-    feed.push({ link: { _attr: { rel: "hub", href: options.hub } } });
+    base.feed.link.push({ _attributes: { rel: "hub", href: sanitize(options.hub) } });
   }
 
   /**************************************************************************
@@ -48,62 +50,76 @@ export default (ins: Feed) => {
    *************************************************************************/
 
   if (options.description) {
-    feed.push({ subtitle: options.description });
+    base.feed.subtitle = options.description;
   }
 
   if (options.image) {
-    feed.push({ logo: options.image });
+    base.feed.logo = options.image;
   }
 
   if (options.favicon) {
-    feed.push({ icon: options.favicon });
+    base.feed.icon = options.favicon;
   }
 
   if (options.copyright) {
-    feed.push({ rights: options.copyright });
+    base.feed.rights = options.copyright;
   }
 
-  ins.categories.forEach((category: string) => {
-    feed.push({ category: [{ _attr: { term: category } }] });
+  base.feed.category = [];
+
+  ins.categories.map((category: string) => {
+    base.feed.category.push({ _attributes: { term: category } });
   });
 
-  ins.contributors.forEach((contributor: Author) => feed.push({ contributor: formatAuthor(contributor) }));
+  base.feed.contributor = [];
+
+  ins.contributors.map((contributor: Author) => {
+    base.feed.contributor.push(formatAuthor(contributor));
+  });
 
   // icon
+
+  base.feed.entry = [];
 
   /**************************************************************************
    * "entry" nodes
    *************************************************************************/
-  ins.items.forEach((item: Item) => {
+  ins.items.map((item: Item) => {
     //
     // entry: required elements
     //
 
-    let entry: any = [
-      { title: { _attr: { type: "html" }, _cdata: item.title } },
-      { id: item.id || item.link },
-      { link: [{ _attr: { href: item.link } }] },
-      { updated: item.date.toISOString() }
-    ];
+    let entry: convert.ElementCompact = {
+      title: { _attributes: { type: "html" }, _cdata: item.title },
+      id: sanitize(item.id || item.link),
+      link: [{ _attributes: { href: sanitize(item.link) } }],
+      updated: item.date.toISOString()
+    };
 
     //
     // entry: recommended elements
     //
     if (item.description) {
-      entry.push({
-        summary: { _attr: { type: "html" }, _cdata: item.description }
-      });
+      entry.summary = {
+        _attributes: { type: "html" },
+        _cdata: item.description,
+      };
     }
 
     if (item.content) {
-      entry.push({
-        content: { _attr: { type: "html" }, _cdata: item.content }
-      });
+      entry.content = {
+        _attributes: { type: "html" },
+        _cdata: item.content,
+      };
     }
 
     // entry author(s)
     if (Array.isArray(item.author)) {
-      item.author.forEach((author: Author) => entry.push({ author: formatAuthor(author) }));
+      entry.author = [];
+
+      item.author.map((author: Author) => {
+        entry.author.push(formatAuthor(author));
+      });
     }
 
     // content
@@ -115,45 +131,72 @@ export default (ins: Feed) => {
     //
 
     // category
+    if (Array.isArray(item.category)) {
+      entry.category = [];
+
+      item.category.map((category: Category) => {
+        entry.category.push(formatCategory(category));
+      });
+    }
 
     // contributor
     if (item.contributor && Array.isArray(item.contributor)) {
-      item.contributor.forEach((contributor: Author) => entry.push({ contributor: formatAuthor(contributor) }));
+      entry.contributor = [];
+
+      item.contributor.map((contributor: Author) => {
+        entry.contributor.push(formatAuthor(contributor));
+      });
     }
 
     // published
     if (item.published) {
-      entry.push({ published: item.published.toISOString() });
+      entry.published = item.published.toISOString();
     }
 
     // source
 
     // rights
     if (item.copyright) {
-      entry.push({ rights: item.copyright });
+      entry.rights = item.copyright;
     }
 
-    feed.push({ entry });
+    base.feed.entry.push(entry);
   });
 
-  return DOCTYPE + xml([{ feed }], true);
+  return convert.js2xml(base, { compact: true, ignoreComment: true, spaces: 4 });
 };
 
+/**
+ * Returns a formatted author
+ * @param author
+ */
 const formatAuthor = (author: Author) => {
   const { name, email, link } = author;
-  let contributor = [];
 
-  if (name) {
-    contributor.push({ name });
-  }
-
+  const out: { name?: string, email?: string, uri?: string } = { name };
   if (email) {
-    contributor.push({ email });
+    out.email = email;
   }
 
   if (link) {
-    contributor.push({ uri: link });
+    out.uri = sanitize(link);
   }
 
-  return contributor;
+  return out;
+};
+
+/**
+ * Returns a formatted category
+ * @param category
+ */
+const formatCategory = (category: Category) => {
+  const { name, scheme, term } = category;
+
+  return {
+    _attributes: {
+      label: name,
+      scheme,
+      term,
+    },
+  };
 };
