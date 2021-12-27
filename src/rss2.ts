@@ -1,82 +1,95 @@
-/// <reference path="types/index.ts" />
-
-import * as xml from "xml";
-
+import * as convert from "xml-js";
 import { generator } from "./config";
+import { Feed } from "./feed";
+import { Author, Category, Enclosure, Item } from "./typings";
+import { sanitize } from "./utils";
 
-const DOCTYPE = '<?xml version="1.0" encoding="utf-8"?>\n';
-
+/**
+ * Returns a RSS 2.0 feed
+ */
 export default (ins: Feed) => {
   const { options } = ins;
   let isAtom = false;
   let isContent = false;
 
-  const channel: any = [
-    { title: options.title },
-    { link: options.link },
-    { description: options.description },
-    {
-      lastBuildDate: options.updated ? options.updated.toUTCString() : new Date().toUTCString()
+  const base: any = {
+    _declaration: { _attributes: { version: "1.0", encoding: "utf-8" } },
+    rss: {
+      _attributes: { version: "2.0" },
+      channel: {
+        title: { _text: options.title },
+        link: { _text: sanitize(options.link) },
+        description: { _text: options.description },
+        lastBuildDate: { _text: options.updated ? options.updated.toUTCString() : new Date().toUTCString() },
+        docs: { _text: options.docs ? options.docs : "https://validator.w3.org/feed/docs/rss2.html" },
+        generator: { _text: options.generator || generator },
+      },
     },
-    { docs: "http://blogs.law.harvard.edu/tech/rss" },
-    { generator: options.generator || generator }
-  ];
-
-  const rss: any[] = [{ _attr: { version: "2.0" } }, { channel }];
+  };
 
   /**
    * Channel language
-   * https://validator.w3.org/feed/docs/rss2.html#ltimagegtSubelementOfLtchannelgt
+   * https://validator.w3.org/feed/docs/rss2.html#ltlanguagegtSubelementOfLtchannelgt
    */
   if (options.language) {
-    channel.push({
-      language: options.language
-    });
+    base.rss.channel.language = { _text: options.language };
+  }
+
+  /**
+   * Channel ttl
+   * https://validator.w3.org/feed/docs/rss2.html#ltttlgtSubelementOfLtchannelgt
+   */
+  if (options.ttl) {
+    base.rss.channel.ttl = { _text: options.ttl };
   }
 
   /**
    * Channel Image
-   * http://cyber.law.harvard.edu/rss/rss.html#ltimagegtSubelementOfLtchannelgt
+   * https://validator.w3.org/feed/docs/rss2.html#ltimagegtSubelementOfLtchannelgt
    */
   if (options.image) {
-    channel.push({
-      image: [{ title: options.title }, { url: options.image }, { link: options.link }]
-    });
+    base.rss.channel.image = {
+      title: { _text: options.title },
+      url: { _text: options.image },
+      link: { _text: sanitize(options.link) }
+    };
   }
 
   /**
    * Channel Copyright
-   * http://cyber.law.harvard.edu/rss/rss.html#optionalChannelElements
+   * https://validator.w3.org/feed/docs/rss2.html#optionalChannelElements
    */
   if (options.copyright) {
-    channel.push({ copyright: options.copyright });
+    base.rss.channel.copyright = { _text: options.copyright };
   }
 
   /**
    * Channel Categories
-   * http://cyber.law.harvard.edu/rss/rss.html#comments
+   * https://validator.w3.org/feed/docs/rss2.html#comments
    */
-  ins.categories.forEach(category => {
-    channel.push({ category });
+  ins.categories.map((category) => {
+    if (!base.rss.channel.category) {
+      base.rss.channel.category = [];
+    }
+    base.rss.channel.category.push({ _text: category });
   });
 
   /**
    * Feed URL
    * http://validator.w3.org/feed/docs/warning/MissingAtomSelfLink.html
    */
-  const atomLink = options.feed || (options.feedLinks && options.feedLinks.atom);
+  const atomLink = options.feed || (options.feedLinks && options.feedLinks.rss);
   if (atomLink) {
     isAtom = true;
-
-    channel.push({
-      "atom:link": {
-        _attr: {
-          href: atomLink,
+    base.rss.channel["atom:link"] = [
+      {
+        _attributes: {
+          href: sanitize(atomLink),
           rel: "self",
-          type: "application/rss+xml"
-        }
-      }
-    });
+          type: "application/rss+xml",
+        },
+      },
+    ];
   }
 
   /**
@@ -85,84 +98,148 @@ export default (ins: Feed) => {
    */
   if (options.hub) {
     isAtom = true;
-    channel.push({
-      "atom:link": {
-        _attr: {
-          href: options.hub,
-          rel: "hub"
-        }
+    if (!base.rss.channel["atom:link"]) {
+      base.rss.channel["atom:link"] = [];
+    }
+    base.rss.channel["atom:link"] = {
+      _attributes: {
+        href: sanitize(options.hub),
+        rel: "hub"
       }
-    });
+    };
   }
 
   /**
    * Channel Categories
-   * http://cyber.law.harvard.edu/rss/rss.html#hrelementsOfLtitemgt
+   * https://validator.w3.org/feed/docs/rss2.html#hrelementsOfLtitemgt
    */
-  ins.items.forEach((entry: Item) => {
-    let item: any[] = [];
+  base.rss.channel.item = [];
+
+  ins.items.map((entry: Item) => {
+    let item: any = {};
 
     if (entry.title) {
-      item.push({ title: { _cdata: entry.title } });
+      item.title = { _cdata: entry.title };
     }
 
     if (entry.link) {
-      item.push({ link: entry.link });
+      item.link = { _text: sanitize(entry.link) };
     }
 
     if (entry.guid) {
-      let guidItem: { guid: [any] } = { guid: [entry.guid] };
+      item.guid = { _text: entry.guid };
 
       /**
        * GUID isPermaLink
        * https://validator.w3.org/feed/docs/error/InvalidHttpGUID.html
        */
       if (entry.guidIsPermaLink !== undefined) {
-        guidItem.guid.push({ _attr: { isPermaLink: entry.guidIsPermaLink } });
+        item.guid._attr = { isPermaLink: entry.guidIsPermaLink };
       }
-      item.push(guidItem);
+    } else if (entry.id) {
+      item.guid = { _text: entry.id };
     } else if (entry.link) {
-      item.push({ guid: entry.link });
+      item.guid = { _text: sanitize(entry.link) };
     }
 
     if (entry.date) {
-      item.push({ pubDate: entry.date.toUTCString() });
+      item.pubDate = { _text: entry.date.toUTCString() };
+    }
+
+    if (entry.published) {
+      item.pubDate = { _text: entry.published.toUTCString() };
     }
 
     if (entry.description) {
-      item.push({ description: { _cdata: entry.description } });
+      item.description = { _cdata: entry.description };
     }
 
     if (entry.content) {
       isContent = true;
-      item.push({ "content:encoded": { _cdata: entry.content } });
+      item["content:encoded"] = { _cdata: entry.content };
     }
     /**
      * Item Author
-     * http://cyber.law.harvard.edu/rss/rss.html#ltauthorgtSubelementOfLtitemgt
+     * https://validator.w3.org/feed/docs/rss2.html#ltauthorgtSubelementOfLtitemgt
      */
     if (Array.isArray(entry.author)) {
+      item.author = [];
       entry.author.map((author: Author) => {
         if (author.email && author.name) {
-          item.push({ author: author.email + " (" + author.name + ")" });
+          item.author.push({ _text: author.email + " (" + author.name + ")" });
         }
       });
     }
-
-    if (entry.image) {
-      item.push({ enclosure: [{ _attr: { url: entry.image } }] });
+    /**
+     * Item Category
+     * https://validator.w3.org/feed/docs/rss2.html#ltcategorygtSubelementOfLtitemgt
+     */
+    if (Array.isArray(entry.category)) {
+      item.category = [];
+      entry.category.map((category: Category) => {
+        item.category.push(formatCategory(category));
+      });
     }
 
-    channel.push({ item });
+    /**
+     * Item Enclosure
+     * https://validator.w3.org/feed/docs/rss2.html#ltenclosuregtSubelementOfLtitemgt
+     */
+    if (entry.enclosure) {
+      item.enclosure = formatEnclosure(entry.enclosure);
+    }
+
+    if (entry.image) {
+      item.enclosure = formatEnclosure(entry.image, "image");
+    }
+
+    if (entry.audio) {
+      item.enclosure = formatEnclosure(entry.audio, "audio");
+    }
+
+    if (entry.video) {
+      item.enclosure = formatEnclosure(entry.video, "video");
+    }
+
+    base.rss.channel.item.push(item);
   });
 
   if (isContent) {
-    rss[0]._attr["xmlns:content"] = "http://purl.org/rss/1.0/modules/content/";
+    base.rss._attributes["xmlns:dc"] = "http://purl.org/dc/elements/1.1/";
+    base.rss._attributes["xmlns:content"] = "http://purl.org/rss/1.0/modules/content/";
   }
 
   if (isAtom) {
-    rss[0]._attr["xmlns:atom"] = "http://www.w3.org/2005/Atom";
+    base.rss._attributes["xmlns:atom"] = "http://www.w3.org/2005/Atom";
+  }
+  return convert.js2xml(base, { compact: true, ignoreComment: true, spaces: 4 });
+};
+
+/**
+ * Returns a formated enclosure
+ * @param enclosure
+ * @param mimeCategory
+ */
+const formatEnclosure = (enclosure: string | Enclosure, mimeCategory = "image") => {
+  if (typeof enclosure === "string") {
+    const type = new URL(enclosure).pathname.split(".").slice(-1)[0];
+    return { _attributes: { url: enclosure, length: 0, type: `${mimeCategory}/${type}` } };
   }
 
-  return DOCTYPE + xml([{ rss }], true);
+  const type = new URL(enclosure.url).pathname.split(".").slice(-1)[0];
+  return { _attributes: { length: 0, type: `${mimeCategory}/${type}`, ...enclosure } };
+};
+
+/**
+ * Returns a formated category
+ * @param category
+ */
+const formatCategory = (category: Category) => {
+  const { name, domain } = category;
+  return {
+    _text: name,
+    _attributes: {
+      domain,
+    },
+  };
 };

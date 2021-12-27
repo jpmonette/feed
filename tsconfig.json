@@ -1,15 +1,21 @@
 {
   "compilerOptions": {
-    "module": "commonjs",
-    "outDir": "./lib",
-    "declaration": true,
-    "strict": true,
-    "noImplicitReturns": true,
-    "noFallthroughCasesInSwitch": true,
     "allowUnreachableCode": false,
     "allowUnusedLabels": false,
-    "sourceMap": true,
     "baseUrl": ".",
+    "declaration": true,
+    "lib": [
+      "es2015",
+      "dom"
+    ],
+    "module": "commonjs",
+    "noFallthroughCasesInSwitch": true,
+    "noImplicitAny": true,
+    "noImplicitReturns": true,
+    "outDir": "./lib",
+    "removeComments": true,
+    "sourceMap": true,
+    "strict": true,
     "target": "es5"
   },
   "include": ["./src/**/*"],
