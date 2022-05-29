@@ -1,7 +1,7 @@
 import renderAtom from "./atom1";
 import renderJSON from "./json";
 import renderRSS from "./rss2";
-import { Author, Extension, FeedOptions, Item } from "./typings";
+import { Author, Extension, ExtraItem, FeedOptions, Item } from "./typings";
 
 export { Author, Extension, FeedOptions, Item };
 
@@ -14,6 +14,7 @@ export class Feed {
   categories: string[] = [];
   contributors: Author[] = [];
   extensions: Extension[] = [];
+  extra: { [key: string]: ExtraItem } = {};
 
   constructor(options: FeedOptions) {
     this.options = options;
@@ -42,6 +43,13 @@ export class Feed {
    * @param extension
    */
   public addExtension = (extension: Extension) => this.extensions.push(extension);
+
+  /**
+   * Adds an extra custom item
+   * @param key
+   * @param value
+   */
+  public addExtra = (key: string, value: ExtraItem) => this.extra[key] = value;
 
   /**
    * Returns a Atom 1.0 feed
