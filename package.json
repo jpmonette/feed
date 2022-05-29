@@ -8,10 +8,10 @@
   "main": "lib/feed.js",
   "types": "lib/feed.d.ts",
   "scripts": {
-    "build": "rimraf lib/ && mkdir lib && tsc",
-    "prepublish": "npm run build",
-    "test": "export NODE_ENV=test && jest --silent",
-    "test-travis": "export NODE_ENV=test && jest --coverage"
+    "build": "rm -rf lib/ && mkdir lib && tsc",
+    "prepublish": "yarn build",
+    "test": "jest --silent",
+    "test-travis": "jest --coverage"
   },
   "keywords": [
     "rss",
