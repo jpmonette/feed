@@ -97,6 +97,7 @@ sampleFeed.addItem({
   image: "https://example.com/hello-world.jpg",
   enclosure: { url: "https://example.com/hello-world.jpg", length: 12665, type: "image/jpeg" },
   published,
+  baseUrl: "https://example.com/base/",
 });
 
 sampleFeed.addExtension({
