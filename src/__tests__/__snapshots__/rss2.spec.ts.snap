@@ -29,6 +29,7 @@ exports[`rss 2.0 should generate a valid feed 1`] = `
             <content:encoded><![CDATA[Content of my item]]></content:encoded>
             <author>janedoe@example.com (Jane Doe)</author>
             <author>joesmith@example.com (Joe Smith)</author>
+            <dc:creator><![CDATA[Joe Smith, Name Only]]></dc:creator>
             <category>Grateful Dead</category>
             <category domain=\\"http://www.fool.com/cusips\\">MSFT</category>
             <enclosure url=\\"https://example.com/hello-world.jpg\\" length=\\"0\\" type=\\"image/jpg\\"/>
@@ -66,6 +67,7 @@ exports[`rss 2.0 should generate a valid feed with audio 1`] = `
             <content:encoded><![CDATA[Content of my item]]></content:encoded>
             <author>janedoe@example.com (Jane Doe)</author>
             <author>joesmith@example.com (Joe Smith)</author>
+            <dc:creator><![CDATA[Joe Smith, Name Only]]></dc:creator>
             <category>Grateful Dead</category>
             <category domain=\\"http://www.fool.com/cusips\\">MSFT</category>
             <enclosure url=\\"https://example.com/hello-world.jpg\\" length=\\"0\\" type=\\"image/jpg\\"/>
@@ -79,6 +81,7 @@ exports[`rss 2.0 should generate a valid feed with audio 1`] = `
             <content:encoded><![CDATA[Content of my item]]></content:encoded>
             <author>janedoe@example.com (Jane Doe)</author>
             <author>joesmith@example.com (Joe Smith)</author>
+            <dc:creator><![CDATA[Joe Smith]]></dc:creator>
             <category>Grateful Dead</category>
             <category domain=\\"http://www.fool.com/cusips\\">MSFT</category>
             <enclosure length=\\"12665\\" type=\\"image/jpg\\" url=\\"https://example.com/hello-world.jpg\\"/>
@@ -92,6 +95,7 @@ exports[`rss 2.0 should generate a valid feed with audio 1`] = `
             <content:encoded><![CDATA[Content of my item]]></content:encoded>
             <author>janedoe@example.com (Jane Doe)</author>
             <author>joesmith@example.com (Joe Smith)</author>
+            <dc:creator><![CDATA[Joe Smith]]></dc:creator>
             <category>Grateful Dead</category>
             <category domain=\\"http://www.fool.com/cusips\\">MSFT</category>
             <enclosure length=\\"12665\\" type=\\"image/jpg\\" url=\\"https://example.com/hello-world.jpg\\"/>
@@ -105,6 +109,7 @@ exports[`rss 2.0 should generate a valid feed with audio 1`] = `
             <content:encoded><![CDATA[Content of my item]]></content:encoded>
             <author>janedoe@example.com (Jane Doe)</author>
             <author>joesmith@example.com (Joe Smith)</author>
+            <dc:creator><![CDATA[Joe Smith]]></dc:creator>
             <category>Grateful Dead</category>
             <category domain=\\"http://www.fool.com/cusips\\">MSFT</category>
             <enclosure length=\\"12665\\" type=\\"audio/mpeg\\" url=\\"https://example.com/hello-world.mp3\\"/>
@@ -142,6 +147,7 @@ exports[`rss 2.0 should generate a valid feed with enclosure 1`] = `
             <content:encoded><![CDATA[Content of my item]]></content:encoded>
             <author>janedoe@example.com (Jane Doe)</author>
             <author>joesmith@example.com (Joe Smith)</author>
+            <dc:creator><![CDATA[Joe Smith, Name Only]]></dc:creator>
             <category>Grateful Dead</category>
             <category domain=\\"http://www.fool.com/cusips\\">MSFT</category>
             <enclosure url=\\"https://example.com/hello-world.jpg\\" length=\\"0\\" type=\\"image/jpg\\"/>
@@ -155,6 +161,7 @@ exports[`rss 2.0 should generate a valid feed with enclosure 1`] = `
             <content:encoded><![CDATA[Content of my item]]></content:encoded>
             <author>janedoe@example.com (Jane Doe)</author>
             <author>joesmith@example.com (Joe Smith)</author>
+            <dc:creator><![CDATA[Joe Smith]]></dc:creator>
             <category>Grateful Dead</category>
             <category domain=\\"http://www.fool.com/cusips\\">MSFT</category>
             <enclosure length=\\"12665\\" type=\\"image/jpg\\" url=\\"https://example.com/hello-world.jpg\\"/>
@@ -168,6 +175,7 @@ exports[`rss 2.0 should generate a valid feed with enclosure 1`] = `
             <content:encoded><![CDATA[Content of my item]]></content:encoded>
             <author>janedoe@example.com (Jane Doe)</author>
             <author>joesmith@example.com (Joe Smith)</author>
+            <dc:creator><![CDATA[Joe Smith]]></dc:creator>
             <category>Grateful Dead</category>
             <category domain=\\"http://www.fool.com/cusips\\">MSFT</category>
             <enclosure length=\\"12665\\" type=\\"image/jpg\\" url=\\"https://example.com/hello-world.jpg\\"/>
@@ -205,6 +213,7 @@ exports[`rss 2.0 should generate a valid feed with image properties 1`] = `
             <content:encoded><![CDATA[Content of my item]]></content:encoded>
             <author>janedoe@example.com (Jane Doe)</author>
             <author>joesmith@example.com (Joe Smith)</author>
+            <dc:creator><![CDATA[Joe Smith, Name Only]]></dc:creator>
             <category>Grateful Dead</category>
             <category domain=\\"http://www.fool.com/cusips\\">MSFT</category>
             <enclosure url=\\"https://example.com/hello-world.jpg\\" length=\\"0\\" type=\\"image/jpg\\"/>
@@ -218,6 +227,7 @@ exports[`rss 2.0 should generate a valid feed with image properties 1`] = `
             <content:encoded><![CDATA[Content of my item]]></content:encoded>
             <author>janedoe@example.com (Jane Doe)</author>
             <author>joesmith@example.com (Joe Smith)</author>
+            <dc:creator><![CDATA[Joe Smith]]></dc:creator>
             <category>Grateful Dead</category>
             <category domain=\\"http://www.fool.com/cusips\\">MSFT</category>
             <enclosure length=\\"12665\\" type=\\"image/jpg\\" url=\\"https://example.com/hello-world.jpg\\"/>
@@ -254,6 +264,7 @@ exports[`rss 2.0 should generate a valid feed with video 1`] = `
             <content:encoded><![CDATA[Content of my item]]></content:encoded>
             <author>janedoe@example.com (Jane Doe)</author>
             <author>joesmith@example.com (Joe Smith)</author>
+            <dc:creator><![CDATA[Joe Smith]]></dc:creator>
             <category>Grateful Dead</category>
             <category domain=\\"http://www.fool.com/cusips\\">MSFT</category>
             <enclosure url=\\"https://example.com/hello-world.mp4\\" length=\\"0\\" type=\\"video/mp4\\"/>
