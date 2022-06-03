@@ -1,3 +1,4 @@
+import * as mime from "mime";
 import * as convert from "xml-js";
 import { generator } from "./config";
 import { Feed } from "./feed";
@@ -51,7 +52,7 @@ export default (ins: Feed) => {
     base.rss.channel.image = {
       title: { _text: options.title },
       url: { _text: options.image },
-      link: { _text: sanitize(options.link) }
+      link: { _text: sanitize(options.link) },
     };
   }
 
@@ -104,8 +105,8 @@ export default (ins: Feed) => {
     base.rss.channel["atom:link"] = {
       _attributes: {
         href: sanitize(options.hub),
-        rel: "hub"
-      }
+        rel: "hub",
+      },
     };
   }
 
@@ -182,15 +183,15 @@ export default (ins: Feed) => {
     }
 
     if (entry.image) {
-      item.enclosure = formatEnclosure(entry.image, "image");
+      item.enclosure = formatEnclosure(entry.image);
     }
 
     if (entry.audio) {
-      item.enclosure = formatEnclosure(entry.audio, "audio");
+      item.enclosure = formatEnclosure(entry.audio);
     }
 
     if (entry.video) {
-      item.enclosure = formatEnclosure(entry.video, "video");
+      item.enclosure = formatEnclosure(entry.video);
     }
 
     base.rss.channel.item.push(item);
@@ -212,14 +213,14 @@ export default (ins: Feed) => {
  * @param enclosure
  * @param mimeCategory
  */
-const formatEnclosure = (enclosure: string | Enclosure, mimeCategory = "image") => {
+const formatEnclosure = (enclosure: string | Enclosure) => {
   if (typeof enclosure === "string") {
     const type = new URL(enclosure).pathname.split(".").slice(-1)[0];
-    return { _attributes: { url: enclosure, length: 0, type: `${mimeCategory}/${type}` } };
+    return { _attributes: { url: enclosure, length: 0, type: mime.getType(type) } };
   }
 
   const type = new URL(enclosure.url).pathname.split(".").slice(-1)[0];
-  return { _attributes: { length: 0, type: `${mimeCategory}/${type}`, ...enclosure } };
+  return { _attributes: { length: 0, type: mime.getType(type), ...enclosure } };
 };
 
 /**
