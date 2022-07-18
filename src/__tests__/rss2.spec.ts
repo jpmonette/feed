@@ -227,4 +227,37 @@ describe("rss 2.0", () => {
     const actual = sampleFeed.rss2();
     expect(actual).toMatchSnapshot();
   });
+  it("should generate a valid feed with non-HTTP GUIDs", () => {
+    const sampleFeed = new Feed({
+      title: "Feed Title",
+      description: "This is my personnal feed!",
+      link: "http://example.com/",
+      id: "http://example.com/",
+      language: "en",
+      ttl: 60,
+      image: "http://example.com/image.png",
+      copyright: "All rights reserved 2013, John Doe",
+      hub: "wss://example.com/",
+      updated, // optional, default = today
+
+      author: {
+        name: "John Doe",
+        email: "johndoe@example.com",
+        link: "https://example.com/johndoe",
+      },
+    })
+
+    sampleFeed.addItem({
+      title: "Hello World 2",
+      id: "https://example.com/hello-world-2",
+      link: "https://example.com/hello-world-2",
+      guid: "58f618d7a56f2f745291a473",
+      guidIsPermaLink: false,
+      description: "This is another article about Hello World.",
+      date: new Date("Sat, 13 Jul 2013 22:00:00 GMT"),
+      published
+    });
+    const actual = sampleFeed.rss2();
+    expect(actual).toMatchSnapshot();
+  })
 });
