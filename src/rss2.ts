@@ -101,12 +101,12 @@ export default (ins: Feed) => {
     if (!base.rss.channel["atom:link"]) {
       base.rss.channel["atom:link"] = [];
     }
-    base.rss.channel["atom:link"] = {
+    base.rss.channel["atom:link"].push({
       _attributes: {
         href: sanitize(options.hub),
         rel: "hub"
       }
-    };
+    });
   }
 
   /**
