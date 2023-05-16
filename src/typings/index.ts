@@ -36,6 +36,7 @@ export interface Author {
   name?: string;
   email?: string;
   link?: string;
+  avatar?: string;
 }
 
 export interface Category {
