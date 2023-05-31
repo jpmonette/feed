@@ -70,3 +70,8 @@ export interface Extension {
   name: string;
   objects: any;
 }
+
+export interface Namespace {
+  name: string;
+  url: string;
+}

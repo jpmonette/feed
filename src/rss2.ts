@@ -1,6 +1,6 @@
 import * as convert from "xml-js";
 import { generator } from "./config";
-import  { Extension, Feed } from "./feed";
+import { Extension, Feed, Namespace } from "./feed";
 import { Author, Category, Enclosure, Item } from "./typings";
 import { sanitize } from "./utils";
 
@@ -221,6 +221,14 @@ export default (ins: Feed) => {
   if (isAtom) {
     base.rss._attributes["xmlns:atom"] = "http://www.w3.org/2005/Atom";
   }
+
+  /**
+   * Custom namespaces
+   */
+  ins.namespaces.map((namespace: Namespace) => {
+    base.rss._attributes[namespace.name] = namespace.url;
+  });
+
   return convert.js2xml(base, { compact: true, ignoreComment: true, spaces: 4 });
 };
 
