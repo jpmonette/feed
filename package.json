@@ -9,7 +9,7 @@
   "types": "lib/feed.d.ts",
   "scripts": {
     "build": "rm -rf lib/ && mkdir lib && tsc",
-    "prepublish": "yarn build",
+    "prepare": "npm run build",
     "test": "jest --silent",
     "test-travis": "jest --coverage"
   },
