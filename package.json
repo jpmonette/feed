@@ -1,6 +1,6 @@
 {
   "name": "feed",
-  "version": "4.2.2",
+  "version": "5.0.0",
   "description": "Feed is a RSS, Atom and JSON feed generator for Node.js, making content syndication simple and intuitive!",
   "homepage": "https://github.com/jpmonette/feed",
   "author": "Jean-Philippe Monette <contact@jpmonette.net>",
@@ -9,9 +9,11 @@
   "types": "lib/feed.d.ts",
   "scripts": {
     "build": "rm -rf lib/ && mkdir lib && tsc",
-    "prepublish": "yarn build",
+    "prepublish": "pnpm build",
     "test": "jest --silent",
-    "test-travis": "jest --coverage"
+    "test-travis": "jest --coverage",
+    "pretty:check": "prettier src/* --check",
+    "pretty:fix": "prettier src/* --write"
   },
   "keywords": [
     "rss",
@@ -37,13 +39,14 @@
     "eslint-plugin-n": "^15.0.0",
     "eslint-plugin-promise": "^6.0.0",
     "jest": "^28.1.0",
-    "prettier": "^2.6.2",
+    "prettier": "^2.8.8",
     "source-map-loader": "^3.0.1",
     "ts-jest": "^28.0.3",
-    "typescript": "^4.7.2"
+    "typescript": "^4.9.5"
   },
   "engines": {
-    "node": ">=0.4.0"
+    "node": ">=20",
+    "pnpm": ">=10"
   },
   "bugs": {
     "url": "https://github.com/jpmonette/feed/issues"
@@ -52,5 +55,5 @@
     "type": "git",
     "url": "https://github.com/jpmonette/feed.git"
   },
-  "packageManager": "yarn@4.9.1"
+  "packageManager": "pnpm@10.10.0+sha512.d615db246fe70f25dcfea6d8d73dee782ce23e2245e3c4f6f888249fb568149318637dca73c2c5c8ef2a4ca0d5657fb9567188bfab47f566d1ee6ce987815c39"
 }

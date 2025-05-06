@@ -6,6 +6,7 @@ describe("rss 2.0", () => {
     const actual = sampleFeed.rss2();
     expect(actual).toMatchSnapshot();
   });
+
   it("should generate a valid feed with image properties", () => {
     sampleFeed.addItem({
       title: "Hello World",
@@ -57,6 +58,7 @@ describe("rss 2.0", () => {
     const actual = sampleFeed.rss2();
     expect(actual).toMatchSnapshot();
   });
+
   it("should generate a valid feed with enclosure", () => {
     sampleFeed.addItem({
       title: "Hello World",
@@ -108,6 +110,7 @@ describe("rss 2.0", () => {
     const actual = sampleFeed.rss2();
     expect(actual).toMatchSnapshot();
   });
+
   it("should generate a valid feed with audio", () => {
     sampleFeed.addItem({
       title: "Hello World",
@@ -158,8 +161,9 @@ describe("rss 2.0", () => {
     const actual = sampleFeed.rss2();
     expect(actual).toMatchSnapshot();
   });
+
   it("should generate a valid podcast feed with audio", () => {
-    var podcastFeed = createSampleFeed();
+    const podcastFeed = createSampleFeed();
     podcastFeed.options.podcast = true;
 
     podcastFeed.addItem({
@@ -212,6 +216,7 @@ describe("rss 2.0", () => {
     const actual = podcastFeed.rss2();
     expect(actual).toMatchSnapshot();
   });
+
   it("should generate a valid feed with video", () => {
     const sampleFeed = new Feed({
       title: "Feed Title",
@@ -281,6 +286,7 @@ describe("rss 2.0", () => {
     const actual = sampleFeed.rss2();
     expect(actual).toMatchSnapshot();
   });
+
   it("should generate a valid feed with `addExtension`", () => {
     sampleFeed.addExtension({
       name: "extension_name",

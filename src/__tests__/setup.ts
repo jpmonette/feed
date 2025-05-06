@@ -4,7 +4,7 @@ export const updated = new Date("Sat, 13 Jul 2013 23:00:00 GMT");
 export const published = new Date("Sat, 10 Jul 2013 23:00:00 GMT");
 
 export const createSampleFeed = () => {
-  var feed = new Feed({
+  const feed = new Feed({
     title: "Feed Title",
     description: "This is my personnal feed!",
     link: "http://example.com/?link=sanitized&value=3",
