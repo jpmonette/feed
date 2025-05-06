@@ -51,7 +51,7 @@ export default (ins: Feed) => {
       id: item.id,
       // json_feed distinguishes between html and text content
       // but since we only take a single type, we'll assume HTML
-      content_html: item.content,
+      content_html: item.content ?? item.description,
     };
     if (item.link) {
       feedItem.url = item.link;
@@ -59,7 +59,7 @@ export default (ins: Feed) => {
     if (item.title) {
       feedItem.title = item.title;
     }
-    if (item.description) {
+    if (item.description && item.content) {
       feedItem.summary = item.description;
     }
 
