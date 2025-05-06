@@ -52,5 +52,5 @@
     "type": "git",
     "url": "https://github.com/jpmonette/feed.git"
   },
-  "packageManager": "yarn@3.2.1"
+  "packageManager": "yarn@4.9.1"
 }
