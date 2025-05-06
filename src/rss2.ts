@@ -116,7 +116,7 @@ export default (ins: Feed) => {
   base.rss.channel.item = [];
 
   ins.items.map((entry: Item) => {
-    let item: any = {};
+    const item: any = {};
 
     if (entry.title) {
       item.title = { _cdata: entry.title };

@@ -89,7 +89,7 @@ export default (ins: Feed) => {
     // entry: required elements
     //
 
-    let entry: convert.ElementCompact = {
+    const entry: convert.ElementCompact = {
       title: { _attributes: { type: "html" }, _cdata: item.title },
       id: sanitize(item.id || item.link),
       link: [{ _attributes: { href: sanitize(item.link) } }],
@@ -217,7 +217,15 @@ const formatEnclosure = (enclosure: string | Enclosure, mimeCategory = "image") 
   }
 
   const type = new URL(enclosure.url).pathname.split(".").slice(-1)[0];
-  return { _attributes: { rel: "enclosure", href: enclosure.url, title: enclosure.title, type: `${mimeCategory}/${type}`, length: enclosure.length } };
+  return {
+    _attributes: {
+      rel: "enclosure",
+      href: enclosure.url,
+      title: enclosure.title,
+      type: `${mimeCategory}/${type}`,
+      length: enclosure.length,
+    },
+  };
 };
 
 /**
