@@ -1,14 +1,14 @@
 import * as convert from "xml-js";
 import { generator } from "./config";
 import { Feed } from "./feed";
-import { Author, Category, Enclosure, Item } from "./typings";
+import { Author, Category, Enclosure, Extension, Item } from "./typings";
 import { sanitize } from "./utils";
 
 /**
  * Returns a RSS 2.0 feed
  */
 export default (ins: Feed) => {
-  const { options } = ins;
+  const { options, extensions } = ins;
   let isAtom = false;
   let isContent = false;
 
@@ -51,7 +51,7 @@ export default (ins: Feed) => {
     base.rss.channel.image = {
       title: { _text: options.title },
       url: { _text: options.image },
-      link: { _text: sanitize(options.link) }
+      link: { _text: sanitize(options.link) },
     };
   }
 
@@ -104,8 +104,8 @@ export default (ins: Feed) => {
     base.rss.channel["atom:link"] = {
       _attributes: {
         href: sanitize(options.hub),
-        rel: "hub"
-      }
+        rel: "hub",
+      },
     };
   }
 
@@ -202,6 +202,12 @@ export default (ins: Feed) => {
       item.enclosure = formatEnclosure(entry.video, "video");
     }
 
+    if (entry.extensions) {
+      entry.extensions.forEach((extension: Extension) => {
+        item[extension.name] = extension.objects;
+      });
+    }
+
     base.rss.channel.item.push(item);
   });
 
@@ -209,6 +215,12 @@ export default (ins: Feed) => {
     base.rss._attributes["xmlns:dc"] = "http://purl.org/dc/elements/1.1/";
     base.rss._attributes["xmlns:content"] = "http://purl.org/rss/1.0/modules/content/";
   }
+
+  // rss2() support `extensions`
+  if (extensions)
+    extensions.map((e: Extension) => {
+      base.rss.channel[e.name] = e.objects;
+    });
 
   if (isAtom) {
     base.rss._attributes["xmlns:atom"] = "http://www.w3.org/2005/Atom";
