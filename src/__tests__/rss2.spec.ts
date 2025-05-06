@@ -227,4 +227,14 @@ describe("rss 2.0", () => {
     const actual = sampleFeed.rss2();
     expect(actual).toMatchSnapshot();
   });
+  it("should generate a valid feed with `addExtension`", () => {
+    sampleFeed.addExtension({
+      name: "extension_name",
+      objects: {
+        about: "just an extension example",
+      },
+    });
+    const actual = sampleFeed.rss2();
+    expect(actual).toContain("<extension_name>");
+  });
 });

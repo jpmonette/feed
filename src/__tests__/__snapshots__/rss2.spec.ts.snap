@@ -32,7 +32,19 @@ exports[`rss 2.0 should generate a valid feed 1`] = `
             <category>Grateful Dead</category>
             <category domain=\\"http://www.fool.com/cusips\\">MSFT</category>
             <enclosure url=\\"https://example.com/hello-world.jpg\\" length=\\"0\\" type=\\"image/jpg\\"/>
+            <_item_extension_1>
+                <about>just an item extension example</about>
+                <dummy1>example</dummy1>
+            </_item_extension_1>
+            <_item_extension_2>
+                <about>just a second item extension example</about>
+                <dummy1>example</dummy1>
+            </_item_extension_2>
         </item>
+        <_example_extension>
+            <about>just an extension example</about>
+            <dummy>example</dummy>
+        </_example_extension>
     </channel>
 </rss>"
 `;
@@ -69,6 +81,14 @@ exports[`rss 2.0 should generate a valid feed with audio 1`] = `
             <category>Grateful Dead</category>
             <category domain=\\"http://www.fool.com/cusips\\">MSFT</category>
             <enclosure url=\\"https://example.com/hello-world.jpg\\" length=\\"0\\" type=\\"image/jpg\\"/>
+            <_item_extension_1>
+                <about>just an item extension example</about>
+                <dummy1>example</dummy1>
+            </_item_extension_1>
+            <_item_extension_2>
+                <about>just a second item extension example</about>
+                <dummy1>example</dummy1>
+            </_item_extension_2>
         </item>
         <item>
             <title><![CDATA[Hello World]]></title>
@@ -82,6 +102,14 @@ exports[`rss 2.0 should generate a valid feed with audio 1`] = `
             <category>Grateful Dead</category>
             <category domain=\\"http://www.fool.com/cusips\\">MSFT</category>
             <enclosure length=\\"12665\\" type=\\"image/jpg\\" url=\\"https://example.com/hello-world.jpg\\"/>
+            <_item_extension_1>
+                <about>just an item extension example</about>
+                <dummy1>example</dummy1>
+            </_item_extension_1>
+            <_item_extension_2>
+                <about>just a second item extension example</about>
+                <dummy1>example</dummy1>
+            </_item_extension_2>
         </item>
         <item>
             <title><![CDATA[Hello World]]></title>
@@ -95,6 +123,14 @@ exports[`rss 2.0 should generate a valid feed with audio 1`] = `
             <category>Grateful Dead</category>
             <category domain=\\"http://www.fool.com/cusips\\">MSFT</category>
             <enclosure length=\\"12665\\" type=\\"image/jpg\\" url=\\"https://example.com/hello-world.jpg\\"/>
+            <_item_extension_1>
+                <about>just an item extension example</about>
+                <dummy1>example</dummy1>
+            </_item_extension_1>
+            <_item_extension_2>
+                <about>just a second item extension example</about>
+                <dummy1>example</dummy1>
+            </_item_extension_2>
         </item>
         <item>
             <title><![CDATA[Hello World]]></title>
@@ -108,7 +144,19 @@ exports[`rss 2.0 should generate a valid feed with audio 1`] = `
             <category>Grateful Dead</category>
             <category domain=\\"http://www.fool.com/cusips\\">MSFT</category>
             <enclosure length=\\"12665\\" type=\\"audio/mpeg\\" url=\\"https://example.com/hello-world.mp3\\"/>
+            <_item_extension_1>
+                <about>just an item extension example</about>
+                <dummy1>example</dummy1>
+            </_item_extension_1>
+            <_item_extension_2>
+                <about>just a second item extension example</about>
+                <dummy1>example</dummy1>
+            </_item_extension_2>
         </item>
+        <_example_extension>
+            <about>just an extension example</about>
+            <dummy>example</dummy>
+        </_example_extension>
     </channel>
 </rss>"
 `;
@@ -145,6 +193,14 @@ exports[`rss 2.0 should generate a valid feed with enclosure 1`] = `
             <category>Grateful Dead</category>
             <category domain=\\"http://www.fool.com/cusips\\">MSFT</category>
             <enclosure url=\\"https://example.com/hello-world.jpg\\" length=\\"0\\" type=\\"image/jpg\\"/>
+            <_item_extension_1>
+                <about>just an item extension example</about>
+                <dummy1>example</dummy1>
+            </_item_extension_1>
+            <_item_extension_2>
+                <about>just a second item extension example</about>
+                <dummy1>example</dummy1>
+            </_item_extension_2>
         </item>
         <item>
             <title><![CDATA[Hello World]]></title>
@@ -158,6 +214,14 @@ exports[`rss 2.0 should generate a valid feed with enclosure 1`] = `
             <category>Grateful Dead</category>
             <category domain=\\"http://www.fool.com/cusips\\">MSFT</category>
             <enclosure length=\\"12665\\" type=\\"image/jpg\\" url=\\"https://example.com/hello-world.jpg\\"/>
+            <_item_extension_1>
+                <about>just an item extension example</about>
+                <dummy1>example</dummy1>
+            </_item_extension_1>
+            <_item_extension_2>
+                <about>just a second item extension example</about>
+                <dummy1>example</dummy1>
+            </_item_extension_2>
         </item>
         <item>
             <title><![CDATA[Hello World]]></title>
@@ -171,7 +235,19 @@ exports[`rss 2.0 should generate a valid feed with enclosure 1`] = `
             <category>Grateful Dead</category>
             <category domain=\\"http://www.fool.com/cusips\\">MSFT</category>
             <enclosure length=\\"12665\\" type=\\"image/jpg\\" url=\\"https://example.com/hello-world.jpg\\"/>
+            <_item_extension_1>
+                <about>just an item extension example</about>
+                <dummy1>example</dummy1>
+            </_item_extension_1>
+            <_item_extension_2>
+                <about>just a second item extension example</about>
+                <dummy1>example</dummy1>
+            </_item_extension_2>
         </item>
+        <_example_extension>
+            <about>just an extension example</about>
+            <dummy>example</dummy>
+        </_example_extension>
     </channel>
 </rss>"
 `;
@@ -208,6 +284,14 @@ exports[`rss 2.0 should generate a valid feed with image properties 1`] = `
             <category>Grateful Dead</category>
             <category domain=\\"http://www.fool.com/cusips\\">MSFT</category>
             <enclosure url=\\"https://example.com/hello-world.jpg\\" length=\\"0\\" type=\\"image/jpg\\"/>
+            <_item_extension_1>
+                <about>just an item extension example</about>
+                <dummy1>example</dummy1>
+            </_item_extension_1>
+            <_item_extension_2>
+                <about>just a second item extension example</about>
+                <dummy1>example</dummy1>
+            </_item_extension_2>
         </item>
         <item>
             <title><![CDATA[Hello World]]></title>
@@ -221,7 +305,19 @@ exports[`rss 2.0 should generate a valid feed with image properties 1`] = `
             <category>Grateful Dead</category>
             <category domain=\\"http://www.fool.com/cusips\\">MSFT</category>
             <enclosure length=\\"12665\\" type=\\"image/jpg\\" url=\\"https://example.com/hello-world.jpg\\"/>
+            <_item_extension_1>
+                <about>just an item extension example</about>
+                <dummy1>example</dummy1>
+            </_item_extension_1>
+            <_item_extension_2>
+                <about>just a second item extension example</about>
+                <dummy1>example</dummy1>
+            </_item_extension_2>
         </item>
+        <_example_extension>
+            <about>just an extension example</about>
+            <dummy>example</dummy>
+        </_example_extension>
     </channel>
 </rss>"
 `;
@@ -257,6 +353,14 @@ exports[`rss 2.0 should generate a valid feed with video 1`] = `
             <category>Grateful Dead</category>
             <category domain=\\"http://www.fool.com/cusips\\">MSFT</category>
             <enclosure url=\\"https://example.com/hello-world.mp4\\" length=\\"0\\" type=\\"video/mp4\\"/>
+            <_item_extension_1>
+                <about>just an item extension example</about>
+                <dummy1>example</dummy1>
+            </_item_extension_1>
+            <_item_extension_2>
+                <about>just a second item extension example</about>
+                <dummy1>example</dummy1>
+            </_item_extension_2>
         </item>
     </channel>
 </rss>"
