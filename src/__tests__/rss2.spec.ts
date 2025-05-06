@@ -1,5 +1,5 @@
 import { Feed } from "../feed";
-import { published, sampleFeed, updated } from "./setup";
+import { createSampleFeed, published, sampleFeed, updated } from "./setup";
 
 describe("rss 2.0", () => {
   it("should generate a valid feed", () => {
@@ -156,6 +156,60 @@ describe("rss 2.0", () => {
       published,
     });
     const actual = sampleFeed.rss2();
+    expect(actual).toMatchSnapshot();
+  });
+  it("should generate a valid podcast feed with audio", () => {
+    var podcastFeed = createSampleFeed();
+    podcastFeed.options.podcast = true;
+
+    podcastFeed.addItem({
+      title: "Hello World",
+      link: "https://example.com/hello-world3",
+      description: "This is an article about Hello World.",
+      content: "Content of my item",
+      author: [
+        {
+          name: "Jane Doe",
+          email: "janedoe@example.com",
+          link: "https://example.com/janedoe",
+        },
+        {
+          name: "Joe Smith",
+          email: "joesmith@example.com",
+          link: "https://example.com/joesmith",
+        },
+      ],
+      extensions: [
+        {
+          name: "_item_extension_1",
+          objects: {
+            about: "just an item extension example",
+            dummy1: "example",
+          },
+        },
+        {
+          name: "_item_extension_2",
+          objects: {
+            about: "just a second item extension example",
+            dummy1: "example",
+          },
+        },
+      ],
+      category: [
+        {
+          name: "Grateful Dead",
+        },
+        {
+          name: "MSFT",
+          domain: "http://www.fool.com/cusips",
+        },
+      ],
+      date: updated,
+      audio: { url: "https://example.com/hello-world.mp3", length: 12665, type: "audio/mpeg", duration: 3000 },
+      published,
+    });
+
+    const actual = podcastFeed.rss2();
     expect(actual).toMatchSnapshot();
   });
   it("should generate a valid feed with video", () => {

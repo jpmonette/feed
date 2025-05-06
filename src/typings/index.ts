@@ -59,6 +59,9 @@ export interface FeedOptions {
   hub?: string;
   docs?: string;
 
+  podcast?: boolean;
+  category?: string;
+
   author?: Author;
   link?: string;
   description?: string;
