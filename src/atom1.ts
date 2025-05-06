@@ -1,7 +1,7 @@
 import * as convert from "xml-js";
 import { generator } from "./config";
 import { Feed } from "./feed";
-import { Author, Category, Item } from "./typings";
+import { Author, Category, Enclosure, Item } from "./typings";
 import { sanitize } from "./utils";
 
 /**
@@ -139,6 +139,26 @@ export default (ins: Feed) => {
       });
     }
 
+    /**
+     * Item Enclosure
+     * https://validator.w3.org/feed/docs/atom.html#link
+     */
+    if (item.enclosure) {
+      entry.link.push(formatEnclosure(item.enclosure));
+    }
+
+    if (item.image) {
+      entry.link.push(formatEnclosure(item.image, "image"));
+    }
+
+    if (item.audio) {
+      entry.link.push(formatEnclosure(item.audio, "audio"));
+    }
+
+    if (item.video) {
+      entry.link.push(formatEnclosure(item.video, "video"));
+    }
+
     // contributor
     if (item.contributor && Array.isArray(item.contributor)) {
       entry.contributor = [];
@@ -183,6 +203,21 @@ const formatAuthor = (author: Author) => {
   }
 
   return out;
+};
+
+/**
+ * Returns a formated enclosure
+ * @param enclosure
+ * @param mimeCategory
+ */
+const formatEnclosure = (enclosure: string | Enclosure, mimeCategory = "image") => {
+  if (typeof enclosure === "string") {
+    const type = new URL(enclosure).pathname.split(".").slice(-1)[0];
+    return { _attributes: { rel: "enclosure", href: enclosure, type: `${mimeCategory}/${type}` } };
+  }
+
+  const type = new URL(enclosure.url).pathname.split(".").slice(-1)[0];
+  return { _attributes: { rel: "enclosure", href: enclosure.url, title: enclosure.title, type: `${mimeCategory}/${type}`, length: enclosure.length } };
 };
 
 /**
