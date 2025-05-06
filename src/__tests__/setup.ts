@@ -7,16 +7,16 @@ export const createSampleFeed = () => {
   var feed = new Feed({
     title: "Feed Title",
     description: "This is my personnal feed!",
-    link: "http://example.com/",
-    id: "http://example.com/",
-    feed: "http://example.com/sampleFeed.rss",
+    link: "http://example.com/?link=sanitized&value=3",
+    id: "http://example.com/?link=sanitized&value=4",
+    feed: "http://example.com/sampleFeed.rss?link=sanitized&value=2",
     feedLinks: {
-      json: "http://example.com/sampleFeed.json",
+      json: "http://example.com/sampleFeed.json?link=sanitized&value=5",
     },
     language: "en",
     ttl: 60,
-    image: "http://example.com/image.png",
-    favicon: "http://example.com/image.ico",
+    image: "http://example.com/image.png?link=sanitized&value=6",
+    favicon: "http://example.com/image.ico?link=sanitized&value=7",
     copyright: "All rights reserved 2013, John Doe",
     hub: "wss://example.com/",
     updated, // optional, default = today
@@ -24,8 +24,8 @@ export const createSampleFeed = () => {
     author: {
       name: "John Doe",
       email: "johndoe@example.com",
-      link: "https://example.com/johndoe?link=sanitized&value=2"
-    }
+      link: "https://example.com/johndoe?link=sanitized&value=2",
+    },
   });
 
   feed.addCategory("Technology");
@@ -55,7 +55,7 @@ export const createSampleFeed = () => {
       },
       {
         name: "Joe Smith, Name Only",
-      }
+      },
     ],
     contributor: [
       {
@@ -109,6 +109,6 @@ export const createSampleFeed = () => {
   });
 
   return feed;
-}
+};
 
 export const sampleFeed = createSampleFeed();

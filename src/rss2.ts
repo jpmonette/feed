@@ -187,7 +187,7 @@ export default (ins: Feed) => {
 
     if (entry.audio) {
       let duration = undefined;
-      if (options.podcast && typeof entry.audio !== 'string' && entry.audio.duration) {
+      if (options.podcast && typeof entry.audio !== "string" && entry.audio.duration) {
         duration = entry.audio.duration;
         entry.audio.duration = undefined;
       }
@@ -240,7 +240,7 @@ export default (ins: Feed) => {
     if (options.author?.email) {
       base.rss.channel["googleplay:owner"] = options.author.email;
       base.rss.channel["itunes:owner"] = {
-        'itunes:email': options.author.email
+        "itunes:email": options.author.email,
       };
     }
     if (options.author?.name) {
@@ -249,7 +249,7 @@ export default (ins: Feed) => {
     }
     if (options.image) {
       base.rss.channel["googleplay:image"] = {
-        _attributes: { href: sanitize(options.image) }
+        _attributes: { href: sanitize(options.image) },
       };
     }
   }
@@ -264,11 +264,11 @@ export default (ins: Feed) => {
  */
 const formatEnclosure = (enclosure: string | Enclosure, mimeCategory = "image") => {
   if (typeof enclosure === "string") {
-    const type = new URL(sanitize(enclosure)).pathname.split(".").slice(-1)[0];
+    const type = new URL(sanitize(enclosure)!).pathname.split(".").slice(-1)[0];
     return { _attributes: { url: enclosure, length: 0, type: `${mimeCategory}/${type}` } };
   }
 
-  const type = new URL(sanitize(enclosure.url)).pathname.split(".").slice(-1)[0];
+  const type = new URL(sanitize(enclosure.url)!).pathname.split(".").slice(-1)[0];
   return { _attributes: { length: 0, type: `${mimeCategory}/${type}`, ...enclosure } };
 };
 
@@ -297,4 +297,4 @@ const formatDuration = (duration: number) => {
   const hours = Math.floor(totalMinutes / 60);
   const notHours = ("0" + minutes).substr(-2) + ":" + ("0" + seconds).substr(-2);
   return hours > 0 ? hours + ":" + notHours : notHours;
-}
+};
