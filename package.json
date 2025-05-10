@@ -1,6 +1,7 @@
 {
   "name": "feed",
   "version": "5.0.0",
+  "type": "module",
   "description": "Feed is a RSS, Atom and JSON feed generator for Node.js, making content syndication simple and intuitive!",
   "homepage": "https://github.com/jpmonette/feed",
   "author": "Jean-Philippe Monette <contact@jpmonette.net>",
@@ -8,7 +9,7 @@
   "main": "lib/feed.js",
   "types": "lib/feed.d.ts",
   "scripts": {
-    "build": "rm -rf lib/ && mkdir lib && tsc",
+    "build": "tsdown",
     "prepublish": "pnpm build",
     "test": "jest --silent",
     "test-travis": "jest --coverage",
@@ -42,7 +43,8 @@
     "prettier": "^2.8.8",
     "source-map-loader": "^3.0.1",
     "ts-jest": "^28.0.3",
-    "typescript": "^4.9.5"
+    "tsdown": "^0.11.2",
+    "typescript": "^5.8.3"
   },
   "engines": {
     "node": ">=20",
