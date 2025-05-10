@@ -7,6 +7,10 @@
   "license": "MIT",
   "main": "lib/feed.js",
   "types": "lib/feed.d.ts",
+  "files": [
+    "!**/*.map",
+    "lib"
+  ],
   "scripts": {
     "build": "rm -rf lib/ && mkdir lib && tsc",
     "prepublish": "pnpm build",
