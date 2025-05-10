@@ -2,21 +2,20 @@
   "compilerOptions": {
     "allowUnreachableCode": false,
     "allowUnusedLabels": false,
-    "baseUrl": ".",
-    "declaration": true,
     "lib": [
-      "es2015",
-      "dom"
+      "ESNext",
+      "DOM",
+      "DOM.Iterable"
     ],
-    "module": "commonjs",
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+    "noEmit": true,
     "noFallthroughCasesInSwitch": true,
     "noImplicitAny": true,
     "noImplicitReturns": true,
-    "outDir": "./lib",
-    "removeComments": true,
-    "sourceMap": true,
     "strict": true,
-    "target": "es5"
+    "target": "ESNext",
+    "verbatimModuleSyntax": true
   },
   "include": ["./src/**/*"],
   "exclude": ["node_modules", "lib", "src/__tests__/**/*"]

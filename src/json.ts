@@ -1,5 +1,5 @@
-import { Feed } from "./feed";
-import { Author, Category, Extension, Item } from "./typings";
+import type { Feed } from "./feed";
+import type { Author, Category, Extension, Item } from "./typings";
 
 /**
  * Returns a JSON feed
