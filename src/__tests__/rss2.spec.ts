@@ -297,4 +297,36 @@ describe("rss 2.0", () => {
     const actual = sampleFeed.rss2();
     expect(actual).toContain("<extension_name>");
   });
+
+  it("Should specify isPermaLink=false when feed item specifies a guid", () => {
+    sampleFeed.addItem({
+      title: "Hello World",
+      guid: "50e14f43-dd4e-412f-864d-78943ea28d91",
+      link: "http://example.org/guid",
+      date: published,
+    });
+    const actual = sampleFeed.rss2();
+    expect(actual).toMatchSnapshot();
+  });
+
+  it("Should specify isPermaLink=false when feed item specifies an id", () => {
+    sampleFeed.addItem({
+      title: "Hello World",
+      id: "67e32b59-3348-4dc3-9645-75c60b6f50cc",
+      link: "http://example.org/id",
+      date: published,
+    });
+    const actual = sampleFeed.rss2();
+    expect(actual).toMatchSnapshot();
+  });
+
+  it("Should specify isPermaLink=false when feed item specifies a link, but not an id or a guid", () => {
+    sampleFeed.addItem({
+      title: "Hello World",
+      link: "http://example.org/link",
+      date: published,
+    });
+    const actual = sampleFeed.rss2();
+    expect(actual).toMatchSnapshot();
+  });
 });

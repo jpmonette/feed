@@ -1,5 +1,386 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`rss 2.0 Should specify isPermaLink=false when feed item specifies a guid 1`] = `
+"<?xml version=\\"1.0\\" encoding=\\"utf-8\\"?>
+<rss version=\\"2.0\\" xmlns:dc=\\"http://purl.org/dc/elements/1.1/\\" xmlns:content=\\"http://purl.org/rss/1.0/modules/content/\\" xmlns:atom=\\"http://www.w3.org/2005/Atom\\">
+    <channel>
+        <title>Feed Title</title>
+        <link>http://example.com/?link=sanitized&amp;value=3</link>
+        <description>This is my personnal feed!</description>
+        <lastBuildDate>Sat, 13 Jul 2013 23:00:00 GMT</lastBuildDate>
+        <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
+        <generator>https://github.com/jpmonette/feed</generator>
+        <language>en</language>
+        <ttl>60</ttl>
+        <image>
+            <title>Feed Title</title>
+            <url>http://example.com/image.png?link=sanitized&amp;value=6</url>
+            <link>http://example.com/?link=sanitized&amp;value=3</link>
+        </image>
+        <copyright>All rights reserved 2013, John Doe</copyright>
+        <category>Technology</category>
+        <atom:link href=\\"wss://example.com/\\" rel=\\"hub\\"/>
+        <item>
+            <title><![CDATA[Hello World]]></title>
+            <link>https://example.com/hello-world?link=sanitized&amp;value=2</link>
+            <guid isPermaLink=\\"false\\">https://example.com/hello-world?id=this&amp;that=true</guid>
+            <pubDate>Wed, 10 Jul 2013 23:00:00 GMT</pubDate>
+            <description><![CDATA[This is an article about Hello World.]]></description>
+            <content:encoded><![CDATA[Content of my item]]></content:encoded>
+            <author>janedoe@example.com (Jane Doe)</author>
+            <author>joesmith@example.com (Joe Smith)</author>
+            <category>Grateful Dead</category>
+            <category domain=\\"http://www.fool.com/cusips\\">MSFT</category>
+            <enclosure url=\\"https://example.com/hello-world.jpg\\" length=\\"0\\" type=\\"image/jpg\\"/>
+            <_item_extension_1>
+                <about>just an item extension example</about>
+                <dummy1>example</dummy1>
+            </_item_extension_1>
+            <_item_extension_2>
+                <about>just a second item extension example</about>
+                <dummy1>example</dummy1>
+            </_item_extension_2>
+        </item>
+        <item>
+            <title><![CDATA[Hello World]]></title>
+            <link>https://example.com/hello-world2</link>
+            <guid isPermaLink=\\"false\\">419c523a-28f4-489c-877e-9604be64c001</guid>
+            <pubDate>Wed, 10 Jul 2013 23:00:00 GMT</pubDate>
+            <description><![CDATA[This is an article about Hello World.]]></description>
+            <content:encoded><![CDATA[Content of my item]]></content:encoded>
+            <author>janedoe@example.com (Jane Doe)</author>
+            <author>joesmith@example.com (Joe Smith)</author>
+            <category>Grateful Dead</category>
+            <category domain=\\"http://www.fool.com/cusips\\">MSFT</category>
+            <enclosure length=\\"12665\\" type=\\"image/jpg\\" url=\\"https://example.com/hello-world.jpg\\"/>
+            <_item_extension_1>
+                <about>just an item extension example</about>
+                <dummy1>example</dummy1>
+            </_item_extension_1>
+            <_item_extension_2>
+                <about>just a second item extension example</about>
+                <dummy1>example</dummy1>
+            </_item_extension_2>
+        </item>
+        <item>
+            <title><![CDATA[Hello World]]></title>
+            <link>https://example.com/hello-world2</link>
+            <guid isPermaLink=\\"false\\">419c523a-28f4-489c-877e-9604be64c001</guid>
+            <pubDate>Wed, 10 Jul 2013 23:00:00 GMT</pubDate>
+            <description><![CDATA[This is an article about Hello World.]]></description>
+            <content:encoded><![CDATA[Content of my item]]></content:encoded>
+            <author>janedoe@example.com (Jane Doe)</author>
+            <author>joesmith@example.com (Joe Smith)</author>
+            <category>Grateful Dead</category>
+            <category domain=\\"http://www.fool.com/cusips\\">MSFT</category>
+            <enclosure length=\\"12665\\" type=\\"image/jpg\\" url=\\"https://example.com/hello-world.jpg\\"/>
+            <_item_extension_1>
+                <about>just an item extension example</about>
+                <dummy1>example</dummy1>
+            </_item_extension_1>
+            <_item_extension_2>
+                <about>just a second item extension example</about>
+                <dummy1>example</dummy1>
+            </_item_extension_2>
+        </item>
+        <item>
+            <title><![CDATA[Hello World]]></title>
+            <link>https://example.com/hello-world3</link>
+            <guid isPermaLink=\\"true\\">https://example.com/hello-world3</guid>
+            <pubDate>Wed, 10 Jul 2013 23:00:00 GMT</pubDate>
+            <description><![CDATA[This is an article about Hello World.]]></description>
+            <content:encoded><![CDATA[Content of my item]]></content:encoded>
+            <author>janedoe@example.com (Jane Doe)</author>
+            <author>joesmith@example.com (Joe Smith)</author>
+            <category>Grateful Dead</category>
+            <category domain=\\"http://www.fool.com/cusips\\">MSFT</category>
+            <enclosure length=\\"12665\\" type=\\"audio/mpeg\\" url=\\"https://example.com/hello-world.mp3\\"/>
+            <_item_extension_1>
+                <about>just an item extension example</about>
+                <dummy1>example</dummy1>
+            </_item_extension_1>
+            <_item_extension_2>
+                <about>just a second item extension example</about>
+                <dummy1>example</dummy1>
+            </_item_extension_2>
+        </item>
+        <item>
+            <title><![CDATA[Hello World]]></title>
+            <link>http://example.org/guid</link>
+            <guid isPermaLink=\\"false\\">50e14f43-dd4e-412f-864d-78943ea28d91</guid>
+            <pubDate>Wed, 10 Jul 2013 23:00:00 GMT</pubDate>
+        </item>
+        <_example_extension>
+            <about>just an extension example</about>
+            <dummy>example</dummy>
+        </_example_extension>
+        <extension_name>
+            <about>just an extension example</about>
+        </extension_name>
+    </channel>
+</rss>"
+`;
+
+exports[`rss 2.0 Should specify isPermaLink=false when feed item specifies a link, but not an id or a guid 1`] = `
+"<?xml version=\\"1.0\\" encoding=\\"utf-8\\"?>
+<rss version=\\"2.0\\" xmlns:dc=\\"http://purl.org/dc/elements/1.1/\\" xmlns:content=\\"http://purl.org/rss/1.0/modules/content/\\" xmlns:atom=\\"http://www.w3.org/2005/Atom\\">
+    <channel>
+        <title>Feed Title</title>
+        <link>http://example.com/?link=sanitized&amp;value=3</link>
+        <description>This is my personnal feed!</description>
+        <lastBuildDate>Sat, 13 Jul 2013 23:00:00 GMT</lastBuildDate>
+        <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
+        <generator>https://github.com/jpmonette/feed</generator>
+        <language>en</language>
+        <ttl>60</ttl>
+        <image>
+            <title>Feed Title</title>
+            <url>http://example.com/image.png?link=sanitized&amp;value=6</url>
+            <link>http://example.com/?link=sanitized&amp;value=3</link>
+        </image>
+        <copyright>All rights reserved 2013, John Doe</copyright>
+        <category>Technology</category>
+        <atom:link href=\\"wss://example.com/\\" rel=\\"hub\\"/>
+        <item>
+            <title><![CDATA[Hello World]]></title>
+            <link>https://example.com/hello-world?link=sanitized&amp;value=2</link>
+            <guid isPermaLink=\\"false\\">https://example.com/hello-world?id=this&amp;that=true</guid>
+            <pubDate>Wed, 10 Jul 2013 23:00:00 GMT</pubDate>
+            <description><![CDATA[This is an article about Hello World.]]></description>
+            <content:encoded><![CDATA[Content of my item]]></content:encoded>
+            <author>janedoe@example.com (Jane Doe)</author>
+            <author>joesmith@example.com (Joe Smith)</author>
+            <category>Grateful Dead</category>
+            <category domain=\\"http://www.fool.com/cusips\\">MSFT</category>
+            <enclosure url=\\"https://example.com/hello-world.jpg\\" length=\\"0\\" type=\\"image/jpg\\"/>
+            <_item_extension_1>
+                <about>just an item extension example</about>
+                <dummy1>example</dummy1>
+            </_item_extension_1>
+            <_item_extension_2>
+                <about>just a second item extension example</about>
+                <dummy1>example</dummy1>
+            </_item_extension_2>
+        </item>
+        <item>
+            <title><![CDATA[Hello World]]></title>
+            <link>https://example.com/hello-world2</link>
+            <guid isPermaLink=\\"false\\">419c523a-28f4-489c-877e-9604be64c001</guid>
+            <pubDate>Wed, 10 Jul 2013 23:00:00 GMT</pubDate>
+            <description><![CDATA[This is an article about Hello World.]]></description>
+            <content:encoded><![CDATA[Content of my item]]></content:encoded>
+            <author>janedoe@example.com (Jane Doe)</author>
+            <author>joesmith@example.com (Joe Smith)</author>
+            <category>Grateful Dead</category>
+            <category domain=\\"http://www.fool.com/cusips\\">MSFT</category>
+            <enclosure length=\\"12665\\" type=\\"image/jpg\\" url=\\"https://example.com/hello-world.jpg\\"/>
+            <_item_extension_1>
+                <about>just an item extension example</about>
+                <dummy1>example</dummy1>
+            </_item_extension_1>
+            <_item_extension_2>
+                <about>just a second item extension example</about>
+                <dummy1>example</dummy1>
+            </_item_extension_2>
+        </item>
+        <item>
+            <title><![CDATA[Hello World]]></title>
+            <link>https://example.com/hello-world2</link>
+            <guid isPermaLink=\\"false\\">419c523a-28f4-489c-877e-9604be64c001</guid>
+            <pubDate>Wed, 10 Jul 2013 23:00:00 GMT</pubDate>
+            <description><![CDATA[This is an article about Hello World.]]></description>
+            <content:encoded><![CDATA[Content of my item]]></content:encoded>
+            <author>janedoe@example.com (Jane Doe)</author>
+            <author>joesmith@example.com (Joe Smith)</author>
+            <category>Grateful Dead</category>
+            <category domain=\\"http://www.fool.com/cusips\\">MSFT</category>
+            <enclosure length=\\"12665\\" type=\\"image/jpg\\" url=\\"https://example.com/hello-world.jpg\\"/>
+            <_item_extension_1>
+                <about>just an item extension example</about>
+                <dummy1>example</dummy1>
+            </_item_extension_1>
+            <_item_extension_2>
+                <about>just a second item extension example</about>
+                <dummy1>example</dummy1>
+            </_item_extension_2>
+        </item>
+        <item>
+            <title><![CDATA[Hello World]]></title>
+            <link>https://example.com/hello-world3</link>
+            <guid isPermaLink=\\"true\\">https://example.com/hello-world3</guid>
+            <pubDate>Wed, 10 Jul 2013 23:00:00 GMT</pubDate>
+            <description><![CDATA[This is an article about Hello World.]]></description>
+            <content:encoded><![CDATA[Content of my item]]></content:encoded>
+            <author>janedoe@example.com (Jane Doe)</author>
+            <author>joesmith@example.com (Joe Smith)</author>
+            <category>Grateful Dead</category>
+            <category domain=\\"http://www.fool.com/cusips\\">MSFT</category>
+            <enclosure length=\\"12665\\" type=\\"audio/mpeg\\" url=\\"https://example.com/hello-world.mp3\\"/>
+            <_item_extension_1>
+                <about>just an item extension example</about>
+                <dummy1>example</dummy1>
+            </_item_extension_1>
+            <_item_extension_2>
+                <about>just a second item extension example</about>
+                <dummy1>example</dummy1>
+            </_item_extension_2>
+        </item>
+        <item>
+            <title><![CDATA[Hello World]]></title>
+            <link>http://example.org/guid</link>
+            <guid isPermaLink=\\"false\\">50e14f43-dd4e-412f-864d-78943ea28d91</guid>
+            <pubDate>Wed, 10 Jul 2013 23:00:00 GMT</pubDate>
+        </item>
+        <item>
+            <title><![CDATA[Hello World]]></title>
+            <link>http://example.org/id</link>
+            <guid isPermaLink=\\"false\\">67e32b59-3348-4dc3-9645-75c60b6f50cc</guid>
+            <pubDate>Wed, 10 Jul 2013 23:00:00 GMT</pubDate>
+        </item>
+        <item>
+            <title><![CDATA[Hello World]]></title>
+            <link>http://example.org/link</link>
+            <guid isPermaLink=\\"true\\">http://example.org/link</guid>
+            <pubDate>Wed, 10 Jul 2013 23:00:00 GMT</pubDate>
+        </item>
+        <_example_extension>
+            <about>just an extension example</about>
+            <dummy>example</dummy>
+        </_example_extension>
+        <extension_name>
+            <about>just an extension example</about>
+        </extension_name>
+    </channel>
+</rss>"
+`;
+
+exports[`rss 2.0 Should specify isPermaLink=false when feed item specifies an id 1`] = `
+"<?xml version=\\"1.0\\" encoding=\\"utf-8\\"?>
+<rss version=\\"2.0\\" xmlns:dc=\\"http://purl.org/dc/elements/1.1/\\" xmlns:content=\\"http://purl.org/rss/1.0/modules/content/\\" xmlns:atom=\\"http://www.w3.org/2005/Atom\\">
+    <channel>
+        <title>Feed Title</title>
+        <link>http://example.com/?link=sanitized&amp;value=3</link>
+        <description>This is my personnal feed!</description>
+        <lastBuildDate>Sat, 13 Jul 2013 23:00:00 GMT</lastBuildDate>
+        <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
+        <generator>https://github.com/jpmonette/feed</generator>
+        <language>en</language>
+        <ttl>60</ttl>
+        <image>
+            <title>Feed Title</title>
+            <url>http://example.com/image.png?link=sanitized&amp;value=6</url>
+            <link>http://example.com/?link=sanitized&amp;value=3</link>
+        </image>
+        <copyright>All rights reserved 2013, John Doe</copyright>
+        <category>Technology</category>
+        <atom:link href=\\"wss://example.com/\\" rel=\\"hub\\"/>
+        <item>
+            <title><![CDATA[Hello World]]></title>
+            <link>https://example.com/hello-world?link=sanitized&amp;value=2</link>
+            <guid isPermaLink=\\"false\\">https://example.com/hello-world?id=this&amp;that=true</guid>
+            <pubDate>Wed, 10 Jul 2013 23:00:00 GMT</pubDate>
+            <description><![CDATA[This is an article about Hello World.]]></description>
+            <content:encoded><![CDATA[Content of my item]]></content:encoded>
+            <author>janedoe@example.com (Jane Doe)</author>
+            <author>joesmith@example.com (Joe Smith)</author>
+            <category>Grateful Dead</category>
+            <category domain=\\"http://www.fool.com/cusips\\">MSFT</category>
+            <enclosure url=\\"https://example.com/hello-world.jpg\\" length=\\"0\\" type=\\"image/jpg\\"/>
+            <_item_extension_1>
+                <about>just an item extension example</about>
+                <dummy1>example</dummy1>
+            </_item_extension_1>
+            <_item_extension_2>
+                <about>just a second item extension example</about>
+                <dummy1>example</dummy1>
+            </_item_extension_2>
+        </item>
+        <item>
+            <title><![CDATA[Hello World]]></title>
+            <link>https://example.com/hello-world2</link>
+            <guid isPermaLink=\\"false\\">419c523a-28f4-489c-877e-9604be64c001</guid>
+            <pubDate>Wed, 10 Jul 2013 23:00:00 GMT</pubDate>
+            <description><![CDATA[This is an article about Hello World.]]></description>
+            <content:encoded><![CDATA[Content of my item]]></content:encoded>
+            <author>janedoe@example.com (Jane Doe)</author>
+            <author>joesmith@example.com (Joe Smith)</author>
+            <category>Grateful Dead</category>
+            <category domain=\\"http://www.fool.com/cusips\\">MSFT</category>
+            <enclosure length=\\"12665\\" type=\\"image/jpg\\" url=\\"https://example.com/hello-world.jpg\\"/>
+            <_item_extension_1>
+                <about>just an item extension example</about>
+                <dummy1>example</dummy1>
+            </_item_extension_1>
+            <_item_extension_2>
+                <about>just a second item extension example</about>
+                <dummy1>example</dummy1>
+            </_item_extension_2>
+        </item>
+        <item>
+            <title><![CDATA[Hello World]]></title>
+            <link>https://example.com/hello-world2</link>
+            <guid isPermaLink=\\"false\\">419c523a-28f4-489c-877e-9604be64c001</guid>
+            <pubDate>Wed, 10 Jul 2013 23:00:00 GMT</pubDate>
+            <description><![CDATA[This is an article about Hello World.]]></description>
+            <content:encoded><![CDATA[Content of my item]]></content:encoded>
+            <author>janedoe@example.com (Jane Doe)</author>
+            <author>joesmith@example.com (Joe Smith)</author>
+            <category>Grateful Dead</category>
+            <category domain=\\"http://www.fool.com/cusips\\">MSFT</category>
+            <enclosure length=\\"12665\\" type=\\"image/jpg\\" url=\\"https://example.com/hello-world.jpg\\"/>
+            <_item_extension_1>
+                <about>just an item extension example</about>
+                <dummy1>example</dummy1>
+            </_item_extension_1>
+            <_item_extension_2>
+                <about>just a second item extension example</about>
+                <dummy1>example</dummy1>
+            </_item_extension_2>
+        </item>
+        <item>
+            <title><![CDATA[Hello World]]></title>
+            <link>https://example.com/hello-world3</link>
+            <guid isPermaLink=\\"true\\">https://example.com/hello-world3</guid>
+            <pubDate>Wed, 10 Jul 2013 23:00:00 GMT</pubDate>
+            <description><![CDATA[This is an article about Hello World.]]></description>
+            <content:encoded><![CDATA[Content of my item]]></content:encoded>
+            <author>janedoe@example.com (Jane Doe)</author>
+            <author>joesmith@example.com (Joe Smith)</author>
+            <category>Grateful Dead</category>
+            <category domain=\\"http://www.fool.com/cusips\\">MSFT</category>
+            <enclosure length=\\"12665\\" type=\\"audio/mpeg\\" url=\\"https://example.com/hello-world.mp3\\"/>
+            <_item_extension_1>
+                <about>just an item extension example</about>
+                <dummy1>example</dummy1>
+            </_item_extension_1>
+            <_item_extension_2>
+                <about>just a second item extension example</about>
+                <dummy1>example</dummy1>
+            </_item_extension_2>
+        </item>
+        <item>
+            <title><![CDATA[Hello World]]></title>
+            <link>http://example.org/guid</link>
+            <guid isPermaLink=\\"false\\">50e14f43-dd4e-412f-864d-78943ea28d91</guid>
+            <pubDate>Wed, 10 Jul 2013 23:00:00 GMT</pubDate>
+        </item>
+        <item>
+            <title><![CDATA[Hello World]]></title>
+            <link>http://example.org/id</link>
+            <guid isPermaLink=\\"false\\">67e32b59-3348-4dc3-9645-75c60b6f50cc</guid>
+            <pubDate>Wed, 10 Jul 2013 23:00:00 GMT</pubDate>
+        </item>
+        <_example_extension>
+            <about>just an extension example</about>
+            <dummy>example</dummy>
+        </_example_extension>
+        <extension_name>
+            <about>just an extension example</about>
+        </extension_name>
+    </channel>
+</rss>"
+`;
+
 exports[`rss 2.0 should generate a valid feed 1`] = `
 "<?xml version=\\"1.0\\" encoding=\\"utf-8\\"?>
 <rss version=\\"2.0\\" xmlns:dc=\\"http://purl.org/dc/elements/1.1/\\" xmlns:content=\\"http://purl.org/rss/1.0/modules/content/\\" xmlns:atom=\\"http://www.w3.org/2005/Atom\\">
@@ -23,7 +404,7 @@ exports[`rss 2.0 should generate a valid feed 1`] = `
         <item>
             <title><![CDATA[Hello World]]></title>
             <link>https://example.com/hello-world?link=sanitized&amp;value=2</link>
-            <guid>https://example.com/hello-world?id=this&amp;that=true</guid>
+            <guid isPermaLink=\\"false\\">https://example.com/hello-world?id=this&amp;that=true</guid>
             <pubDate>Wed, 10 Jul 2013 23:00:00 GMT</pubDate>
             <description><![CDATA[This is an article about Hello World.]]></description>
             <content:encoded><![CDATA[Content of my item]]></content:encoded>
@@ -72,7 +453,7 @@ exports[`rss 2.0 should generate a valid feed with audio 1`] = `
         <item>
             <title><![CDATA[Hello World]]></title>
             <link>https://example.com/hello-world?link=sanitized&amp;value=2</link>
-            <guid>https://example.com/hello-world?id=this&amp;that=true</guid>
+            <guid isPermaLink=\\"false\\">https://example.com/hello-world?id=this&amp;that=true</guid>
             <pubDate>Wed, 10 Jul 2013 23:00:00 GMT</pubDate>
             <description><![CDATA[This is an article about Hello World.]]></description>
             <content:encoded><![CDATA[Content of my item]]></content:encoded>
@@ -93,7 +474,7 @@ exports[`rss 2.0 should generate a valid feed with audio 1`] = `
         <item>
             <title><![CDATA[Hello World]]></title>
             <link>https://example.com/hello-world2</link>
-            <guid>419c523a-28f4-489c-877e-9604be64c001</guid>
+            <guid isPermaLink=\\"false\\">419c523a-28f4-489c-877e-9604be64c001</guid>
             <pubDate>Wed, 10 Jul 2013 23:00:00 GMT</pubDate>
             <description><![CDATA[This is an article about Hello World.]]></description>
             <content:encoded><![CDATA[Content of my item]]></content:encoded>
@@ -114,7 +495,7 @@ exports[`rss 2.0 should generate a valid feed with audio 1`] = `
         <item>
             <title><![CDATA[Hello World]]></title>
             <link>https://example.com/hello-world2</link>
-            <guid>419c523a-28f4-489c-877e-9604be64c001</guid>
+            <guid isPermaLink=\\"false\\">419c523a-28f4-489c-877e-9604be64c001</guid>
             <pubDate>Wed, 10 Jul 2013 23:00:00 GMT</pubDate>
             <description><![CDATA[This is an article about Hello World.]]></description>
             <content:encoded><![CDATA[Content of my item]]></content:encoded>
@@ -135,7 +516,7 @@ exports[`rss 2.0 should generate a valid feed with audio 1`] = `
         <item>
             <title><![CDATA[Hello World]]></title>
             <link>https://example.com/hello-world3</link>
-            <guid>https://example.com/hello-world3</guid>
+            <guid isPermaLink=\\"true\\">https://example.com/hello-world3</guid>
             <pubDate>Wed, 10 Jul 2013 23:00:00 GMT</pubDate>
             <description><![CDATA[This is an article about Hello World.]]></description>
             <content:encoded><![CDATA[Content of my item]]></content:encoded>
@@ -184,7 +565,7 @@ exports[`rss 2.0 should generate a valid feed with enclosure 1`] = `
         <item>
             <title><![CDATA[Hello World]]></title>
             <link>https://example.com/hello-world?link=sanitized&amp;value=2</link>
-            <guid>https://example.com/hello-world?id=this&amp;that=true</guid>
+            <guid isPermaLink=\\"false\\">https://example.com/hello-world?id=this&amp;that=true</guid>
             <pubDate>Wed, 10 Jul 2013 23:00:00 GMT</pubDate>
             <description><![CDATA[This is an article about Hello World.]]></description>
             <content:encoded><![CDATA[Content of my item]]></content:encoded>
@@ -205,7 +586,7 @@ exports[`rss 2.0 should generate a valid feed with enclosure 1`] = `
         <item>
             <title><![CDATA[Hello World]]></title>
             <link>https://example.com/hello-world2</link>
-            <guid>419c523a-28f4-489c-877e-9604be64c001</guid>
+            <guid isPermaLink=\\"false\\">419c523a-28f4-489c-877e-9604be64c001</guid>
             <pubDate>Wed, 10 Jul 2013 23:00:00 GMT</pubDate>
             <description><![CDATA[This is an article about Hello World.]]></description>
             <content:encoded><![CDATA[Content of my item]]></content:encoded>
@@ -226,7 +607,7 @@ exports[`rss 2.0 should generate a valid feed with enclosure 1`] = `
         <item>
             <title><![CDATA[Hello World]]></title>
             <link>https://example.com/hello-world2</link>
-            <guid>419c523a-28f4-489c-877e-9604be64c001</guid>
+            <guid isPermaLink=\\"false\\">419c523a-28f4-489c-877e-9604be64c001</guid>
             <pubDate>Wed, 10 Jul 2013 23:00:00 GMT</pubDate>
             <description><![CDATA[This is an article about Hello World.]]></description>
             <content:encoded><![CDATA[Content of my item]]></content:encoded>
@@ -275,7 +656,7 @@ exports[`rss 2.0 should generate a valid feed with image properties 1`] = `
         <item>
             <title><![CDATA[Hello World]]></title>
             <link>https://example.com/hello-world?link=sanitized&amp;value=2</link>
-            <guid>https://example.com/hello-world?id=this&amp;that=true</guid>
+            <guid isPermaLink=\\"false\\">https://example.com/hello-world?id=this&amp;that=true</guid>
             <pubDate>Wed, 10 Jul 2013 23:00:00 GMT</pubDate>
             <description><![CDATA[This is an article about Hello World.]]></description>
             <content:encoded><![CDATA[Content of my item]]></content:encoded>
@@ -296,7 +677,7 @@ exports[`rss 2.0 should generate a valid feed with image properties 1`] = `
         <item>
             <title><![CDATA[Hello World]]></title>
             <link>https://example.com/hello-world2</link>
-            <guid>419c523a-28f4-489c-877e-9604be64c001</guid>
+            <guid isPermaLink=\\"false\\">419c523a-28f4-489c-877e-9604be64c001</guid>
             <pubDate>Wed, 10 Jul 2013 23:00:00 GMT</pubDate>
             <description><![CDATA[This is an article about Hello World.]]></description>
             <content:encoded><![CDATA[Content of my item]]></content:encoded>
@@ -344,7 +725,7 @@ exports[`rss 2.0 should generate a valid feed with video 1`] = `
         <item>
             <title><![CDATA[Hello World]]></title>
             <link>https://example.com/hello-world4</link>
-            <guid>419c523a-28f4-489c-877e-9604be64c005</guid>
+            <guid isPermaLink=\\"false\\">419c523a-28f4-489c-877e-9604be64c005</guid>
             <pubDate>Wed, 10 Jul 2013 23:00:00 GMT</pubDate>
             <description><![CDATA[This is an article about Hello World.]]></description>
             <content:encoded><![CDATA[Content of my item]]></content:encoded>
@@ -389,7 +770,7 @@ exports[`rss 2.0 should generate a valid podcast feed with audio 1`] = `
         <item>
             <title><![CDATA[Hello World]]></title>
             <link>https://example.com/hello-world?link=sanitized&amp;value=2</link>
-            <guid>https://example.com/hello-world?id=this&amp;that=true</guid>
+            <guid isPermaLink=\\"false\\">https://example.com/hello-world?id=this&amp;that=true</guid>
             <pubDate>Wed, 10 Jul 2013 23:00:00 GMT</pubDate>
             <description><![CDATA[This is an article about Hello World.]]></description>
             <content:encoded><![CDATA[Content of my item]]></content:encoded>
@@ -410,7 +791,7 @@ exports[`rss 2.0 should generate a valid podcast feed with audio 1`] = `
         <item>
             <title><![CDATA[Hello World]]></title>
             <link>https://example.com/hello-world3</link>
-            <guid>https://example.com/hello-world3</guid>
+            <guid isPermaLink=\\"true\\">https://example.com/hello-world3</guid>
             <pubDate>Wed, 10 Jul 2013 23:00:00 GMT</pubDate>
             <description><![CDATA[This is an article about Hello World.]]></description>
             <content:encoded><![CDATA[Content of my item]]></content:encoded>
