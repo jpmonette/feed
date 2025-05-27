@@ -7,13 +7,7 @@ jobs:
   prettier:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-
+      - uses: actions/checkout@v4
       - uses: pnpm/action-setup@v4
-
-      - name: Install dependencies
-        run: pnpm install
-
-      - name: Run Prettier
-        run: pnpm run test
+      - run: pnpm install
+      - run: pnpm run test
