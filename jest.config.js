@@ -1,4 +1,6 @@
-module.exports = {
+import { createDefaultEsmPreset } from "ts-jest";
+
+export default createDefaultEsmPreset({
   verbose: true,
   collectCoverage: true,
   transform: {
@@ -11,4 +13,4 @@ module.exports = {
   moduleNameMapper: {
     "@app/(.*)": "<rootDir>/src/$1",
   },
-};
+});

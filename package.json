@@ -1,6 +1,6 @@
 {
   "name": "feed",
-  "version": "5.0.1",
+  "version": "5.1.0",
   "type": "module",
   "description": "Feed is a RSS, Atom and JSON feed generator for Node.js, making content syndication simple and intuitive!",
   "homepage": "https://github.com/jpmonette/feed",
@@ -46,7 +46,7 @@
     "jest": "^28.1.0",
     "prettier": "^2.8.8",
     "source-map-loader": "^3.0.1",
-    "ts-jest": "^28.0.3",
+    "ts-jest": "^29.3.4",
     "tsdown": "^0.11.2",
     "typescript": "^5.8.3"
   },

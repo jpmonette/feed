@@ -1,7 +1,7 @@
 <p align="center">
   <img src="https://user-images.githubusercontent.com/1114325/60746552-2c059a00-9f77-11e9-9632-e21dea9dd06b.png" alt="Feed for Node.js" width="326">
   <br>
-  <a href="https://badge.fury.io/js/feed"><img src="https://badge.fury.io/js/feed.svg" alt="npm version" height="18"></a> <a href="https://github.com/facebook/jest"><img src="https://img.shields.io/badge/tested_with-jest-99424f.svg" alt="Tested with Jest"></a> <a href="https://opensource.org/licenses/MIT"><img src="https://img.shields.io/badge/License-MIT-yellow.svg" alt="License: MIT"></a>
+  <a href="https://badge.fury.io/js/feed"><img src="https://badge.fury.io/js/feed.svg" alt="npm version" height="18"></a> <a href="https://opensource.org/licenses/MIT"><img src="https://img.shields.io/badge/License-MIT-yellow.svg" alt="License: MIT"></a> <a href="https://github.com/jpmonette/feed/actions/workflows/test.yml"><img src="https://github.com/jpmonette/feed/actions/workflows/test.yml/badge.svg"/></a>
 </p>
 <p align="center"><code>jpmonette/feed</code> - <strong>RSS 2.0, JSON Feed 1.0, and Atom 1.0</strong> generator for <strong>Node.js</strong><br>
 Making content syndication simple and intuitive!</p>
