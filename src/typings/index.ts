@@ -53,6 +53,7 @@ export interface FeedOptions {
   generator?: string;
   language?: string;
   ttl?: number;
+  stylesheet?: string;
 
   feed?: string;
   feedLinks?: any;
