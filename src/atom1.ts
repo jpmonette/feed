@@ -13,6 +13,7 @@ export default (ins: Feed) => {
 
   const base: any = {
     _declaration: { _attributes: { version: "1.0", encoding: "utf-8" } },
+    _instruction: {},
     feed: {
       _attributes: { xmlns: "http://www.w3.org/2005/Atom" },
       id: options.id,
@@ -21,6 +22,19 @@ export default (ins: Feed) => {
       generator: sanitize(options.generator || generator),
     },
   };
+
+  if (options.stylesheet) {
+    base._instruction = {
+      "xml-stylesheet": {
+        _attributes: {
+          href: options.stylesheet,
+          type: "text/xsl",
+        },
+      },
+    };
+  } else {
+    delete base._instruction;
+  }
 
   if (options.author) {
     base.feed.author = formatAuthor(options.author);
