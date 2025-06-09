@@ -120,6 +120,11 @@ Otherwise, you can stick with `require()`:
 + const Feed = require('feed').Feed;
 ```
 
+## Star History
+
+[![Star History Chart](https://api.star-history.com/svg?repos=jpmonette/feed&type=Date)](https://www.star-history.com/#jpmonette/feed&Date)
+
+
 ## More Information
 
 - Follow [@jpmonette](https://twitter.com/jpmonette) on Twitter for updates
