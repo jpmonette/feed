@@ -47,7 +47,7 @@ export interface Category {
 }
 
 export interface FeedOptions {
-  id: string;
+  id?: string;
   title: string;
   updated?: Date;
   generator?: string;
@@ -67,7 +67,7 @@ export interface FeedOptions {
   description?: string;
   image?: string;
   favicon?: string;
-  copyright: string;
+  copyright?: string;
 }
 
 export interface Extension {
