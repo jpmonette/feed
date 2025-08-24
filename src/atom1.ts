@@ -11,10 +11,17 @@ import { sanitize } from "./utils";
 export default (ins: Feed) => {
   const { options } = ins;
 
+  const feedAttrs: Record<string, string> = { xmlns: "http://www.w3.org/2005/Atom" };
+  if (ins.options.language) {
+    // Atom uses the reserved "xml:" namespace for language;
+    // no extra xmlns declaration is required.
+    feedAttrs["xml:lang"] = sanitize(ins.options.language) || ins.options.language;
+  }
+
   const base: any = {
     _declaration: { _attributes: { version: "1.0", encoding: "utf-8" } },
     feed: {
-      _attributes: { xmlns: "http://www.w3.org/2005/Atom" },
+      _attributes: feedAttrs,
       id: options.id,
       title: options.title,
       updated: options.updated ? options.updated.toISOString() : new Date().toISOString(),
@@ -95,6 +102,11 @@ export default (ins: Feed) => {
       link: [{ _attributes: { href: sanitize(item.link) } }],
       updated: item.date.toISOString(),
     };
+
+    // Add xml:lang attribute if language is specified for this item
+    if (item.language) {
+      entry._attributes = { "xml:lang": sanitize(item.language) || item.language };
+    }
 
     //
     // entry: recommended elements
