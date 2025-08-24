@@ -29,7 +29,7 @@ exports[`atom 1.0 should generate a valid feed 1`] = `
         <title type=\\"html\\"><![CDATA[Hello World]]></title>
         <id>https://example.com/hello-world?id=this&amp;that=true</id>
         <link href=\\"https://example.com/hello-world?link=sanitized&amp;value=2\\"/>
-        <link rel=\\"enclosure\\" href=\\"https://example.com/hello-world.jpg\\" type=\\"image/jpg\\" length=\\"12665\\"/>
+        <link rel=\\"enclosure\\" href=\\"https://example.com/hello-world.jpg\\" type=\\"image/jpeg\\" length=\\"12665\\"/>
         <link rel=\\"enclosure\\" href=\\"https://example.com/hello-world.jpg\\" type=\\"image/jpg\\"/>
         <updated>2013-07-13T23:00:00.000Z</updated>
         <summary type=\\"html\\"><![CDATA[This is an article about Hello World.]]></summary>

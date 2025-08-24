@@ -212,17 +212,22 @@ const formatAuthor = (author: Author) => {
  */
 const formatEnclosure = (enclosure: string | Enclosure, mimeCategory = "image") => {
   if (typeof enclosure === "string") {
-    const type = new URL(enclosure).pathname.split(".").slice(-1)[0];
-    return { _attributes: { rel: "enclosure", href: enclosure, type: `${mimeCategory}/${type}` } };
+    const detectedType = new URL(enclosure).pathname.split(".").slice(-1)[0];
+    return { _attributes: { rel: "enclosure", href: enclosure, type: `${mimeCategory}/${detectedType}` } };
   }
-
-  const type = new URL(enclosure.url).pathname.split(".").slice(-1)[0];
+  // For object enclosures, respect the explicit type if provided.
+  // Otherwise fall back to MIME category plus detected extension.
+  let type: string | undefined = enclosure.type;
+  if (!type || type.trim() === "") {
+    const detectedType = new URL(enclosure.url).pathname.split(".").slice(-1)[0];
+    type = `${mimeCategory}/${detectedType}`;
+  }
   return {
     _attributes: {
       rel: "enclosure",
       href: enclosure.url,
       title: enclosure.title,
-      type: `${mimeCategory}/${type}`,
+      type,
       length: enclosure.length,
     },
   };
