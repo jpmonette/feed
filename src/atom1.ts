@@ -226,15 +226,17 @@ const formatAuthor = (author: Author) => {
  */
 const formatEnclosure = (enclosure: string | Enclosure, mimeCategory = "image") => {
   if (typeof enclosure === "string") {
-    const type = new URL(enclosure).pathname.split(".").slice(-1)[0];
-    return { _attributes: { rel: "enclosure", href: enclosure, type: `${mimeCategory}/${type}` } };
+    const sanitizedUrl = sanitize(enclosure);
+    const type = new URL(sanitizedUrl!).pathname.split(".").slice(-1)[0];
+    return { _attributes: { rel: "enclosure", href: sanitizedUrl, type: `${mimeCategory}/${type}` } };
   }
 
-  const type = new URL(enclosure.url).pathname.split(".").slice(-1)[0];
+  const sanitizedUrl = sanitize(enclosure.url);
+  const type = new URL(sanitizedUrl!).pathname.split(".").slice(-1)[0];
   return {
     _attributes: {
       rel: "enclosure",
-      href: enclosure.url,
+      href: sanitizedUrl,
       title: enclosure.title,
       type: `${mimeCategory}/${type}`,
       length: enclosure.length,
