@@ -37,7 +37,7 @@ const feed = new Feed({
   favicon: "http://example.com/favicon.ico",
   copyright: "All rights reserved 2013, John Doe",
   updated: new Date(2013, 6, 14), // optional, default = today
-  generator: "awesome", // optional, default = 'Feed for Node.js'
+  generator: "awesome", // optional, default = 'https://github.com/jpmonette/feed'
   feedLinks: {
     json: "https://example.com/json",
     atom: "https://example.com/atom"
