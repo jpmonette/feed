@@ -42,7 +42,7 @@ export default (ins: Feed) => {
     }
   }
 
-  extensions.map((e: Extension) => {
+  extensions.forEach((e: Extension) => {
     feed[e.name] = e.objects;
   });
 
@@ -94,7 +94,7 @@ export default (ins: Feed) => {
 
     if (Array.isArray(item.category)) {
       feedItem.tags = [];
-      item.category.map((category: Category) => {
+      item.category.forEach((category: Category) => {
         if (category.name) {
           feedItem.tags.push(category.name);
         }
@@ -102,7 +102,7 @@ export default (ins: Feed) => {
     }
 
     if (item.extensions) {
-      item.extensions.map((e: Extension) => {
+      item.extensions.forEach((e: Extension) => {
         feedItem[e.name] = e.objects;
       });
     }
