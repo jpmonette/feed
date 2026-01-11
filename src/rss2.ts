@@ -81,15 +81,16 @@ export default (ins: Feed) => {
   const atomLink = options.feed || (options.feedLinks && options.feedLinks.rss);
   if (atomLink) {
     isAtom = true;
-    base.rss.channel["atom:link"] = [
-      {
-        _attributes: {
-          href: sanitize(atomLink),
-          rel: "self",
-          type: "application/rss+xml",
-        },
+    if (!base.rss.channel["atom:link"]) {
+      base.rss.channel["atom:link"] = [];
+    }
+    base.rss.channel["atom:link"].push({
+      _attributes: {
+        href: sanitize(atomLink),
+        rel: "self",
+        type: "application/rss+xml",
       },
-    ];
+    });
   }
 
   /**
@@ -101,12 +102,12 @@ export default (ins: Feed) => {
     if (!base.rss.channel["atom:link"]) {
       base.rss.channel["atom:link"] = [];
     }
-    base.rss.channel["atom:link"] = {
+    base.rss.channel["atom:link"].push({
       _attributes: {
         href: sanitize(options.hub),
         rel: "hub",
       },
-    };
+    });
   }
 
   /**

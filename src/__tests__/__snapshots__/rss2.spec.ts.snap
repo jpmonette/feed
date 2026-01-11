@@ -19,6 +19,7 @@ exports[`rss 2.0 Should specify isPermaLink=false when feed item specifies a gui
         </image>
         <copyright>All rights reserved 2013, John Doe</copyright>
         <category>Technology</category>
+        <atom:link href=\\"http://example.com/sampleFeed.rss?link=sanitized&amp;value=2\\" rel=\\"self\\" type=\\"application/rss+xml\\"/>
         <atom:link href=\\"wss://example.com/\\" rel=\\"hub\\"/>
         <item>
             <title><![CDATA[Hello World]]></title>
@@ -140,6 +141,7 @@ exports[`rss 2.0 Should specify isPermaLink=false when feed item specifies a lin
         </image>
         <copyright>All rights reserved 2013, John Doe</copyright>
         <category>Technology</category>
+        <atom:link href=\\"http://example.com/sampleFeed.rss?link=sanitized&amp;value=2\\" rel=\\"self\\" type=\\"application/rss+xml\\"/>
         <atom:link href=\\"wss://example.com/\\" rel=\\"hub\\"/>
         <item>
             <title><![CDATA[Hello World]]></title>
@@ -273,6 +275,7 @@ exports[`rss 2.0 Should specify isPermaLink=false when feed item specifies an id
         </image>
         <copyright>All rights reserved 2013, John Doe</copyright>
         <category>Technology</category>
+        <atom:link href=\\"http://example.com/sampleFeed.rss?link=sanitized&amp;value=2\\" rel=\\"self\\" type=\\"application/rss+xml\\"/>
         <atom:link href=\\"wss://example.com/\\" rel=\\"hub\\"/>
         <item>
             <title><![CDATA[Hello World]]></title>
@@ -400,6 +403,7 @@ exports[`rss 2.0 should generate a valid feed 1`] = `
         </image>
         <copyright>All rights reserved 2013, John Doe</copyright>
         <category>Technology</category>
+        <atom:link href=\\"http://example.com/sampleFeed.rss?link=sanitized&amp;value=2\\" rel=\\"self\\" type=\\"application/rss+xml\\"/>
         <atom:link href=\\"wss://example.com/\\" rel=\\"hub\\"/>
         <item>
             <title><![CDATA[Hello World]]></title>
@@ -449,6 +453,7 @@ exports[`rss 2.0 should generate a valid feed with audio 1`] = `
         </image>
         <copyright>All rights reserved 2013, John Doe</copyright>
         <category>Technology</category>
+        <atom:link href=\\"http://example.com/sampleFeed.rss?link=sanitized&amp;value=2\\" rel=\\"self\\" type=\\"application/rss+xml\\"/>
         <atom:link href=\\"wss://example.com/\\" rel=\\"hub\\"/>
         <item>
             <title><![CDATA[Hello World]]></title>
@@ -561,6 +566,7 @@ exports[`rss 2.0 should generate a valid feed with enclosure 1`] = `
         </image>
         <copyright>All rights reserved 2013, John Doe</copyright>
         <category>Technology</category>
+        <atom:link href=\\"http://example.com/sampleFeed.rss?link=sanitized&amp;value=2\\" rel=\\"self\\" type=\\"application/rss+xml\\"/>
         <atom:link href=\\"wss://example.com/\\" rel=\\"hub\\"/>
         <item>
             <title><![CDATA[Hello World]]></title>
@@ -652,6 +658,7 @@ exports[`rss 2.0 should generate a valid feed with image properties 1`] = `
         </image>
         <copyright>All rights reserved 2013, John Doe</copyright>
         <category>Technology</category>
+        <atom:link href=\\"http://example.com/sampleFeed.rss?link=sanitized&amp;value=2\\" rel=\\"self\\" type=\\"application/rss+xml\\"/>
         <atom:link href=\\"wss://example.com/\\" rel=\\"hub\\"/>
         <item>
             <title><![CDATA[Hello World]]></title>
@@ -766,6 +773,7 @@ exports[`rss 2.0 should generate a valid podcast feed with audio 1`] = `
         </image>
         <copyright>All rights reserved 2013, John Doe</copyright>
         <category>Technology</category>
+        <atom:link href=\\"http://example.com/sampleFeed.rss?link=sanitized&amp;value=2\\" rel=\\"self\\" type=\\"application/rss+xml\\"/>
         <atom:link href=\\"wss://example.com/\\" rel=\\"hub\\"/>
         <item>
             <title><![CDATA[Hello World]]></title>
