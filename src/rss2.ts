@@ -159,6 +159,8 @@ export default (ins: Feed) => {
       entry.author.map((author: Author) => {
         if (author.email && author.name) {
           item.author.push({ _text: author.email + " (" + author.name + ")" });
+        } else if (author.name) {
+          item.author.push({ _text: author.name });
         }
       });
     }
