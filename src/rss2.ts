@@ -19,7 +19,7 @@ export default (ins: Feed) => {
       channel: {
         title: { _text: options.title },
         link: { _text: sanitize(options.link) },
-        description: { _text: options.description },
+        description: { _text: options.description || '' },
         lastBuildDate: { _text: options.updated ? options.updated.toUTCString() : new Date().toUTCString() },
         docs: { _text: options.docs ? options.docs : "https://validator.w3.org/feed/docs/rss2.html" },
         generator: { _text: options.generator || generator },
