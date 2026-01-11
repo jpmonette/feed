@@ -67,7 +67,7 @@ export default (ins: Feed) => {
    * Channel Categories
    * https://validator.w3.org/feed/docs/rss2.html#comments
    */
-  ins.categories.map((category) => {
+  ins.categories.forEach((category) => {
     if (!base.rss.channel.category) {
       base.rss.channel.category = [];
     }
@@ -115,7 +115,7 @@ export default (ins: Feed) => {
    */
   base.rss.channel.item = [];
 
-  ins.items.map((entry: Item) => {
+  ins.items.forEach((entry: Item) => {
     const item: any = {};
 
     if (entry.title) {
@@ -156,7 +156,7 @@ export default (ins: Feed) => {
      */
     if (Array.isArray(entry.author)) {
       item.author = [];
-      entry.author.map((author: Author) => {
+      entry.author.forEach((author: Author) => {
         if (author.email && author.name) {
           item.author.push({ _text: author.email + " (" + author.name + ")" });
         } else if (author.name) {
@@ -170,7 +170,7 @@ export default (ins: Feed) => {
      */
     if (Array.isArray(entry.category)) {
       item.category = [];
-      entry.category.map((category: Category) => {
+      entry.category.forEach((category: Category) => {
         item.category.push(formatCategory(category));
       });
     }
@@ -220,7 +220,7 @@ export default (ins: Feed) => {
 
   // rss2() support `extensions`
   if (extensions)
-    extensions.map((e: Extension) => {
+    extensions.forEach((e: Extension) => {
       base.rss.channel[e.name] = e.objects;
     });
 

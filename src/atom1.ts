@@ -67,13 +67,13 @@ export default (ins: Feed) => {
 
   base.feed.category = [];
 
-  ins.categories.map((category: string) => {
+  ins.categories.forEach((category: string) => {
     base.feed.category.push({ _attributes: { term: category } });
   });
 
   base.feed.contributor = [];
 
-  ins.contributors.map((contributor: Author) => {
+  ins.contributors.forEach((contributor: Author) => {
     base.feed.contributor.push(formatAuthor(contributor));
   });
 
@@ -84,7 +84,7 @@ export default (ins: Feed) => {
   /**************************************************************************
    * "entry" nodes
    *************************************************************************/
-  ins.items.map((item: Item) => {
+  ins.items.forEach((item: Item) => {
     //
     // entry: required elements
     //
@@ -117,7 +117,7 @@ export default (ins: Feed) => {
     if (Array.isArray(item.author)) {
       entry.author = [];
 
-      item.author.map((author: Author) => {
+      item.author.forEach((author: Author) => {
         entry.author.push(formatAuthor(author));
       });
     }
@@ -134,7 +134,7 @@ export default (ins: Feed) => {
     if (Array.isArray(item.category)) {
       entry.category = [];
 
-      item.category.map((category: Category) => {
+      item.category.forEach((category: Category) => {
         entry.category.push(formatCategory(category));
       });
     }
@@ -163,7 +163,7 @@ export default (ins: Feed) => {
     if (item.contributor && Array.isArray(item.contributor)) {
       entry.contributor = [];
 
-      item.contributor.map((contributor: Author) => {
+      item.contributor.forEach((contributor: Author) => {
         entry.contributor.push(formatAuthor(contributor));
       });
     }
