@@ -281,12 +281,22 @@ export default (ins: Feed) => {
  */
 const formatEnclosure = (enclosure: string | Enclosure, mimeCategory = "image") => {
   if (typeof enclosure === "string") {
-    const type = new URL(sanitize(enclosure)!).pathname.split(".").slice(-1)[0];
-    return { _attributes: { url: enclosure, length: 0, type: `${mimeCategory}/${type}` } };
+    const detectedType = new URL(sanitize(enclosure)!).pathname.split(".").slice(-1)[0];
+    return { _attributes: { url: enclosure, length: 0, type: `${mimeCategory}/${detectedType}` } };
   }
 
-  const type = new URL(sanitize(enclosure.url)!).pathname.split(".").slice(-1)[0];
-  return { _attributes: { length: 0, type: `${mimeCategory}/${type}`, ...enclosure } };
+  // For object enclosures, respect the explicit type if provided.
+  // Otherwise fall back to MIME category plus detected extension.
+  let type: string | undefined = enclosure.type;
+  if (!type || type.trim() === "") {
+    const detectedType = new URL(sanitize(enclosure.url)!).pathname.split(".").slice(-1)[0];
+    type = `${mimeCategory}/${detectedType}`;
+  }
+
+  // Create the attributes, ensuring computed type takes precedence over enclosure.type
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const { type: _, ...otherEnclosureProps } = enclosure;
+  return { _attributes: { length: 0, type, ...otherEnclosureProps } };
 };
 
 /**
