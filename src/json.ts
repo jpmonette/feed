@@ -9,7 +9,7 @@ export default (ins: Feed) => {
   const { options, items, extensions } = ins;
 
   const feed: any = {
-    version: "https://jsonfeed.org/version/1",
+    version: "https://jsonfeed.org/version/1.1",
     title: options.title,
   };
 
@@ -23,6 +23,10 @@ export default (ins: Feed) => {
 
   if (options.description) {
     feed.description = options.description;
+  }
+
+  if (options.language) {
+    feed.language = options.language;
   }
 
   if (options.image) {
@@ -72,6 +76,10 @@ export default (ins: Feed) => {
     }
     if (item.published) {
       feedItem.date_published = item.published.toISOString();
+    }
+
+    if (item.language) {
+      feedItem.language = item.language;
     }
 
     if (item.author) {

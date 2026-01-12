@@ -2,7 +2,7 @@
 
 exports[`atom 1.0 should generate a valid feed 1`] = `
 "<?xml version=\\"1.0\\" encoding=\\"utf-8\\"?>
-<feed xmlns=\\"http://www.w3.org/2005/Atom\\">
+<feed xmlns=\\"http://www.w3.org/2005/Atom\\" xml:lang=\\"en\\">
     <id>http://example.com/?link=sanitized&amp;value=4</id>
     <title>Feed Title</title>
     <updated>2013-07-13T23:00:00.000Z</updated>
