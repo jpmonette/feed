@@ -353,4 +353,15 @@ describe("rss 2.0", () => {
     const actual = sampleFeed.rss2();
     expect(actual).toMatchSnapshot();
   });
+  it("should sanitize enclosure url", () => {
+    sampleFeed.addItem({
+      title: "Hello World",
+      link: "http://example.org/sanitize",
+      enclosure: { url: "https://example.com/hello&world.png" },
+      date: published,
+    });
+    const actual = sampleFeed.rss2();
+    expect(actual).toMatchSnapshot();
+    expect(actual).toContain('<enclosure length="0" type="image/png" url="https://example.com/hello&amp;world.png"/>');
+  });
 });
