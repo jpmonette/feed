@@ -9,8 +9,8 @@ import { sanitize } from "./utils";
  */
 export default (ins: Feed) => {
   const { options, extensions } = ins;
-  let isAtom = false;
-  let isContent = false;
+  let needsAtomNamespace = false;
+  let needsContentNamespace = false;
 
   const base: any = {
     _declaration: { _attributes: { version: "1.0", encoding: "utf-8" } },
@@ -20,10 +20,10 @@ export default (ins: Feed) => {
       channel: {
         title: { _text: options.title },
         link: { _text: sanitize(options.link) },
-        description: { _text: options.description || '' },
+        description: { _text: options.description ?? "" },
         lastBuildDate: { _text: options.updated ? options.updated.toUTCString() : new Date().toUTCString() },
         docs: { _text: options.docs ? options.docs : "https://validator.w3.org/feed/docs/rss2.html" },
-        generator: { _text: options.generator || generator },
+        generator: { _text: options.generator ?? generator },
       },
     },
   };
@@ -92,9 +92,9 @@ export default (ins: Feed) => {
    * Feed URL
    * http://validator.w3.org/feed/docs/warning/MissingAtomSelfLink.html
    */
-  const atomLink = options.feed || (options.feedLinks && options.feedLinks.rss);
+  const atomLink = options.feed ?? (options.feedLinks && options.feedLinks.rss);
   if (atomLink) {
-    isAtom = true;
+    needsAtomNamespace = true;
     if (!base.rss.channel["atom:link"]) {
       base.rss.channel["atom:link"] = [];
     }
@@ -112,7 +112,7 @@ export default (ins: Feed) => {
    * https://code.google.com/p/pubsubhubbub/
    */
   if (options.hub) {
-    isAtom = true;
+    needsAtomNamespace = true;
     if (!base.rss.channel["atom:link"]) {
       base.rss.channel["atom:link"] = [];
     }
@@ -162,7 +162,7 @@ export default (ins: Feed) => {
     }
 
     if (entry.content) {
-      isContent = true;
+      needsContentNamespace = true;
       item["content:encoded"] = { _cdata: entry.content };
     }
     /**
@@ -228,7 +228,7 @@ export default (ins: Feed) => {
     base.rss.channel.item.push(item);
   });
 
-  if (isContent) {
+  if (needsContentNamespace) {
     base.rss._attributes["xmlns:dc"] = "http://purl.org/dc/elements/1.1/";
     base.rss._attributes["xmlns:content"] = "http://purl.org/rss/1.0/modules/content/";
   }
@@ -239,7 +239,7 @@ export default (ins: Feed) => {
       base.rss.channel[e.name] = e.objects;
     });
 
-  if (isAtom) {
+  if (needsAtomNamespace) {
     base.rss._attributes["xmlns:atom"] = "http://www.w3.org/2005/Atom";
   }
 
@@ -312,6 +312,6 @@ const formatDuration = (duration: number) => {
   const totalMinutes = Math.floor(duration / 60);
   const minutes = totalMinutes % 60;
   const hours = Math.floor(totalMinutes / 60);
-  const notHours = ("0" + minutes).substr(-2) + ":" + ("0" + seconds).substr(-2);
+  const notHours = ("0" + minutes).slice(-2) + ":" + ("0" + seconds).slice(-2);
   return hours > 0 ? hours + ":" + notHours : notHours;
 };

@@ -56,7 +56,12 @@ export interface FeedOptions {
   stylesheet?: string;
 
   feed?: string;
-  feedLinks?: any;
+  feedLinks?: {
+    rss?: string;
+    atom?: string;
+    json?: string;
+    [key: string]: string | undefined;
+  };
   hub?: string;
   docs?: string;
 
@@ -73,5 +78,5 @@ export interface FeedOptions {
 
 export interface Extension {
   name: string;
-  objects: any;
+  objects: Record<string, unknown>;
 }
