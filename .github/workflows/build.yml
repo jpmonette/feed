@@ -1,4 +1,4 @@
-name: Prettier Check
+name: Build
 
 on:
   push:
@@ -7,7 +7,7 @@ on:
     branches: [master]
 
 jobs:
-  prettier:
+  build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -17,5 +17,5 @@ jobs:
           node-version: 20
           cache: 'pnpm'
       - run: pnpm install
-      - name: Check formatting
-        run: pnpm pretty:check
+      - name: Build TypeScript
+        run: pnpm build

@@ -19,7 +19,7 @@ export default (ins: Feed) => {
       id: options.id,
       title: options.title,
       updated: options.updated ? options.updated.toISOString() : new Date().toISOString(),
-      generator: sanitize(options.generator || generator),
+      generator: sanitize(options.generator ?? generator),
     },
   };
 
@@ -48,7 +48,7 @@ export default (ins: Feed) => {
   }
 
   // link (rel="self")
-  const atomLink = options.feed || (options.feedLinks && options.feedLinks.atom);
+  const atomLink = options.feed ?? (options.feedLinks && options.feedLinks.atom);
 
   if (atomLink) {
     base.feed.link.push({ _attributes: { rel: "self", href: sanitize(atomLink) } });
@@ -105,7 +105,7 @@ export default (ins: Feed) => {
 
     const entry: convert.ElementCompact = {
       title: { _attributes: { type: "html" }, _cdata: item.title },
-      id: sanitize(item.id || item.link),
+      id: sanitize(item.id ?? item.link),
       link: [{ _attributes: { href: sanitize(item.link) } }],
       updated: item.date.toISOString(),
     };
