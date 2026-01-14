@@ -11,6 +11,7 @@
   "exports": {
     ".": {
       "import": "./lib/feed.js",
+      "require": "./lib/feed.js",
       "types": "./lib/feed.d.ts"
     }
   },
