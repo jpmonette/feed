@@ -175,7 +175,8 @@ export default (ins: Feed) => {
         if (author.email && author.name) {
           item.author.push({ _text: author.email + " (" + author.name + ")" });
         } else if (author.name) {
-          item.author.push({ _text: author.name });
+          needsContentNamespace = true;
+          item["dc:creator"] = { _text: author.name };
         }
       });
     }
