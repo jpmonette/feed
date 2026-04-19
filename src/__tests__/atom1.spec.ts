@@ -30,4 +30,15 @@ describe("atom 1.0", () => {
     const actual = sampleFeed.atom1();
     expect(actual).toMatchSnapshot();
   });
+  it("should sanitize enclosure url", () => {
+    sampleFeed.addItem({
+      title: "Hello World",
+      link: "http://example.org/sanitize",
+      enclosure: { url: "https://example.com/hello&world.png" },
+      date: updated,
+    });
+    const actual = sampleFeed.atom1();
+    expect(actual).toMatchSnapshot();
+    expect(actual).toContain('<link rel="enclosure" href="https://example.com/hello&amp;world.png"');
+  });
 });
