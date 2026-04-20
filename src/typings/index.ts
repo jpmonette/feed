@@ -20,6 +20,7 @@ export interface Item {
 
   published?: Date;
   copyright?: string;
+  language?: string;
 
   extensions?: Extension[];
 }
