@@ -11,6 +11,7 @@ export default (ins: Feed) => {
   const { options, extensions } = ins;
   let needsAtomNamespace = false;
   let needsContentNamespace = false;
+  let needsDublinCoreNamespace = false;
 
   const base: any = {
     _declaration: { _attributes: { version: "1.0", encoding: "utf-8" } },
@@ -175,7 +176,8 @@ export default (ins: Feed) => {
         if (author.email && author.name) {
           item.author.push({ _text: author.email + " (" + author.name + ")" });
         } else if (author.name) {
-          item.author.push({ _text: author.name });
+          needsContentNamespace = true;
+          item["dc:creator"] = { _text: author.name };
         }
       });
     }
@@ -229,8 +231,11 @@ export default (ins: Feed) => {
   });
 
   if (needsContentNamespace) {
-    base.rss._attributes["xmlns:dc"] = "http://purl.org/dc/elements/1.1/";
     base.rss._attributes["xmlns:content"] = "http://purl.org/rss/1.0/modules/content/";
+  }
+
+  if (needsDublinCoreNamespace) {
+    base.rss._attributes["xmlns:dc"] = "http://purl.org/dc/elements/1.1/";
   }
 
   // rss2() support `extensions`
