@@ -140,7 +140,7 @@ console.log(feed.json1());
 | `guid`        | `string`              | RSS-specific GUID                        |
 | `description` | `string`              | Brief summary or excerpt                 |
 | `content`     | `string`              | Full content (HTML allowed)              |
-| `contentIsMarkdown`     | `boolean`              | Allows `content` to support markdown              |
+| `needsSourceNamespace`     | `boolean`              | Supports `source` add-ons (https://source.scripting.com)              |
 | `author`      | `Author[]`            | Item authors                             |
 | `contributor` | `Author[]`            | Item contributors                        |
 | `category`    | `Category[]`          | Item categories                          |

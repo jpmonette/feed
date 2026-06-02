@@ -6,7 +6,6 @@ export interface Item {
 
   description?: string;
   content?: string;
-  contentIsMarkdown?: boolean;
   category?: Category[];
 
   guid?: string;

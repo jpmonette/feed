@@ -163,15 +163,7 @@ export default (ins: Feed) => {
 
     if (entry.content) {
       needsContentNamespace = true;
-      if (entry.contentIsMarkdown) {
-        /**
-          some feeds such as NetNewsWire supports content:markdown
-          @see https://netnewswire.blog/2025/11/05/netnewswire-for-mac-and-ios.html
-        */
-        item["content:markdown"] = { _cdata: entry.content };
-      } else {
-        item["content:encoded"] = { _cdata: entry.content };
-      }
+      item["content:encoded"] = { _cdata: entry.content };
     }
     /**
      * Item Author
@@ -239,6 +231,10 @@ export default (ins: Feed) => {
   if (needsContentNamespace) {
     base.rss._attributes["xmlns:dc"] = "http://purl.org/dc/elements/1.1/";
     base.rss._attributes["xmlns:content"] = "http://purl.org/rss/1.0/modules/content/";
+  }
+
+  if (options.needsSourceNamespace) {
+    base.rss._attributes["xmlns:source"] = "https://source.scripting.com/";
   }
 
   // rss2() support `extensions`

@@ -26,6 +26,7 @@ export const createSampleFeed = () => {
       email: "johndoe@example.com",
       link: "https://example.com/johndoe?link=sanitized&value=2",
     },
+    needsSourceNamespace: true,
   });
 
   feed.addCategory("Technology");
