@@ -233,6 +233,10 @@ export default (ins: Feed) => {
     base.rss._attributes["xmlns:content"] = "http://purl.org/rss/1.0/modules/content/";
   }
 
+  if (options.needsSourceNamespace) {
+    base.rss._attributes["xmlns:source"] = "https://source.scripting.com/";
+  }
+
   // rss2() support `extensions`
   if (extensions)
     extensions.forEach((e: Extension) => {
