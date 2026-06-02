@@ -163,7 +163,15 @@ export default (ins: Feed) => {
 
     if (entry.content) {
       needsContentNamespace = true;
-      item["content:encoded"] = { _cdata: entry.content };
+      if (entry.markdownContent) {
+        /**
+          some feeds such as NetNewsWire supports content:markdown
+          @see https://netnewswire.blog/2025/11/05/netnewswire-for-mac-and-ios.html
+        */
+        item["content:markdown"] = { _cdata: entry.content };
+      } else {
+        item["content:encoded"] = { _cdata: entry.content };
+      }
     }
     /**
      * Item Author
