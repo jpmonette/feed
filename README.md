@@ -140,6 +140,7 @@ console.log(feed.json1());
 | `guid`        | `string`              | RSS-specific GUID                        |
 | `description` | `string`              | Brief summary or excerpt                 |
 | `content`     | `string`              | Full content (HTML allowed)              |
+| `contentIsMarkdown`     | `boolean`              | Allows `content` to support markdown              |
 | `author`      | `Author[]`            | Item authors                             |
 | `contributor` | `Author[]`            | Item contributors                        |
 | `category`    | `Category[]`          | Item categories                          |

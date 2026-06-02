@@ -163,7 +163,7 @@ export default (ins: Feed) => {
 
     if (entry.content) {
       needsContentNamespace = true;
-      if (entry.markdownContent) {
+      if (entry.contentIsMarkdown) {
         /**
           some feeds such as NetNewsWire supports content:markdown
           @see https://netnewswire.blog/2025/11/05/netnewswire-for-mac-and-ios.html
