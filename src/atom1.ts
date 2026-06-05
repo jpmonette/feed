@@ -37,7 +37,7 @@ export default (ins: Feed) => {
   }
 
   if (options.author) {
-    base.feed.author = formatAuthor(options.author);
+    base.feed.author = formatAuthor(options.author instanceof Array ? options.author[0] : options.author);
   }
 
   base.feed.link = [];

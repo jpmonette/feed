@@ -28,6 +28,10 @@ export default (ins: Feed) => {
     },
   };
 
+  if (options.author && options.author instanceof Array) {
+    options.author = options.author[0];
+  }
+
   if (options.stylesheet) {
     base._instruction = {
       "xml-stylesheet": {
