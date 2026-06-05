@@ -38,6 +38,10 @@ export default (ins: Feed) => {
     }));
   }
 
+  if (options.language) {
+    feed.language = options.language;
+  }
+
   extensions.forEach((e: Extension) => {
     feed[e.name] = e.objects;
   });
@@ -68,6 +72,9 @@ export default (ins: Feed) => {
     }
     if (item.published) {
       feedItem.date_published = item.published.toISOString();
+    }
+    if (item.language) {
+      feedItem.language = item.language;
     }
 
     if (item.author) {
