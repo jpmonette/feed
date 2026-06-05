@@ -68,7 +68,7 @@ export interface FeedOptions {
   podcast?: boolean;
   category?: string;
 
-  author?: Author;
+  author?: Author | Author[];
   link?: string;
   description?: string;
   image?: string;

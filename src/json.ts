@@ -1,5 +1,6 @@
 import type { Feed } from "./feed";
-import type { Author, Category, Extension, Item } from "./typings";
+import type { Category, Extension, Item } from "./typings";
+import { toArray } from "./utils";
 
 /**
  * Returns a JSON feed
@@ -9,7 +10,7 @@ export default (ins: Feed) => {
   const { options, items, extensions } = ins;
 
   const feed: any = {
-    version: "https://jsonfeed.org/version/1",
+    version: "https://jsonfeed.org/version/1.1",
     title: options.title,
   };
 
@@ -30,16 +31,11 @@ export default (ins: Feed) => {
   }
 
   if (options.author) {
-    feed.author = {};
-    if (options.author.name) {
-      feed.author.name = options.author.name;
-    }
-    if (options.author.link) {
-      feed.author.url = options.author.link;
-    }
-    if (options.author.avatar) {
-      feed.author.avatar = options.author.avatar;
-    }
+    feed.authors = toArray(options.author).map((author) => ({
+      name: author.name,
+      url: author.link,
+      avatar: author.avatar,
+    }));
   }
 
   extensions.forEach((e: Extension) => {
@@ -75,21 +71,11 @@ export default (ins: Feed) => {
     }
 
     if (item.author) {
-      let author: Author | Author[] = item.author;
-      if (author instanceof Array) {
-        // json feed only supports 1 author per post
-        author = author[0];
-      }
-      feedItem.author = {};
-      if (author.name) {
-        feedItem.author.name = author.name;
-      }
-      if (author.link) {
-        feedItem.author.url = author.link;
-      }
-      if (author.avatar) {
-        feedItem.author.avatar = author.avatar;
-      }
+      feedItem.authors = item.author.map((author) => ({
+        name: author.name,
+        url: author.link,
+        avatar: author.avatar,
+      }));
     }
 
     if (Array.isArray(item.category)) {
