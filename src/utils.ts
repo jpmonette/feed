@@ -6,5 +6,5 @@ export function sanitize(url: string | undefined): string | undefined {
 }
 
 export function toArray<T>(itemOrArray: T | T[]): T[] {
-  return itemOrArray instanceof Array ? itemOrArray : [itemOrArray];
+  return Array.isArray(itemOrArray) ? itemOrArray : [itemOrArray];
 }

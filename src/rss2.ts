@@ -28,7 +28,7 @@ export default (ins: Feed) => {
     },
   };
 
-  if (options.author && options.author instanceof Array) {
+  if (options.author && Array.isArray(options.author)) {
     options.author = options.author[0];
   }
 
