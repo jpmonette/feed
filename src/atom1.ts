@@ -82,7 +82,7 @@ export default (ins: Feed) => {
   base.feed.category = [];
 
   ins.categories.forEach((category: string) => {
-    base.feed.category.push({ _attributes: { term: category } });
+    base.feed.category.push({ _attributes: { term: sanitize(category) } });
   });
 
   base.feed.contributor = [];
@@ -253,9 +253,9 @@ const formatCategory = (category: Category) => {
 
   return {
     _attributes: {
-      label: name,
-      scheme,
-      term,
+      label: sanitize(name),
+      scheme: sanitize(scheme),
+      term: sanitize(term),
     },
   };
 };
