@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://user-images.githubusercontent.com/1114325/60746552-2c059a00-9f77-11e9-9632-e21dea9dd06b.png" alt="Feed for Node.js" width="326">
+  <img src="https://repository-images.githubusercontent.com/8399224/13999b8b-25dc-4845-99ac-20517a1f8104" alt="Feed for Node.js" width="400">
   <br>
   <a href="https://badge.fury.io/js/feed"><img src="https://badge.fury.io/js/feed.svg" alt="npm version" height="18"></a> <a href="https://opensource.org/licenses/MIT"><img src="https://img.shields.io/badge/License-MIT-yellow.svg" alt="License: MIT"></a> <a href="https://github.com/jpmonette/feed/actions/workflows/test.yml"><img src="https://github.com/jpmonette/feed/actions/workflows/test.yml/badge.svg"/></a>
 </p>
