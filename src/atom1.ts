@@ -2,7 +2,7 @@ import * as convert from "xml-js";
 import { generator } from "./config";
 import type { Feed } from "./feed";
 import type { Author, Category, Enclosure, Item } from "./typings";
-import { sanitize } from "./utils";
+import { sanitize, sanitizeUrl } from "./utils";
 
 export default (ins: Feed) => {
   const { options } = ins;
@@ -39,17 +39,17 @@ export default (ins: Feed) => {
   base.feed.link = [];
 
   if (options.link) {
-    base.feed.link.push({ _attributes: { rel: "alternate", href: sanitize(options.link) } });
+    base.feed.link.push({ _attributes: { rel: "alternate", href: sanitizeUrl(options.link) } });
   }
 
   const atomLink = options.feed ?? options.feedLinks?.atom;
 
   if (atomLink) {
-    base.feed.link.push({ _attributes: { rel: "self", href: sanitize(atomLink) } });
+    base.feed.link.push({ _attributes: { rel: "self", href: sanitizeUrl(atomLink) } });
   }
 
   if (options.hub) {
-    base.feed.link.push({ _attributes: { rel: "hub", href: sanitize(options.hub) } });
+    base.feed.link.push({ _attributes: { rel: "hub", href: sanitizeUrl(options.hub) } });
   }
 
   if (options.description) {
@@ -85,8 +85,8 @@ export default (ins: Feed) => {
   ins.items.forEach((item: Item) => {
     const entry: convert.ElementCompact = {
       title: { _attributes: { type: "html" }, _cdata: item.title },
-      id: sanitize(item.id ?? item.link),
-      link: [{ _attributes: { href: sanitize(item.link) } }],
+      id: sanitizeUrl(item.id ?? item.link),
+      link: [{ _attributes: { href: sanitizeUrl(item.link) } }],
       updated: item.date.toISOString(),
     };
 
@@ -167,7 +167,7 @@ const formatAuthor = (author: Author) => {
   }
 
   if (link) {
-    out.uri = sanitize(link);
+    out.uri = sanitizeUrl(link);
   }
 
   return out;
@@ -175,13 +175,13 @@ const formatAuthor = (author: Author) => {
 
 const formatEnclosure = (enclosure: string | Enclosure, mimeCategory = "image") => {
   if (typeof enclosure === "string") {
-    const sanitizedUrl = sanitize(enclosure);
-    const type = new URL(sanitizedUrl!).pathname.split(".").slice(-1)[0];
+    const sanitizedUrl = sanitizeUrl(enclosure);
+    const type = new URL(sanitizedUrl).pathname.split(".").slice(-1)[0];
     return { _attributes: { rel: "enclosure", href: sanitizedUrl, type: `${mimeCategory}/${type}` } };
   }
 
-  const sanitizedUrl = sanitize(enclosure.url);
-  const type = new URL(sanitizedUrl!).pathname.split(".").slice(-1)[0];
+  const sanitizedUrl = sanitizeUrl(enclosure.url);
+  const type = new URL(sanitizedUrl).pathname.split(".").slice(-1)[0];
   return {
     _attributes: {
       rel: "enclosure",
@@ -199,7 +199,7 @@ const formatCategory = (category: Category) => {
   return {
     _attributes: {
       label: sanitize(name),
-      scheme: sanitize(scheme),
+      scheme: sanitizeUrl(scheme),
       term: sanitize(term),
     },
   };

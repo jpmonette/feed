@@ -2,7 +2,7 @@ import * as convert from "xml-js";
 import { generator } from "./config";
 import type { Feed } from "./feed";
 import type { Author, Category, Enclosure, Extension, Item } from "./typings";
-import { sanitize } from "./utils";
+import { sanitizeUrl } from "./utils";
 
 export default (ins: Feed) => {
   const { options, extensions } = ins;
@@ -16,7 +16,7 @@ export default (ins: Feed) => {
       _attributes: { version: "2.0" },
       channel: {
         title: { _text: options.title },
-        link: { _text: sanitize(options.link) },
+        link: { _text: sanitizeUrl(options.link) },
         description: { _text: options.description ?? "" },
         lastBuildDate: { _text: options.updated ? options.updated.toUTCString() : new Date().toUTCString() },
         docs: { _text: options.docs ?? "https://validator.w3.org/feed/docs/rss2.html" },
@@ -50,7 +50,7 @@ export default (ins: Feed) => {
     base.rss.channel.image = {
       title: { _text: options.title },
       url: { _text: options.image },
-      link: { _text: sanitize(options.link) },
+      link: { _text: sanitizeUrl(options.link) },
     };
   }
 
@@ -73,7 +73,7 @@ export default (ins: Feed) => {
     }
     base.rss.channel["atom:link"].push({
       _attributes: {
-        href: sanitize(atomLink),
+        href: sanitizeUrl(atomLink),
         rel: "self",
         type: "application/rss+xml",
       },
@@ -87,7 +87,7 @@ export default (ins: Feed) => {
     }
     base.rss.channel["atom:link"].push({
       _attributes: {
-        href: sanitize(options.hub),
+        href: sanitizeUrl(options.hub),
         rel: "hub",
       },
     });
@@ -103,7 +103,7 @@ export default (ins: Feed) => {
     }
 
     if (entry.link) {
-      item.link = { _text: sanitize(entry.link) };
+      item.link = { _text: sanitizeUrl(entry.link) };
     }
 
     if (entry.guid) {
@@ -111,7 +111,7 @@ export default (ins: Feed) => {
     } else if (entry.id) {
       item.guid = { _text: entry.id, _attributes: { isPermaLink: false } };
     } else if (entry.link) {
-      item.guid = { _text: sanitize(entry.link), _attributes: { isPermaLink: true } };
+      item.guid = { _text: sanitizeUrl(entry.link), _attributes: { isPermaLink: true } };
     }
 
     if (entry.date) {
@@ -216,7 +216,7 @@ export default (ins: Feed) => {
     }
     if (options.image) {
       base.rss.channel["googleplay:image"] = {
-        _attributes: { href: sanitize(options.image) },
+        _attributes: { href: sanitizeUrl(options.image) },
       };
     }
   }
@@ -226,13 +226,13 @@ export default (ins: Feed) => {
 
 const formatEnclosure = (enclosure: string | Enclosure, mimeCategory = "image") => {
   if (typeof enclosure === "string") {
-    const sanitizedUrl = sanitize(enclosure);
-    const type = new URL(sanitizedUrl!).pathname.split(".").slice(-1)[0];
+    const sanitizedUrl = sanitizeUrl(enclosure);
+    const type = new URL(sanitizedUrl).pathname.split(".").slice(-1)[0];
     return { _attributes: { url: sanitizedUrl, length: 0, type: `${mimeCategory}/${type}` } };
   }
 
-  const sanitizedUrl = sanitize(enclosure.url);
-  const type = new URL(sanitizedUrl!).pathname.split(".").slice(-1)[0];
+  const sanitizedUrl = sanitizeUrl(enclosure.url);
+  const type = new URL(sanitizedUrl).pathname.split(".").slice(-1)[0];
   return { _attributes: { length: 0, type: `${mimeCategory}/${type}`, ...enclosure, url: sanitizedUrl } };
 };
 
