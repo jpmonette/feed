@@ -63,4 +63,29 @@ describe("atom 1.0", () => {
     expect(actual).toContain('<category label="R&amp;D" scheme="https://example.com/s?a=1&amp;b=2"/>');
     expect(actual).not.toContain("Arts & Crafts");
   });
+
+  it("should emit the default generator when none is provided", () => {
+    const feed = new Feed({ title: "Feed Title", id: "https://example.com/", link: "https://example.com/" });
+    expect(feed.atom1()).toContain("<generator>https://github.com/jpmonette/feed</generator>");
+  });
+
+  it("should emit a custom generator when provided", () => {
+    const feed = new Feed({
+      title: "Feed Title",
+      id: "https://example.com/",
+      link: "https://example.com/",
+      generator: "my-site",
+    });
+    expect(feed.atom1()).toContain("<generator>my-site</generator>");
+  });
+
+  it("should omit the generator element when generator is false", () => {
+    const feed = new Feed({
+      title: "Feed Title",
+      id: "https://example.com/",
+      link: "https://example.com/",
+      generator: false,
+    });
+    expect(feed.atom1()).not.toContain("<generator>");
+  });
 });

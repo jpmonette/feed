@@ -364,4 +364,29 @@ describe("rss 2.0", () => {
     expect(actual).toMatchSnapshot();
     expect(actual).toContain('<enclosure length="0" type="image/png" url="https://example.com/hello&amp;world.png"/>');
   });
+
+  it("should emit the default generator when none is provided", () => {
+    const feed = new Feed({ title: "Feed Title", id: "https://example.com/", link: "https://example.com/" });
+    expect(feed.rss2()).toContain("<generator>https://github.com/jpmonette/feed</generator>");
+  });
+
+  it("should emit a custom generator when provided", () => {
+    const feed = new Feed({
+      title: "Feed Title",
+      id: "https://example.com/",
+      link: "https://example.com/",
+      generator: "my-site",
+    });
+    expect(feed.rss2()).toContain("<generator>my-site</generator>");
+  });
+
+  it("should omit the generator element when generator is false", () => {
+    const feed = new Feed({
+      title: "Feed Title",
+      id: "https://example.com/",
+      link: "https://example.com/",
+      generator: false,
+    });
+    expect(feed.rss2()).not.toContain("<generator>");
+  });
 });
