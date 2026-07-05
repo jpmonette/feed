@@ -1,4 +1,4 @@
-name: Lint
+name: Checks
 
 on:
   push:
@@ -7,15 +7,24 @@ on:
     branches: [master]
 
 jobs:
-  biome:
+  ci:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [20, 22, 24]
     steps:
       - uses: actions/checkout@v4
       - uses: pnpm/action-setup@v4
       - uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: ${{ matrix.node-version }}
           cache: 'pnpm'
       - run: pnpm install
-      - name: Run Biome lint
+      - name: Lint
         run: pnpm lint
+      - name: Format check
+        run: pnpm format
+      - name: Type check
+        run: pnpm build
+      - name: Test
+        run: pnpm test
