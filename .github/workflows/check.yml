@@ -1,4 +1,4 @@
-name: Prettier Check
+name: Format Check
 
 on:
   push:
@@ -7,7 +7,7 @@ on:
     branches: [master]
 
 jobs:
-  prettier:
+  biome:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -18,4 +18,4 @@ jobs:
           cache: 'pnpm'
       - run: pnpm install
       - name: Check formatting
-        run: pnpm pretty:check
+        run: pnpm format

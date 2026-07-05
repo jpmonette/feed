@@ -7,7 +7,7 @@ on:
     branches: [master]
 
 jobs:
-  eslint:
+  biome:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -17,5 +17,5 @@ jobs:
           node-version: 20
           cache: 'pnpm'
       - run: pnpm install
-      - name: Run ESLint
+      - name: Run Biome lint
         run: pnpm lint
