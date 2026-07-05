@@ -4,15 +4,12 @@ import type { Feed } from "./feed";
 import type { Author, Category, Enclosure, Extension, Item } from "./typings";
 import { sanitize } from "./utils";
 
-/**
- * Returns a RSS 2.0 feed
- */
 export default (ins: Feed) => {
   const { options, extensions } = ins;
   let needsAtomNamespace = false;
   let needsContentNamespace = false;
 
-  const base: any = {
+  const base: convert.ElementCompact = {
     _declaration: { _attributes: { version: "1.0", encoding: "utf-8" } },
     _instruction: {},
     rss: {
@@ -22,7 +19,7 @@ export default (ins: Feed) => {
         link: { _text: sanitize(options.link) },
         description: { _text: options.description ?? "" },
         lastBuildDate: { _text: options.updated ? options.updated.toUTCString() : new Date().toUTCString() },
-        docs: { _text: options.docs ? options.docs : "https://validator.w3.org/feed/docs/rss2.html" },
+        docs: { _text: options.docs ?? "https://validator.w3.org/feed/docs/rss2.html" },
         ...(options.generator === false ? {} : { generator: { _text: options.generator ?? generator } }),
       },
     },
@@ -41,26 +38,14 @@ export default (ins: Feed) => {
     delete base._instruction;
   }
 
-  /**
-   * Channel language
-   * https://validator.w3.org/feed/docs/rss2.html#ltlanguagegtSubelementOfLtchannelgt
-   */
   if (options.language) {
     base.rss.channel.language = { _text: options.language };
   }
 
-  /**
-   * Channel ttl
-   * https://validator.w3.org/feed/docs/rss2.html#ltttlgtSubelementOfLtchannelgt
-   */
   if (options.ttl) {
     base.rss.channel.ttl = { _text: options.ttl };
   }
 
-  /**
-   * Channel Image
-   * https://validator.w3.org/feed/docs/rss2.html#ltimagegtSubelementOfLtchannelgt
-   */
   if (options.image) {
     base.rss.channel.image = {
       title: { _text: options.title },
@@ -69,18 +54,10 @@ export default (ins: Feed) => {
     };
   }
 
-  /**
-   * Channel Copyright
-   * https://validator.w3.org/feed/docs/rss2.html#optionalChannelElements
-   */
   if (options.copyright) {
     base.rss.channel.copyright = { _text: options.copyright };
   }
 
-  /**
-   * Channel Categories
-   * https://validator.w3.org/feed/docs/rss2.html#comments
-   */
   ins.categories.forEach((category) => {
     if (!base.rss.channel.category) {
       base.rss.channel.category = [];
@@ -88,11 +65,7 @@ export default (ins: Feed) => {
     base.rss.channel.category.push({ _text: category });
   });
 
-  /**
-   * Feed URL
-   * http://validator.w3.org/feed/docs/warning/MissingAtomSelfLink.html
-   */
-  const atomLink = options.feed ?? (options.feedLinks && options.feedLinks.rss);
+  const atomLink = options.feed ?? options.feedLinks?.rss;
   if (atomLink) {
     needsAtomNamespace = true;
     if (!base.rss.channel["atom:link"]) {
@@ -107,10 +80,6 @@ export default (ins: Feed) => {
     });
   }
 
-  /**
-   * Hub for PubSubHubbub
-   * https://code.google.com/p/pubsubhubbub/
-   */
   if (options.hub) {
     needsAtomNamespace = true;
     if (!base.rss.channel["atom:link"]) {
@@ -124,14 +93,10 @@ export default (ins: Feed) => {
     });
   }
 
-  /**
-   * Channel Categories
-   * https://validator.w3.org/feed/docs/rss2.html#hrelementsOfLtitemgt
-   */
   base.rss.channel.item = [];
 
   ins.items.forEach((entry: Item) => {
-    const item: any = {};
+    const item: convert.ElementCompact = {};
 
     if (entry.title) {
       item.title = { _cdata: entry.title };
@@ -165,24 +130,18 @@ export default (ins: Feed) => {
       needsContentNamespace = true;
       item["content:encoded"] = { _cdata: entry.content };
     }
-    /**
-     * Item Author
-     * https://validator.w3.org/feed/docs/rss2.html#ltauthorgtSubelementOfLtitemgt
-     */
+
     if (Array.isArray(entry.author)) {
       item.author = [];
       entry.author.forEach((author: Author) => {
         if (author.email && author.name) {
-          item.author.push({ _text: author.email + " (" + author.name + ")" });
+          item.author.push({ _text: `${author.email} (${author.name})` });
         } else if (author.name) {
           item.author.push({ _text: author.name });
         }
       });
     }
-    /**
-     * Item Category
-     * https://validator.w3.org/feed/docs/rss2.html#ltcategorygtSubelementOfLtitemgt
-     */
+
     if (Array.isArray(entry.category)) {
       item.category = [];
       entry.category.forEach((category: Category) => {
@@ -190,10 +149,6 @@ export default (ins: Feed) => {
       });
     }
 
-    /**
-     * Item Enclosure
-     * https://validator.w3.org/feed/docs/rss2.html#ltenclosuregtSubelementOfLtitemgt
-     */
     if (entry.enclosure) {
       item.enclosure = formatEnclosure(entry.enclosure);
     }
@@ -203,9 +158,9 @@ export default (ins: Feed) => {
     }
 
     if (entry.audio) {
-      let duration = undefined;
-      if (options.podcast && typeof entry.audio !== "string" && entry.audio.duration) {
-        duration = entry.audio.duration;
+      const duration =
+        options.podcast && typeof entry.audio !== "string" && entry.audio.duration ? entry.audio.duration : undefined;
+      if (duration) {
         entry.audio.duration = undefined;
       }
       item.enclosure = formatEnclosure(entry.audio, "audio");
@@ -233,7 +188,6 @@ export default (ins: Feed) => {
     base.rss._attributes["xmlns:content"] = "http://purl.org/rss/1.0/modules/content/";
   }
 
-  // rss2() support `extensions`
   if (extensions)
     extensions.forEach((e: Extension) => {
       base.rss.channel[e.name] = e.objects;
@@ -243,10 +197,6 @@ export default (ins: Feed) => {
     base.rss._attributes["xmlns:atom"] = "http://www.w3.org/2005/Atom";
   }
 
-  /**
-   * Podcast extensions
-   * https://support.google.com/podcast-publishers/answer/9889544?hl=en
-   */
   if (options.podcast) {
     base.rss._attributes["xmlns:googleplay"] = "http://www.google.com/schemas/play-podcasts/1.0";
     base.rss._attributes["xmlns:itunes"] = "http://www.itunes.com/dtds/podcast-1.0.dtd";
@@ -274,11 +224,6 @@ export default (ins: Feed) => {
   return convert.js2xml(base, { compact: true, ignoreComment: true, spaces: 4 });
 };
 
-/**
- * Returns a formated enclosure
- * @param enclosure
- * @param mimeCategory
- */
 const formatEnclosure = (enclosure: string | Enclosure, mimeCategory = "image") => {
   if (typeof enclosure === "string") {
     const sanitizedUrl = sanitize(enclosure);
@@ -291,10 +236,6 @@ const formatEnclosure = (enclosure: string | Enclosure, mimeCategory = "image") 
   return { _attributes: { length: 0, type: `${mimeCategory}/${type}`, ...enclosure, url: sanitizedUrl } };
 };
 
-/**
- * Returns a formated category
- * @param category
- */
 const formatCategory = (category: Category) => {
   const { name, domain } = category;
   return {
@@ -305,15 +246,11 @@ const formatCategory = (category: Category) => {
   };
 };
 
-/**
- * Returns a formated duration from seconds
- * @param duration
- */
 const formatDuration = (duration: number) => {
   const seconds = duration % 60;
   const totalMinutes = Math.floor(duration / 60);
   const minutes = totalMinutes % 60;
   const hours = Math.floor(totalMinutes / 60);
-  const notHours = ("0" + minutes).slice(-2) + ":" + ("0" + seconds).slice(-2);
-  return hours > 0 ? hours + ":" + notHours : notHours;
+  const notHours = `${String(minutes).padStart(2, "0")}:${String(seconds).padStart(2, "0")}`;
+  return hours > 0 ? `${hours}:${notHours}` : notHours;
 };

@@ -4,21 +4,17 @@ import type { Feed } from "./feed";
 import type { Author, Category, Enclosure, Item } from "./typings";
 import { sanitize } from "./utils";
 
-/**
- * Returns an Atom feed
- * @param ins
- */
 export default (ins: Feed) => {
   const { options } = ins;
 
-  const base: any = {
+  const base: convert.ElementCompact = {
     _declaration: { _attributes: { version: "1.0", encoding: "utf-8" } },
     _instruction: {},
     feed: {
       _attributes: { xmlns: "http://www.w3.org/2005/Atom" },
       id: options.id,
       title: options.title,
-      updated: options.updated ? options.updated.toISOString() : new Date().toISOString(),
+      updated: options.updated?.toISOString() ?? new Date().toISOString(),
       ...(options.generator === false ? {} : { generator: sanitize(options.generator ?? generator) }),
     },
   };
@@ -42,26 +38,19 @@ export default (ins: Feed) => {
 
   base.feed.link = [];
 
-  // link (rel="alternate")
   if (options.link) {
     base.feed.link.push({ _attributes: { rel: "alternate", href: sanitize(options.link) } });
   }
 
-  // link (rel="self")
-  const atomLink = options.feed ?? (options.feedLinks && options.feedLinks.atom);
+  const atomLink = options.feed ?? options.feedLinks?.atom;
 
   if (atomLink) {
     base.feed.link.push({ _attributes: { rel: "self", href: sanitize(atomLink) } });
   }
 
-  // link (rel="hub")
   if (options.hub) {
     base.feed.link.push({ _attributes: { rel: "hub", href: sanitize(options.hub) } });
   }
-
-  /**************************************************************************
-   * "feed" node: optional elements
-   *************************************************************************/
 
   if (options.description) {
     base.feed.subtitle = options.description;
@@ -91,18 +80,9 @@ export default (ins: Feed) => {
     base.feed.contributor.push(formatAuthor(contributor));
   });
 
-  // icon
-
   base.feed.entry = [];
 
-  /**************************************************************************
-   * "entry" nodes
-   *************************************************************************/
   ins.items.forEach((item: Item) => {
-    //
-    // entry: required elements
-    //
-
     const entry: convert.ElementCompact = {
       title: { _attributes: { type: "html" }, _cdata: item.title },
       id: sanitize(item.id ?? item.link),
@@ -110,9 +90,6 @@ export default (ins: Feed) => {
       updated: item.date.toISOString(),
     };
 
-    //
-    // entry: recommended elements
-    //
     if (item.description) {
       entry.summary = {
         _attributes: { type: "html" },
@@ -127,7 +104,6 @@ export default (ins: Feed) => {
       };
     }
 
-    // entry author(s)
     if (Array.isArray(item.author)) {
       entry.author = [];
 
@@ -136,15 +112,6 @@ export default (ins: Feed) => {
       });
     }
 
-    // content
-
-    // link - relative link to article
-
-    //
-    // entry: optional elements
-    //
-
-    // category
     if (Array.isArray(item.category)) {
       entry.category = [];
 
@@ -153,10 +120,6 @@ export default (ins: Feed) => {
       });
     }
 
-    /**
-     * Item Enclosure
-     * https://validator.w3.org/feed/docs/atom.html#link
-     */
     if (item.enclosure) {
       entry.link.push(formatEnclosure(item.enclosure));
     }
@@ -173,7 +136,6 @@ export default (ins: Feed) => {
       entry.link.push(formatEnclosure(item.video, "video"));
     }
 
-    // contributor
     if (item.contributor && Array.isArray(item.contributor)) {
       entry.contributor = [];
 
@@ -182,14 +144,10 @@ export default (ins: Feed) => {
       });
     }
 
-    // published
     if (item.published) {
       entry.published = item.published.toISOString();
     }
 
-    // source
-
-    // rights
     if (item.copyright) {
       entry.rights = item.copyright;
     }
@@ -200,10 +158,6 @@ export default (ins: Feed) => {
   return convert.js2xml(base, { compact: true, ignoreComment: true, spaces: 4 });
 };
 
-/**
- * Returns a formatted author
- * @param author
- */
 const formatAuthor = (author: Author) => {
   const { name, email, link } = author;
 
@@ -219,11 +173,6 @@ const formatAuthor = (author: Author) => {
   return out;
 };
 
-/**
- * Returns a formated enclosure
- * @param enclosure
- * @param mimeCategory
- */
 const formatEnclosure = (enclosure: string | Enclosure, mimeCategory = "image") => {
   if (typeof enclosure === "string") {
     const sanitizedUrl = sanitize(enclosure);
@@ -244,10 +193,6 @@ const formatEnclosure = (enclosure: string | Enclosure, mimeCategory = "image") 
   };
 };
 
-/**
- * Returns a formatted category
- * @param category
- */
 const formatCategory = (category: Category) => {
   const { name, scheme, term } = category;
 
