@@ -23,7 +23,7 @@
   "scripts": {
     "build": "tsdown",
     "prepublish": "pnpm build",
-    "test": "jest --silent",
+    "test": "vitest run",
     "lint": "eslint src --ext .ts",
     "lint:fix": "eslint src --ext .ts --fix",
     "pretty:check": "prettier src/* --check",
@@ -42,7 +42,6 @@
     "xml-js": "^1.6.11"
   },
   "devDependencies": {
-    "@types/jest": "^27.5.1",
     "@typescript-eslint/eslint-plugin": "^5.26.0",
     "@typescript-eslint/parser": "^5.26.0",
     "codeclimate-test-reporter": "^0.5.1",
@@ -52,12 +51,11 @@
     "eslint-plugin-import": "^2.25.2",
     "eslint-plugin-n": "^15.0.0",
     "eslint-plugin-promise": "^6.0.0",
-    "jest": "^28.1.0",
     "prettier": "^2.8.8",
     "source-map-loader": "^3.0.1",
-    "ts-jest": "^29.3.4",
     "tsdown": "^0.11.2",
-    "typescript": "^5.8.3"
+    "typescript": "^5.8.3",
+    "vitest": "^4.1.9"
   },
   "engines": {
     "node": ">=20",
