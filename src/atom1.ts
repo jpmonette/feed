@@ -19,7 +19,7 @@ export default (ins: Feed) => {
       id: options.id,
       title: options.title,
       updated: options.updated ? options.updated.toISOString() : new Date().toISOString(),
-      generator: sanitize(options.generator ?? generator),
+      ...(options.generator === false ? {} : { generator: sanitize(options.generator ?? generator) }),
     },
   };
 
