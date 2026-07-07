@@ -9,6 +9,16 @@ export interface Item {
   category?: Category[];
 
   guid?: string;
+  /**
+   * Explicitly control the `isPermaLink` attribute on the RSS 2.0 `<guid>` element.
+   *
+   * If omitted, the existing inference is used: `false` when `guid` or `id`
+   * is set, `true` when only `link` is set. Pass `true` or `false` here to
+   * override that inference, e.g. when `id`/`guid` happens to be a real,
+   * permanent URL (`true`) or when `link` is a permanent URL but `id`/`guid`
+   * is an opaque, non-URL identifier that should stay `false`.
+   */
+  isPermaLink?: boolean;
 
   image?: string | Enclosure;
   audio?: string | Enclosure;
