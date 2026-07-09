@@ -2,14 +2,42 @@ import type { Feed } from "./feed";
 import type { Category, Extension, Item } from "./typings";
 import { toArray } from "./utils";
 
-/**
- * Returns a JSON feed
- * @param ins
- */
+interface JsonFeedAuthor {
+  name?: string;
+  url?: string;
+  avatar?: string;
+}
+
+interface JsonFeedItem {
+  id: string;
+  content_html?: string;
+  url?: string;
+  title?: string;
+  summary?: string;
+  image?: string;
+  date_modified?: string;
+  date_published?: string;
+  author?: JsonFeedAuthor;
+  tags?: string[];
+  [key: string]: unknown;
+}
+
+interface JsonFeed {
+  version: string;
+  title: string;
+  home_page_url?: string;
+  feed_url?: string;
+  description?: string;
+  icon?: string;
+  author?: JsonFeedAuthor;
+  items: JsonFeedItem[];
+  [key: string]: unknown;
+}
+
 export default (ins: Feed) => {
   const { options, items, extensions } = ins;
 
-  const feed: any = {
+  const feed: JsonFeed = {
     version: "https://jsonfeed.org/version/1.1",
     title: options.title,
   };
@@ -18,7 +46,7 @@ export default (ins: Feed) => {
     feed.home_page_url = options.link;
   }
 
-  if (options.feedLinks && options.feedLinks.json) {
+  if (options.feedLinks?.json) {
     feed.feed_url = options.feedLinks.json;
   }
 
@@ -47,10 +75,8 @@ export default (ins: Feed) => {
   });
 
   feed.items = items.map((item: Item) => {
-    const feedItem: any = {
+    const feedItem: JsonFeedItem = {
       id: item.id,
-      // json_feed distinguishes between html and text content
-      // but since we only take a single type, we'll assume HTML
       content_html: item.content ?? item.description,
     };
     if (item.link) {
@@ -64,7 +90,7 @@ export default (ins: Feed) => {
     }
 
     if (item.image) {
-      feedItem.image = item.image;
+      feedItem.image = typeof item.image === "string" ? item.image : item.image.url;
     }
 
     if (item.date) {

@@ -51,7 +51,11 @@ export interface FeedOptions {
   id?: string;
   title: string;
   updated?: Date;
-  generator?: string;
+  /**
+   * Feed generator. Defaults to the library's URL.
+   * Pass `false` to omit the `<generator>` element entirely.
+   */
+  generator?: string | false;
   language?: string;
   ttl?: number;
   stylesheet?: string;

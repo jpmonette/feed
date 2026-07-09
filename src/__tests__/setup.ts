@@ -114,8 +114,4 @@ export const createSampleFeed = ({
   return feed;
 };
 
-test.skip("skip", () => {
-  // Placeholder to ensure Jest recognizes this file
-});
-
 export const sampleFeed = createSampleFeed();

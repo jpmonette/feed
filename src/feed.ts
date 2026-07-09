@@ -5,9 +5,6 @@ import type { Author, Category, Enclosure, Extension, FeedOptions, Item } from "
 
 export type { Author, Category, Enclosure, Extension, FeedOptions, Item };
 
-/**
- * Class used to generate Feeds
- */
 export class Feed {
   options: FeedOptions;
   items: Item[] = [];
@@ -19,42 +16,31 @@ export class Feed {
     this.options = options;
   }
 
-  /**
-   * Add a feed item
-   * @param item
-   */
-  public addItem = (item: Item) => this.items.push(item);
+  public addItem(item: Item): void {
+    this.items.push(item);
+  }
 
-  /**
-   * Add a category
-   * @param category
-   */
-  public addCategory = (category: string) => this.categories.push(category);
+  public addCategory(category: string): void {
+    this.categories.push(category);
+  }
 
-  /**
-   * Add a contributor
-   * @param contributor
-   */
-  public addContributor = (contributor: Author) => this.contributors.push(contributor);
+  public addContributor(contributor: Author): void {
+    this.contributors.push(contributor);
+  }
 
-  /**
-   * Adds an extension
-   * @param extension
-   */
-  public addExtension = (extension: Extension) => this.extensions.push(extension);
+  public addExtension(extension: Extension): void {
+    this.extensions.push(extension);
+  }
 
-  /**
-   * Returns a Atom 1.0 feed
-   */
-  public atom1 = (): string => renderAtom(this);
+  public atom1(): string {
+    return renderAtom(this);
+  }
 
-  /**
-   * Returns a RSS 2.0 feed
-   */
-  public rss2 = (): string => renderRSS(this);
+  public rss2(): string {
+    return renderRSS(this);
+  }
 
-  /**
-   * Returns a JSON1 feed
-   */
-  public json1 = (): string => renderJSON(this);
+  public json1(): string {
+    return renderJSON(this);
+  }
 }
