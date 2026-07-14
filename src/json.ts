@@ -92,8 +92,7 @@ export default (ins: Feed) => {
     }
 
     if (item.image) {
-      feedItem.image =
-        typeof item.image === "string" ? item.image : sanitizeUrl(item.image.url);
+      feedItem.image = typeof item.image === "string" ? item.image : sanitizeUrl(item.image.url);
     }
 
     if (item.date) {

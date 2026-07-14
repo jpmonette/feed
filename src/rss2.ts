@@ -111,10 +111,7 @@ export default (ins: Feed) => {
     } else if (entry.id) {
       item.guid = { _text: entry.id, _attributes: { isPermaLink: false } };
     } else if (entry.link) {
-      item.guid = {
-        _text: sanitizeUrl(entry.link),
-        _attributes: { isPermaLink: true },
-      };
+      item.guid = { _text: sanitizeUrl(entry.link), _attributes: { isPermaLink: true } };
     }
 
     if (entry.date) {
