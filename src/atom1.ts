@@ -2,9 +2,7 @@ import * as convert from "xml-js";
 import { generator } from "./config";
 import type { Feed } from "./feed";
 import type { Author, Category, Enclosure, Item } from "./typings";
-import { sanitize, sanitizeUrl } from "./utils";
-
-const validateLanguageCode = (code: string) => /^[a-z]{2}(-[a-z]{2})?$/.test(code);
+import { sanitize, sanitizeUrl, validateLanguageCode } from "./utils";
 
 export default (ins: Feed) => {
   const { options } = ins;

@@ -1,6 +1,6 @@
 import type { Feed } from "./feed";
 import type { Category, Extension, Item } from "./typings";
-import { toArray } from "./utils";
+import { validateLanguageCode } from "./utils";
 
 interface JsonFeedAuthor {
   name?: string;
@@ -17,8 +17,9 @@ interface JsonFeedItem {
   image?: string;
   date_modified?: string;
   date_published?: string;
-  author?: JsonFeedAuthor;
+  authors?: JsonFeedAuthor[];
   tags?: string[];
+  language?: string;
   [key: string]: unknown;
 }
 
@@ -29,8 +30,9 @@ interface JsonFeed {
   feed_url?: string;
   description?: string;
   icon?: string;
-  author?: JsonFeedAuthor;
+  authors?: JsonFeedAuthor[];
   items: JsonFeedItem[];
+  language?: string;
   [key: string]: unknown;
 }
 
@@ -40,6 +42,7 @@ export default (ins: Feed) => {
   const feed: JsonFeed = {
     version: "https://jsonfeed.org/version/1.1",
     title: options.title,
+    items: [],
   };
 
   if (options.link) {
@@ -58,11 +61,11 @@ export default (ins: Feed) => {
     feed.icon = options.image;
   }
 
-  if (options.author) {
-    feed.authors = toArray(options.author).map((author) => ({
-      name: author.name,
-      url: author.link,
-      avatar: author.avatar,
+  if (options.authors || options.author) {
+    feed.authors = (options.authors ?? [options.author]).map((author) => ({
+      name: author?.name,
+      url: author?.link,
+      avatar: author?.avatar,
     }));
   }
 
@@ -74,9 +77,9 @@ export default (ins: Feed) => {
     feed[e.name] = e.objects;
   });
 
-  feed.items = items.map((item: Item) => {
+  feed.items = items.map((item: Item, index: number) => {
     const feedItem: JsonFeedItem = {
-      id: item.id,
+      id: item.id ?? index.toString(),
       content_html: item.content ?? item.description,
     };
     if (item.link) {
@@ -99,7 +102,7 @@ export default (ins: Feed) => {
     if (item.published) {
       feedItem.date_published = item.published.toISOString();
     }
-    if (item.language) {
+    if (item.language && validateLanguageCode(item.language)) {
       feedItem.language = item.language;
     }
 
@@ -115,7 +118,7 @@ export default (ins: Feed) => {
       feedItem.tags = [];
       item.category.forEach((category: Category) => {
         if (category.name) {
-          feedItem.tags.push(category.name);
+          feedItem.tags?.push(category.name);
         }
       });
     }
