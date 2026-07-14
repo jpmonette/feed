@@ -9,10 +9,10 @@ export function sanitize(text: string | undefined): string | undefined {
   return escapeAmp(text);
 }
 
-export function sanitizeUrl(url: string): string;
-export function sanitizeUrl(url: string | undefined): string | undefined;
-export function sanitizeUrl(url: string | undefined): string | undefined {
+export function sanitizeUrl(url: string | URL, xml?: boolean): string;
+export function sanitizeUrl(url: string | URL | undefined, xml?: boolean): string | undefined;
+export function sanitizeUrl(url: string | URL | undefined, xml = true): string | undefined {
   if (url === undefined) return undefined;
-  const parsed = new URL(url);
-  return escapeAmp(parsed.toString());
+  const parsed = typeof url === "string" ? new URL(url) : url;
+  return xml ? escapeAmp(parsed.toString()) : parsed.toString();
 }
