@@ -69,7 +69,7 @@ export default (ins: Feed) => {
     }));
   }
 
-  if (options.language) {
+  if (options.language && validateLanguageCode(options.language)) {
     feed.language = options.language;
   }
 
