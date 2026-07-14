@@ -4,6 +4,8 @@ import type { Feed } from "./feed";
 import type { Author, Category, Enclosure, Item } from "./typings";
 import { sanitize, sanitizeUrl } from "./utils";
 
+const validateLanguageCode = (code: string) => /^[a-z]{2}(-[a-z]{2})?$/.test(code);
+
 export default (ins: Feed) => {
   const { options } = ins;
 
@@ -68,6 +70,10 @@ export default (ins: Feed) => {
     base.feed.rights = options.copyright;
   }
 
+  if (options.language && validateLanguageCode(options.language)) {
+    base.feed._attributes["xml:lang"] = options.language;
+  }
+
   base.feed.category = [];
 
   ins.categories.forEach((category: string) => {
@@ -102,6 +108,11 @@ export default (ins: Feed) => {
         _attributes: { type: "html" },
         _cdata: item.content,
       };
+    }
+
+    if (item.language && validateLanguageCode(item.language)) {
+      entry._attributes ??= {};
+      entry._attributes["xml:lang"] = item.language;
     }
 
     if (Array.isArray(item.author)) {

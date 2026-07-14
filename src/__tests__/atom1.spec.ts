@@ -88,4 +88,132 @@ describe("atom 1.0", () => {
     });
     expect(feed.atom1()).not.toContain("<generator>");
   });
+
+  it("should include xml:lang attribute for items with a language defined", () => {
+    const feed = new Feed({
+      language: "de",
+      title: "Feed Title",
+      id: "https://example.com/",
+      link: "https://example.com/",
+      updated,
+    });
+
+    feed.addItem({
+      title: "Hallo Welt",
+      content: "Ich übernehme die Sprache meines übergeordneten Tags.",
+      link: "http://example.org/2013/12/14",
+      date: updated,
+    });
+    feed.addItem({
+      title: "Hello World",
+      content: "My language is set to English",
+      link: "http://example.org/2013/12/15",
+      date: updated,
+      language: "en",
+    });
+    feed.addItem({
+      title: "Bonjour, monde",
+      content: "Ma langue est réglée sur le français.",
+      link: "http://example.org/2013/12/15",
+      date: updated,
+      language: "fr",
+    });
+
+    expect(feed.atom1()).toMatchSnapshot();
+  });
+
+  describe("should ignore invalid language", () => {
+    it("on items when feed has a language set", () => {
+      const feed = new Feed({
+        language: "en",
+        title: "Feed Title",
+        id: "https://example.com/",
+        link: "https://example.com/",
+        updated,
+      });
+
+      feed.addItem({
+        title: "Hello World",
+        content: "Lorem Foobar",
+        link: "http://example.org/2013/12/14",
+        language: "foo",
+        date: updated,
+      });
+      feed.addItem({
+        title: "Hello World",
+        content: "Lorem Foobar",
+        link: "http://example.org/2013/12/14",
+        language: "",
+        date: updated,
+      });
+      feed.addItem({
+        title: "Hello World",
+        content: "Lorem Foobar",
+        link: "http://example.org/2013/12/14",
+        language: "  ",
+        date: updated,
+      });
+
+      expect(feed.atom1()).toMatchSnapshot();
+    });
+
+    it("on items when feed has no language set", () => {
+      const feed = new Feed({
+        title: "Feed Title",
+        id: "https://example.com/",
+        link: "https://example.com/",
+        updated,
+      });
+
+      feed.addItem({
+        title: "Hello World",
+        content: "Lorem Foobar",
+        link: "http://example.org/2013/12/14",
+        language: "foo",
+        date: updated,
+      });
+      feed.addItem({
+        title: "Hello World",
+        content: "Lorem Foobar",
+        link: "http://example.org/2013/12/14",
+        language: "",
+        date: updated,
+      });
+      feed.addItem({
+        title: "Hello World",
+        content: "Lorem Foobar",
+        link: "http://example.org/2013/12/14",
+        language: "  ",
+        date: updated,
+      });
+
+      expect(feed.atom1()).toMatchSnapshot();
+    });
+
+    it("on feed", () => {
+      const feed = new Feed({
+        language: "nope",
+        title: "Feed Title",
+        id: "https://example.com/",
+        link: "https://example.com/",
+        updated,
+      });
+
+      feed.addItem({
+        title: "Hello World",
+        content: "Lorem Foobar",
+        link: "http://example.org/2013/12/14",
+        language: "en",
+        date: updated,
+      });
+      feed.addItem({
+        title: "Hello World",
+        content: "Lorem Foobar",
+        link: "http://example.org/2013/12/14",
+        date: updated,
+      });
+
+      expect(feed.atom1()).toMatchSnapshot();
+    });
+  });
 });
