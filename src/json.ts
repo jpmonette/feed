@@ -37,18 +37,17 @@ interface JsonFeed {
 export default (ins: Feed) => {
   const { options, items, extensions } = ins;
 
-  const feed: JsonFeed = {
+  const feed: Partial<JsonFeed> = {
     version: "https://jsonfeed.org/version/1",
     title: options.title,
-    items: []
   };
 
   if (options.link) {
-    feed.home_page_url = sanitizeUrl(options.link);
+    feed.home_page_url = sanitizeUrl(options.link, false);
   }
 
   if (options.feedLinks?.json) {
-    feed.feed_url = sanitizeUrl(options.feedLinks.json);
+    feed.feed_url = sanitizeUrl(options.feedLinks.json, false);
   }
 
   if (options.description) {
@@ -56,7 +55,7 @@ export default (ins: Feed) => {
   }
 
   if (options.image) {
-    feed.icon = sanitizeUrl(options.image);
+    feed.icon = sanitizeUrl(options.image, false);
   }
 
   if (options.author) {
@@ -65,7 +64,7 @@ export default (ins: Feed) => {
       feed.author.name = options.author.name;
     }
     if (options.author.link) {
-      feed.author.url = sanitizeUrl(options.author.link);
+      feed.author.url = sanitizeUrl(options.author.link, false);
     }
     if (options.author.avatar) {
       feed.author.avatar = options.author.avatar;
@@ -78,11 +77,11 @@ export default (ins: Feed) => {
 
   feed.items = items.map((item: Item) => {
     const feedItem: JsonFeedItem = {
-      id: sanitize(item.id) ?? sanitizeUrl(item.link),
+      id: item.id ?? sanitizeUrl(item.link, false),
       content_html: item.content ?? item.description,
     };
     if (item.link) {
-      feedItem.url = sanitizeUrl(item.link);
+      feedItem.url = sanitizeUrl(item.link, false);
     }
     if (item.title) {
       feedItem.title = item.title;
@@ -92,7 +91,7 @@ export default (ins: Feed) => {
     }
 
     if (item.image) {
-      feedItem.image = typeof item.image === "string" ? item.image : sanitizeUrl(item.image.url);
+      feedItem.image = typeof item.image === "string" ? item.image : sanitizeUrl(item.image.url, false);
     }
 
     if (item.date) {
@@ -109,7 +108,7 @@ export default (ins: Feed) => {
         feedItem.author.name = author.name;
       }
       if (author?.link) {
-        feedItem.author.url = sanitizeUrl(author.link);
+        feedItem.author.url = sanitizeUrl(author.link, false);
       }
       if (author?.avatar) {
         feedItem.author.avatar = author.avatar;
