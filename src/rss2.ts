@@ -25,8 +25,11 @@ export default (ins: Feed) => {
     },
   };
 
-  if (options.author && Array.isArray(options.author)) {
-    options.author = options.author[0];
+  if (options.authors) {
+    // We don't render feed author by default anyway, but we want a fallback
+    // when `authors` is specified and `author` isn't
+    options.author = options.authors[0];
+    delete options.authors;
   }
 
   if (options.stylesheet) {

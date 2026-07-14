@@ -389,4 +389,18 @@ describe("rss 2.0", () => {
     });
     expect(feed.rss2()).not.toContain("<generator>");
   });
+
+  it("should use first feed author when multiple are specified", () => {
+    const feed = new Feed({
+      authors: [{ name: "John Doe", email: "john@doe.com" }, { name: "Alice Doe" }, { link: "http://bob.example.com" }],
+      // we only render feed author for podcasts
+      podcast: true,
+      title: "Feed Title",
+      id: "https://example.com/",
+      link: "https://example.com/",
+      updated,
+    });
+
+    expect(feed.rss2()).toMatchSnapshot();
+  });
 });

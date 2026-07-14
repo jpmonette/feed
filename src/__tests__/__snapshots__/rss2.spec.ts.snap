@@ -1005,3 +1005,23 @@ exports[`rss 2.0 > should sanitize enclosure url 1`] = `
     </channel>
 </rss>"
 `;
+
+exports[`rss 2.0 > should use first feed author when multiple are specified 1`] = `
+"<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0" xmlns:googleplay="http://www.google.com/schemas/play-podcasts/1.0" xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd">
+    <channel>
+        <title>Feed Title</title>
+        <link>https://example.com/</link>
+        <description></description>
+        <lastBuildDate>Sat, 13 Jul 2013 23:00:00 GMT</lastBuildDate>
+        <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
+        <generator>https://github.com/jpmonette/feed</generator>
+        <googleplay:owner>john@doe.com</googleplay:owner>
+        <itunes:owner>
+            <itunes:email>john@doe.com</itunes:email>
+        </itunes:owner>
+        <googleplay:author>John Doe</googleplay:author>
+        <itunes:author>John Doe</itunes:author>
+    </channel>
+</rss>"
+`;
