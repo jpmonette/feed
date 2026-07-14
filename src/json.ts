@@ -1,5 +1,6 @@
 import type { Feed } from "./feed";
 import type { Category, Extension, Item } from "./typings";
+import { sanitize, sanitizeUrl } from "./utils";
 
 interface JsonFeedAuthor {
   name?: string;
@@ -39,14 +40,15 @@ export default (ins: Feed) => {
   const feed: JsonFeed = {
     version: "https://jsonfeed.org/version/1",
     title: options.title,
+    items: []
   };
 
   if (options.link) {
-    feed.home_page_url = options.link;
+    feed.home_page_url = sanitizeUrl(options.link);
   }
 
   if (options.feedLinks?.json) {
-    feed.feed_url = options.feedLinks.json;
+    feed.feed_url = sanitizeUrl(options.feedLinks.json);
   }
 
   if (options.description) {
@@ -54,7 +56,7 @@ export default (ins: Feed) => {
   }
 
   if (options.image) {
-    feed.icon = options.image;
+    feed.icon = sanitizeUrl(options.image);
   }
 
   if (options.author) {
@@ -63,7 +65,7 @@ export default (ins: Feed) => {
       feed.author.name = options.author.name;
     }
     if (options.author.link) {
-      feed.author.url = options.author.link;
+      feed.author.url = sanitizeUrl(options.author.link);
     }
     if (options.author.avatar) {
       feed.author.avatar = options.author.avatar;
@@ -76,11 +78,11 @@ export default (ins: Feed) => {
 
   feed.items = items.map((item: Item) => {
     const feedItem: JsonFeedItem = {
-      id: item.id,
+      id: sanitize(item.id) ?? sanitizeUrl(item.link),
       content_html: item.content ?? item.description,
     };
     if (item.link) {
-      feedItem.url = item.link;
+      feedItem.url = sanitizeUrl(item.link);
     }
     if (item.title) {
       feedItem.title = item.title;
@@ -90,7 +92,8 @@ export default (ins: Feed) => {
     }
 
     if (item.image) {
-      feedItem.image = typeof item.image === "string" ? item.image : item.image.url;
+      feedItem.image =
+        typeof item.image === "string" ? item.image : sanitizeUrl(item.image.url);
     }
 
     if (item.date) {
@@ -100,24 +103,24 @@ export default (ins: Feed) => {
       feedItem.date_published = item.published.toISOString();
     }
 
-    if (item.author) {
-      const author = Array.isArray(item.author) ? item.author[0] : item.author;
+    if (Array.isArray(item.author)) {
+      const author = item.author[0];
       feedItem.author = {};
-      if (author.name) {
+      if (author?.name) {
         feedItem.author.name = author.name;
       }
-      if (author.link) {
-        feedItem.author.url = author.link;
+      if (author?.link) {
+        feedItem.author.url = sanitizeUrl(author.link);
       }
-      if (author.avatar) {
+      if (author?.avatar) {
         feedItem.author.avatar = author.avatar;
       }
     }
 
     if (Array.isArray(item.category)) {
-      feedItem.tags = [];
       item.category.forEach((category: Category) => {
         if (category.name) {
+          if (!feedItem.tags) feedItem.tags = [];
           feedItem.tags.push(category.name);
         }
       });

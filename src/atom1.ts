@@ -23,7 +23,7 @@ export default (ins: Feed) => {
     base._instruction = {
       "xml-stylesheet": {
         _attributes: {
-          href: options.stylesheet,
+          href: sanitizeUrl(options.stylesheet),
           type: "text/xsl",
         },
       },
@@ -57,11 +57,11 @@ export default (ins: Feed) => {
   }
 
   if (options.image) {
-    base.feed.logo = options.image;
+    base.feed.logo = sanitizeUrl(options.image);
   }
 
   if (options.favicon) {
-    base.feed.icon = options.favicon;
+    base.feed.icon = sanitizeUrl(options.favicon);
   }
 
   if (options.copyright) {
@@ -85,7 +85,7 @@ export default (ins: Feed) => {
   ins.items.forEach((item: Item) => {
     const entry: convert.ElementCompact = {
       title: { _attributes: { type: "html" }, _cdata: item.title },
-      id: sanitizeUrl(item.id ?? item.link),
+      id: sanitize(item.id) ?? sanitizeUrl(item.link),
       link: [{ _attributes: { href: sanitizeUrl(item.link) } }],
       updated: item.date.toISOString(),
     };
@@ -105,17 +105,15 @@ export default (ins: Feed) => {
     }
 
     if (Array.isArray(item.author)) {
-      entry.author = [];
-
       item.author.forEach((author: Author) => {
+        if (!entry.author) entry.author = [];
         entry.author.push(formatAuthor(author));
       });
     }
 
     if (Array.isArray(item.category)) {
-      entry.category = [];
-
       item.category.forEach((category: Category) => {
+        if (!entry.category) entry.category = [];
         entry.category.push(formatCategory(category));
       });
     }
