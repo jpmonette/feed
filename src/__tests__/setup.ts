@@ -1,9 +1,15 @@
-import { Feed } from "../feed";
+import { Feed, type FeedOptions, type Item } from "../feed";
 
 export const updated = new Date("Sat, 13 Jul 2013 23:00:00 GMT");
 export const published = new Date("Sat, 10 Jul 2013 23:00:00 GMT");
 
-export const createSampleFeed = () => {
+export const createSampleFeed = ({
+  authors,
+  itemAuthors,
+}: {
+  authors?: FeedOptions["authors"];
+  itemAuthors?: Item["author"];
+} = {}) => {
   const feed = new Feed({
     title: "Feed Title",
     description: "This is my personnal feed!",
@@ -21,11 +27,13 @@ export const createSampleFeed = () => {
     hub: "wss://example.com/",
     updated, // optional, default = today
 
-    author: {
-      name: "John Doe",
-      email: "johndoe@example.com",
-      link: "https://example.com/johndoe?link=sanitized&value=2",
-    },
+    authors: authors ?? [
+      {
+        name: "John Doe",
+        email: "johndoe@example.com",
+        link: "https://example.com/johndoe?link=sanitized&value=2",
+      },
+    ],
   });
 
   feed.addCategory("Technology");
@@ -42,7 +50,7 @@ export const createSampleFeed = () => {
     link: "https://example.com/hello-world?link=sanitized&value=2",
     description: "This is an article about Hello World.",
     content: "Content of my item",
-    author: [
+    author: itemAuthors ?? [
       {
         name: "Jane Doe",
         email: "janedoe@example.com",

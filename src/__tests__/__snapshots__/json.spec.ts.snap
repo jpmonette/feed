@@ -2,20 +2,8 @@
 
 exports[`json 1 > should generate a valid feed 1`] = `
 "{
-    "version": "https://jsonfeed.org/version/1",
+    "version": "https://jsonfeed.org/version/1.1",
     "title": "Feed Title",
-    "home_page_url": "http://example.com/?link=sanitized&value=3",
-    "feed_url": "http://example.com/sampleFeed.json?link=sanitized&value=5",
-    "description": "This is my personnal feed!",
-    "icon": "http://example.com/image.png?link=sanitized&value=6",
-    "author": {
-        "name": "John Doe",
-        "url": "https://example.com/johndoe?link=sanitized&value=2"
-    },
-    "_example_extension": {
-        "about": "just an extension example",
-        "dummy": "example"
-    },
     "items": [
         {
             "id": "https://example.com/hello-world?id=this&that=true",
@@ -26,10 +14,19 @@ exports[`json 1 > should generate a valid feed 1`] = `
             "image": "https://example.com/hello-world.jpg",
             "date_modified": "2013-07-13T23:00:00.000Z",
             "date_published": "2013-07-10T23:00:00.000Z",
-            "author": {
-                "name": "Jane Doe",
-                "url": "https://example.com/janedoe?link=sanitized&value=2"
-            },
+            "authors": [
+                {
+                    "name": "Jane Doe",
+                    "url": "https://example.com/janedoe?link=sanitized&value=2"
+                },
+                {
+                    "name": "Joe Smith",
+                    "url": "https://example.com/joesmith"
+                },
+                {
+                    "name": "Joe Smith, Name Only"
+                }
+            ],
             "tags": [
                 "Grateful Dead",
                 "MSFT"
@@ -43,6 +40,68 @@ exports[`json 1 > should generate a valid feed 1`] = `
                 "dummy1": "example"
             }
         }
-    ]
+    ],
+    "home_page_url": "http://example.com/?link=sanitized&value=3",
+    "feed_url": "http://example.com/sampleFeed.json?link=sanitized&value=5",
+    "description": "This is my personnal feed!",
+    "icon": "http://example.com/image.png?link=sanitized&value=6",
+    "authors": [
+        {
+            "name": "John Doe",
+            "url": "https://example.com/johndoe?link=sanitized&value=2"
+        }
+    ],
+    "language": "en",
+    "_example_extension": {
+        "about": "just an extension example",
+        "dummy": "example"
+    }
 }"
+`;
+
+exports[`json 1 > should handle multiple authors 1`] = `
+[
+  {
+    "name": "John",
+  },
+  {
+    "url": "https://example.org/clair",
+  },
+  {
+    "avatar": "https://example.org/eva.jpeg",
+  },
+]
+`;
+
+exports[`json 1 > should handle multiple authors for items 1`] = `
+[
+  {
+    "name": "Jane Doe",
+    "url": "https://example.com/janedoe?link=sanitized&value=2",
+  },
+  {
+    "name": "Joe Smith",
+    "url": "https://example.com/joesmith",
+  },
+  {
+    "name": "Joe Smith, Name Only",
+  },
+]
+`;
+
+exports[`json 1 > should handle single author of item via "authors" field 1`] = `
+[
+  {
+    "name": "John Doe",
+  },
+]
+`;
+
+exports[`json 1 > should handle single author via "authors" field 1`] = `
+[
+  {
+    "name": "John Doe",
+    "url": "https://example.com/johndoe?link=sanitized&value=2",
+  },
+]
 `;

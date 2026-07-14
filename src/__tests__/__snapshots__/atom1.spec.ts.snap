@@ -2,7 +2,7 @@
 
 exports[`atom 1.0 > should generate a valid feed 1`] = `
 "<?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom">
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
     <id>http://example.com/?link=sanitized&amp;value=4</id>
     <title>Feed Title</title>
     <updated>2013-07-13T23:00:00.000Z</updated>
@@ -66,7 +66,7 @@ exports[`atom 1.0 > should generate a valid feed 1`] = `
 
 exports[`atom 1.0 > should generate a valid feed with stylesheet 1`] = `
 "<?xml version="1.0" encoding="utf-8"?><?xml-stylesheet href="https://exmaple.com/rss.xsl" type="text/xsl"?>
-<feed xmlns="http://www.w3.org/2005/Atom">
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
     <id>http://example.com/</id>
     <title>Feed Title</title>
     <updated>2013-07-13T23:00:00.000Z</updated>
@@ -84,9 +84,152 @@ exports[`atom 1.0 > should generate a valid feed with stylesheet 1`] = `
 </feed>"
 `;
 
-exports[`atom 1.0 > should sanitize enclosure url 1`] = `
+exports[`atom 1.0 > should handle multiple feed authors 1`] = `
 "<?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
+    <id>https://example.com/</id>
+    <title>Feed Title</title>
+    <updated>2013-07-13T23:00:00.000Z</updated>
+    <generator>https://github.com/jpmonette/feed</generator>
+    <author>
+        <name>John Doe</name>
+        <email>john@doe.com</email>
+    </author>
+    <author>
+        <name>Alice Doe</name>
+    </author>
+    <author>
+        <name/>
+        <uri>http://bob.example.com/</uri>
+    </author>
+    <link rel="alternate" href="https://example.com/"/>
+</feed>"
+`;
+
+exports[`atom 1.0 > should ignore invalid language > on feed 1`] = `
+"<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <id>https://example.com/</id>
+    <title>Feed Title</title>
+    <updated>2013-07-13T23:00:00.000Z</updated>
+    <generator>https://github.com/jpmonette/feed</generator>
+    <link rel="alternate" href="https://example.com/"/>
+    <entry xml:lang="en">
+        <title type="html"><![CDATA[Hello World]]></title>
+        <id>http://example.org/2013/12/14</id>
+        <link href="http://example.org/2013/12/14"/>
+        <updated>2013-07-13T23:00:00.000Z</updated>
+        <content type="html"><![CDATA[Lorem Foobar]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Hello World]]></title>
+        <id>http://example.org/2013/12/14</id>
+        <link href="http://example.org/2013/12/14"/>
+        <updated>2013-07-13T23:00:00.000Z</updated>
+        <content type="html"><![CDATA[Lorem Foobar]]></content>
+    </entry>
+</feed>"
+`;
+
+exports[`atom 1.0 > should ignore invalid language > on items when feed has a language set 1`] = `
+"<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+    <id>https://example.com/</id>
+    <title>Feed Title</title>
+    <updated>2013-07-13T23:00:00.000Z</updated>
+    <generator>https://github.com/jpmonette/feed</generator>
+    <link rel="alternate" href="https://example.com/"/>
+    <entry>
+        <title type="html"><![CDATA[Hello World]]></title>
+        <id>http://example.org/2013/12/14</id>
+        <link href="http://example.org/2013/12/14"/>
+        <updated>2013-07-13T23:00:00.000Z</updated>
+        <content type="html"><![CDATA[Lorem Foobar]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Hello World]]></title>
+        <id>http://example.org/2013/12/14</id>
+        <link href="http://example.org/2013/12/14"/>
+        <updated>2013-07-13T23:00:00.000Z</updated>
+        <content type="html"><![CDATA[Lorem Foobar]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Hello World]]></title>
+        <id>http://example.org/2013/12/14</id>
+        <link href="http://example.org/2013/12/14"/>
+        <updated>2013-07-13T23:00:00.000Z</updated>
+        <content type="html"><![CDATA[Lorem Foobar]]></content>
+    </entry>
+</feed>"
+`;
+
+exports[`atom 1.0 > should ignore invalid language > on items when feed has no language set 1`] = `
+"<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <id>https://example.com/</id>
+    <title>Feed Title</title>
+    <updated>2013-07-13T23:00:00.000Z</updated>
+    <generator>https://github.com/jpmonette/feed</generator>
+    <link rel="alternate" href="https://example.com/"/>
+    <entry>
+        <title type="html"><![CDATA[Hello World]]></title>
+        <id>http://example.org/2013/12/14</id>
+        <link href="http://example.org/2013/12/14"/>
+        <updated>2013-07-13T23:00:00.000Z</updated>
+        <content type="html"><![CDATA[Lorem Foobar]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Hello World]]></title>
+        <id>http://example.org/2013/12/14</id>
+        <link href="http://example.org/2013/12/14"/>
+        <updated>2013-07-13T23:00:00.000Z</updated>
+        <content type="html"><![CDATA[Lorem Foobar]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Hello World]]></title>
+        <id>http://example.org/2013/12/14</id>
+        <link href="http://example.org/2013/12/14"/>
+        <updated>2013-07-13T23:00:00.000Z</updated>
+        <content type="html"><![CDATA[Lorem Foobar]]></content>
+    </entry>
+</feed>"
+`;
+
+exports[`atom 1.0 > should include xml:lang attribute for items with a language defined 1`] = `
+"<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="de">
+    <id>https://example.com/</id>
+    <title>Feed Title</title>
+    <updated>2013-07-13T23:00:00.000Z</updated>
+    <generator>https://github.com/jpmonette/feed</generator>
+    <link rel="alternate" href="https://example.com/"/>
+    <entry>
+        <title type="html"><![CDATA[Hallo Welt]]></title>
+        <id>http://example.org/2013/12/14</id>
+        <link href="http://example.org/2013/12/14"/>
+        <updated>2013-07-13T23:00:00.000Z</updated>
+        <content type="html"><![CDATA[Ich übernehme die Sprache meines übergeordneten Tags.]]></content>
+    </entry>
+    <entry xml:lang="en">
+        <title type="html"><![CDATA[Hello World]]></title>
+        <id>http://example.org/2013/12/15</id>
+        <link href="http://example.org/2013/12/15"/>
+        <updated>2013-07-13T23:00:00.000Z</updated>
+        <content type="html"><![CDATA[My language is set to English]]></content>
+    </entry>
+    <entry xml:lang="fr">
+        <title type="html"><![CDATA[Bonjour, monde]]></title>
+        <id>http://example.org/2013/12/15</id>
+        <link href="http://example.org/2013/12/15"/>
+        <updated>2013-07-13T23:00:00.000Z</updated>
+        <content type="html"><![CDATA[Ma langue est réglée sur le français.]]></content>
+    </entry>
+</feed>"
+`;
+
+exports[`atom 1.0 > should sanitize enclosure url 1`] = `
+"<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
     <id>http://example.com/?link=sanitized&amp;value=4</id>
     <title>Feed Title</title>
     <updated>2013-07-13T23:00:00.000Z</updated>

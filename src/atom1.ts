@@ -2,7 +2,7 @@ import * as convert from "xml-js";
 import { generator } from "./config";
 import type { Feed } from "./feed";
 import type { Author, Category, Enclosure, Item } from "./typings";
-import { sanitize, sanitizeUrl } from "./utils";
+import { sanitize, sanitizeUrl, validateLanguageCode } from "./utils";
 
 export default (ins: Feed) => {
   const { options } = ins;
@@ -36,6 +36,10 @@ export default (ins: Feed) => {
     base.feed.author = formatAuthor(options.author);
   }
 
+  if (options.authors) {
+    base.feed.author = options.authors.map(formatAuthor);
+  }
+
   base.feed.link = [];
 
   if (options.link) {
@@ -66,6 +70,10 @@ export default (ins: Feed) => {
 
   if (options.copyright) {
     base.feed.rights = options.copyright;
+  }
+
+  if (options.language && validateLanguageCode(options.language)) {
+    base.feed._attributes["xml:lang"] = options.language;
   }
 
   base.feed.category = [];
@@ -102,6 +110,11 @@ export default (ins: Feed) => {
         _attributes: { type: "html" },
         _cdata: item.content,
       };
+    }
+
+    if (item.language && validateLanguageCode(item.language)) {
+      entry._attributes ??= {};
+      entry._attributes["xml:lang"] = item.language;
     }
 
     if (Array.isArray(item.author)) {
