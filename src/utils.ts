@@ -16,7 +16,3 @@ export function sanitizeUrl(url: string | undefined): string | undefined {
   const parsed = new URL(url);
   return escapeAmp(parsed.toString());
 }
-
-export function toArray<T>(itemOrArray: T | T[]): T[] {
-  return Array.isArray(itemOrArray) ? itemOrArray : [itemOrArray];
-}

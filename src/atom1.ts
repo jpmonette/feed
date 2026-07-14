@@ -35,7 +35,11 @@ export default (ins: Feed) => {
   }
 
   if (options.author) {
-    base.feed.author = formatAuthor(Array.isArray(options.author) ? options.author[0] : options.author);
+    base.feed.author = formatAuthor(options.author);
+  }
+
+  if (options.authors) {
+    base.feed.author = options.authors.map(formatAuthor);
   }
 
   base.feed.link = [];

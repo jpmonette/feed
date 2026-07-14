@@ -216,4 +216,16 @@ describe("atom 1.0", () => {
       expect(feed.atom1()).toMatchSnapshot();
     });
   });
+
+  it("should handle multiple feed authors", () => {
+    const feed = new Feed({
+      authors: [{ name: "John Doe", email: "john@doe.com" }, { name: "Alice Doe" }, { link: "http://bob.example.com" }],
+      title: "Feed Title",
+      id: "https://example.com/",
+      link: "https://example.com/",
+      updated,
+    });
+
+    expect(feed.atom1()).toMatchSnapshot();
+  });
 });

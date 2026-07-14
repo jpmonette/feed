@@ -73,7 +73,12 @@ export interface FeedOptions {
   podcast?: boolean;
   category?: string;
 
-  author?: Author | Author[];
+  /**
+   * @deprecated Use `authors` instead. If both `author` and `authors` is
+   * specified, the latter will overwrite the former.
+   */
+  author?: Author;
+  authors?: Author[];
   link?: string;
   description?: string;
   image?: string;
