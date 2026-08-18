@@ -233,7 +233,12 @@ const formatEnclosure = (enclosure: string | Enclosure, mimeCategory = "image") 
 
   const sanitizedUrl = sanitizeUrl(enclosure.url);
   const type = new URL(sanitizedUrl).pathname.split(".").slice(-1)[0];
-  return { _attributes: { length: 0, type: `${mimeCategory}/${type}`, ...enclosure, url: sanitizedUrl } };
+  // RSS2 <enclosure> allows only the url/length/type attributes. title and duration are
+  // part of the Enclosure type for the Atom <link> path (title) and podcasts (duration),
+  // but are invalid on an RSS2 enclosure and fail the W3C feed validator, so strip them
+  // before spreading the remaining fields.
+  const { title, duration, ...rssEnclosure } = enclosure;
+  return { _attributes: { length: 0, type: `${mimeCategory}/${type}`, ...rssEnclosure, url: sanitizedUrl } };
 };
 
 const formatCategory = (category: Category) => {
