@@ -85,7 +85,7 @@ export default (ins: Feed) => {
   ins.items.forEach((item: Item) => {
     const entry: convert.ElementCompact = {
       title: { _attributes: { type: "html" }, _cdata: item.title },
-      id: sanitizeUrl(item.id ?? item.link),
+      id: sanitize(item.id ?? item.link),
       link: [{ _attributes: { href: sanitizeUrl(item.link) } }],
       updated: item.date.toISOString(),
     };
