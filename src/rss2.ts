@@ -107,11 +107,14 @@ export default (ins: Feed) => {
     }
 
     if (entry.guid) {
-      item.guid = { _text: entry.guid, _attributes: { isPermaLink: false } };
+      item.guid = { _text: entry.guid, _attributes: { isPermaLink: entry.isPermaLink ?? false } };
     } else if (entry.id) {
-      item.guid = { _text: entry.id, _attributes: { isPermaLink: false } };
+      item.guid = { _text: entry.id, _attributes: { isPermaLink: entry.isPermaLink ?? false } };
     } else if (entry.link) {
-      item.guid = { _text: sanitizeUrl(entry.link), _attributes: { isPermaLink: true } };
+      item.guid = {
+        _text: sanitizeUrl(entry.link),
+        _attributes: { isPermaLink: entry.isPermaLink ?? true },
+      };
     }
 
     if (entry.date) {

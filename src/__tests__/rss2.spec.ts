@@ -1,6 +1,56 @@
 import { Feed } from "../feed";
 import { createSampleFeed, published, sampleFeed, updated } from "./setup";
 
+describe("rss 2.0 isPermaLink override", () => {
+  it("should specify isPermaLink=true when feed item specifies an id and explicitly sets isPermaLink to true", () => {
+    const feed = createSampleFeed();
+    feed.addItem({
+      title: "Hello World",
+      id: "http://example.org/id-that-is-also-a-real-url",
+      link: "http://example.org/id-that-is-also-a-real-url",
+      isPermaLink: true,
+      date: published,
+    });
+    const actual = feed.rss2();
+    expect(actual).toContain('<guid isPermaLink="true">http://example.org/id-that-is-also-a-real-url</guid>');
+  });
+
+  it("should specify isPermaLink=false when feed item specifies only a link but explicitly sets isPermaLink to false", () => {
+    const feed = createSampleFeed();
+    feed.addItem({
+      title: "Hello World",
+      link: "http://example.org/link-that-is-not-a-stable-id",
+      isPermaLink: false,
+      date: published,
+    });
+    const actual = feed.rss2();
+    expect(actual).toContain('<guid isPermaLink="false">http://example.org/link-that-is-not-a-stable-id</guid>');
+  });
+
+  it("should still default to isPermaLink=false for a guid when isPermaLink is not set (no regression)", () => {
+    const feed = createSampleFeed();
+    feed.addItem({
+      title: "Hello World",
+      guid: "50e14f43-dd4e-412f-864d-78943ea28d91",
+      link: "http://example.org/guid",
+      date: published,
+    });
+    const actual = feed.rss2();
+    expect(actual).toContain('<guid isPermaLink="false">50e14f43-dd4e-412f-864d-78943ea28d91</guid>');
+  });
+
+  it("should still default to isPermaLink=true for a link-only item when isPermaLink is not set (no regression)", () => {
+    const feed = createSampleFeed();
+    feed.addItem({
+      title: "Hello World",
+      link: "http://example.org/link",
+      date: published,
+    });
+    const actual = feed.rss2();
+    expect(actual).toContain('<guid isPermaLink="true">http://example.org/link</guid>');
+  });
+});
+
 describe("rss 2.0", () => {
   it("should generate a valid feed", () => {
     const actual = sampleFeed.rss2();
