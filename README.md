@@ -201,7 +201,7 @@ Otherwise, you can stick with `require()`:
 
 ## Star History
 
-[![Star History Chart](https://api.star-history.com/svg?repos=jpmonette/feed&type=Date)](https://www.star-history.com/#jpmonette/feed&Date)
+[![Star History Chart](https://star-history.dera.page/svg?repos=jpmonette/feed&type=Date)](https://star-history.dera.page/#jpmonette/feed&Date)
 
 ## More Information
 
