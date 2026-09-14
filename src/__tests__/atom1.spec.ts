@@ -88,4 +88,20 @@ describe("atom 1.0", () => {
     });
     expect(feed.atom1()).not.toContain("<generator>");
   });
+
+  it("should keep a non-URL atom entry id", () => {
+    const feed = new Feed({
+      title: "Feed Title",
+      id: "http://example.com/",
+      link: "http://example.com/",
+    });
+    feed.addItem({
+      title: "Post",
+      id: "post-slug",
+      link: "https://example.com/post-slug",
+      date: updated,
+    });
+    const actual = feed.atom1();
+    expect(actual).toContain("<id>post-slug</id>");
+  });
 });
