@@ -19,7 +19,7 @@ export default (ins: Feed) => {
         link: { _text: sanitizeUrl(options.link) },
         description: { _text: options.description ?? "" },
         lastBuildDate: { _text: options.updated ? options.updated.toUTCString() : new Date().toUTCString() },
-        docs: { _text: options.docs ?? "https://validator.w3.org/feed/docs/rss2.html" },
+        docs: { _text: sanitizeUrl(options.docs) ?? "https://validator.w3.org/feed/docs/rss2.html" },
         ...(options.generator === false ? {} : { generator: { _text: options.generator ?? generator } }),
       },
     },
@@ -29,7 +29,7 @@ export default (ins: Feed) => {
     base._instruction = {
       "xml-stylesheet": {
         _attributes: {
-          href: options.stylesheet,
+          href: sanitizeUrl(options.stylesheet),
           type: "text/xsl",
         },
       },
@@ -49,7 +49,7 @@ export default (ins: Feed) => {
   if (options.image) {
     base.rss.channel.image = {
       title: { _text: options.title },
-      url: { _text: options.image },
+      url: { _text: sanitizeUrl(options.image) },
       link: { _text: sanitizeUrl(options.link) },
     };
   }
@@ -143,8 +143,8 @@ export default (ins: Feed) => {
     }
 
     if (Array.isArray(entry.category)) {
-      item.category = [];
       entry.category.forEach((category: Category) => {
+        if (!item.category) item.category = [];
         item.category.push(formatCategory(category));
       });
     }
@@ -160,7 +160,7 @@ export default (ins: Feed) => {
     if (entry.audio) {
       const duration =
         options.podcast && typeof entry.audio !== "string" && entry.audio.duration ? entry.audio.duration : undefined;
-      if (duration) {
+      if (duration && typeof entry.audio !== "string") {
         entry.audio.duration = undefined;
       }
       item.enclosure = formatEnclosure(entry.audio, "audio");
