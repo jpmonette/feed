@@ -298,6 +298,34 @@ describe("rss 2.0", () => {
     expect(actual).toContain("<extension_name>");
   });
 
+  it("should preserve multiple authors without email as dc:creator elements", () => {
+    const feed = new Feed({ title: "Feed Title", link: "https://example.com/" });
+    feed.addItem({
+      title: "An article",
+      link: "https://example.com/article",
+      date: updated,
+      author: [{ name: "Alice" }, { name: "Bob" }],
+    });
+
+    const actual = feed.rss2();
+    expect(actual).toContain("<dc:creator>Alice</dc:creator>");
+    expect(actual).toContain("<dc:creator>Bob</dc:creator>");
+  });
+
+  it("should preserve author and dc:creator elements when email availability is mixed", () => {
+    const feed = new Feed({ title: "Feed Title", link: "https://example.com/" });
+    feed.addItem({
+      title: "An article",
+      link: "https://example.com/article",
+      date: updated,
+      author: [{ name: "Alice", email: "alice@example.com" }, { name: "Bob" }],
+    });
+
+    const actual = feed.rss2();
+    expect(actual).toContain("<author>alice@example.com (Alice)</author>");
+    expect(actual).toContain("<dc:creator>Bob</dc:creator>");
+  });
+
   it("Should specify isPermaLink=false when feed item specifies a guid", () => {
     sampleFeed.addItem({
       title: "Hello World",
