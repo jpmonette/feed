@@ -4,6 +4,8 @@ import type { Feed } from "./feed";
 import type { Author, Category, Enclosure, Item } from "./typings";
 import { sanitize, sanitizeUrl } from "./utils";
 
+const mediaNamespace = "http://search.yahoo.com/mrss/";
+
 export default (ins: Feed) => {
   const { options } = ins;
 
@@ -126,6 +128,11 @@ export default (ins: Feed) => {
 
     if (item.image) {
       entry.link.push(formatEnclosure(item.image, "image"));
+
+      const imageUrl = sanitizeUrl(typeof item.image === "string" ? item.image : item.image.url);
+      base.feed._attributes["xmlns:media"] = mediaNamespace;
+      entry["media:thumbnail"] = { _attributes: { url: imageUrl } };
+      entry["media:content"] = { _attributes: { medium: "image", url: imageUrl } };
     }
 
     if (item.audio) {

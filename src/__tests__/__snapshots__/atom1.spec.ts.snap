@@ -1,8 +1,29 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
+exports[`atom 1.0 > should add Media RSS elements for item images 1`] = `
+"<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xmlns:media="http://search.yahoo.com/mrss/">
+    <id>http://example.com/</id>
+    <title>Feed Title</title>
+    <updated>2013-07-13T23:00:00.000Z</updated>
+    <generator>https://github.com/jpmonette/feed</generator>
+    <link rel="alternate" href="http://example.com/"/>
+    <rights>All rights reserved 2013, John Doe</rights>
+    <entry>
+        <title type="html"><![CDATA[Hello World]]></title>
+        <id>https://example.com/hello-world</id>
+        <link href="https://example.com/hello-world"/>
+        <link rel="enclosure" href="https://example.com/hello&amp;world.jpg" type="image/jpg"/>
+        <updated>2013-07-13T23:00:00.000Z</updated>
+        <media:thumbnail url="https://example.com/hello&amp;world.jpg"/>
+        <media:content medium="image" url="https://example.com/hello&amp;world.jpg"/>
+    </entry>
+</feed>"
+`;
+
 exports[`atom 1.0 > should generate a valid feed 1`] = `
 "<?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom">
+<feed xmlns="http://www.w3.org/2005/Atom" xmlns:media="http://search.yahoo.com/mrss/">
     <id>http://example.com/?link=sanitized&amp;value=4</id>
     <title>Feed Title</title>
     <updated>2013-07-13T23:00:00.000Z</updated>
@@ -49,6 +70,8 @@ exports[`atom 1.0 > should generate a valid feed 1`] = `
         </author>
         <category label="Grateful Dead"/>
         <category label="MSFT"/>
+        <media:thumbnail url="https://example.com/hello-world.jpg"/>
+        <media:content medium="image" url="https://example.com/hello-world.jpg"/>
         <contributor>
             <name>Shawn Kemp</name>
             <email>shawnkemp@example.com</email>
@@ -86,7 +109,7 @@ exports[`atom 1.0 > should generate a valid feed with stylesheet 1`] = `
 
 exports[`atom 1.0 > should sanitize enclosure url 1`] = `
 "<?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom">
+<feed xmlns="http://www.w3.org/2005/Atom" xmlns:media="http://search.yahoo.com/mrss/">
     <id>http://example.com/?link=sanitized&amp;value=4</id>
     <title>Feed Title</title>
     <updated>2013-07-13T23:00:00.000Z</updated>
@@ -133,6 +156,8 @@ exports[`atom 1.0 > should sanitize enclosure url 1`] = `
         </author>
         <category label="Grateful Dead"/>
         <category label="MSFT"/>
+        <media:thumbnail url="https://example.com/hello-world.jpg"/>
+        <media:content medium="image" url="https://example.com/hello-world.jpg"/>
         <contributor>
             <name>Shawn Kemp</name>
             <email>shawnkemp@example.com</email>

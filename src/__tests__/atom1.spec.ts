@@ -42,6 +42,47 @@ describe("atom 1.0", () => {
     expect(actual).toContain('<link rel="enclosure" href="https://example.com/hello&amp;world.png"');
   });
 
+  it("should add Media RSS elements for item images", () => {
+    const feed = new Feed({
+      title: "Feed Title",
+      id: "http://example.com/",
+      link: "http://example.com/",
+      copyright: "All rights reserved 2013, John Doe",
+      updated,
+    });
+
+    feed.addItem({
+      title: "Hello World",
+      link: "https://example.com/hello-world",
+      image: "https://example.com/hello&world.jpg",
+      date: updated,
+    });
+
+    const actual = feed.atom1();
+    expect(actual).toMatchSnapshot();
+    expect(actual).toContain('xmlns:media="http://search.yahoo.com/mrss/"');
+    expect(actual).toContain("media:thumbnail");
+    expect(actual).toContain("media:content");
+  });
+
+  it("should not declare the media namespace when no item has an image", () => {
+    const feed = new Feed({
+      title: "Feed Title",
+      id: "http://example.com/",
+      link: "http://example.com/",
+      copyright: "All rights reserved 2013, John Doe",
+      updated,
+    });
+
+    feed.addItem({
+      title: "Hello World",
+      link: "https://example.com/hello-world",
+      date: updated,
+    });
+
+    expect(feed.atom1()).not.toContain("xmlns:media");
+  });
+
   it("should escape & in category attributes", () => {
     const feed = new Feed({
       title: "Feed Title",
