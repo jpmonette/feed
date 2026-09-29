@@ -217,6 +217,37 @@ describe("rss 2.0", () => {
     expect(actual).toMatchSnapshot();
   });
 
+  it("should emit podcast categories as text attributes", () => {
+    const podcastFeed = new Feed({
+      title: "Feed Title",
+      id: "http://example.com/",
+      link: "http://example.com/",
+      podcast: true,
+      category: "History",
+    });
+    const actual = podcastFeed.rss2();
+    expect(actual).toContain('<itunes:category text="History"/>');
+    expect(actual).toContain('<googleplay:category text="History"/>');
+    expect(actual).not.toContain("<itunes:category>History</itunes:category>");
+    expect(actual).not.toContain("<googleplay:category>History</googleplay:category>");
+  });
+
+  it("should escape & in podcast category attributes", () => {
+    const podcastFeed = new Feed({
+      title: "Feed Title",
+      id: "http://example.com/",
+      link: "http://example.com/",
+      podcast: true,
+      category: "Society & Culture",
+    });
+    const actual = podcastFeed.rss2();
+    // unlike a text node, xml-js does not escape `&` inside an attribute value,
+    // so it must be escaped before being handed to the serializer
+    expect(actual).toContain('<itunes:category text="Society &amp; Culture"/>');
+    expect(actual).toContain('<googleplay:category text="Society &amp; Culture"/>');
+    expect(actual).not.toContain('text="Society & Culture"');
+  });
+
   it("should generate a valid feed with video", () => {
     const sampleFeed = new Feed({
       title: "Feed Title",

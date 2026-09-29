@@ -2,7 +2,7 @@ import * as convert from "xml-js";
 import { generator } from "./config";
 import type { Feed } from "./feed";
 import type { Author, Category, Enclosure, Extension, Item } from "./typings";
-import { sanitizeUrl } from "./utils";
+import { sanitize, sanitizeUrl } from "./utils";
 
 export default (ins: Feed) => {
   const { options, extensions } = ins;
@@ -201,8 +201,12 @@ export default (ins: Feed) => {
     base.rss._attributes["xmlns:googleplay"] = "http://www.google.com/schemas/play-podcasts/1.0";
     base.rss._attributes["xmlns:itunes"] = "http://www.itunes.com/dtds/podcast-1.0.dtd";
     if (options.category) {
-      base.rss.channel["googleplay:category"] = options.category;
-      base.rss.channel["itunes:category"] = options.category;
+      base.rss.channel["googleplay:category"] = {
+        _attributes: { text: sanitize(options.category) },
+      };
+      base.rss.channel["itunes:category"] = {
+        _attributes: { text: sanitize(options.category) },
+      };
     }
     if (options.author?.email) {
       base.rss.channel["googleplay:owner"] = options.author.email;
