@@ -4,4 +4,6 @@ export default defineConfig({
   entry: ["./src/feed.ts"],
   outDir: "./lib",
   sourcemap: true,
+  publint: true,
+  attw: true,
 });
