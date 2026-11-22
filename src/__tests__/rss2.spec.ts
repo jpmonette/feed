@@ -365,6 +365,34 @@ describe("rss 2.0", () => {
     expect(actual).toContain('<enclosure length="0" type="image/png" url="https://example.com/hello&amp;world.png"/>');
   });
 
+  it("should escape the category domain attribute", () => {
+    const feed = new Feed({ title: "Feed Title", id: "https://example.com/", link: "https://example.com/" });
+    feed.addItem({
+      title: "Hello World",
+      link: "https://example.com/hello-world",
+      date: published,
+      category: [{ name: "News", domain: "https://example.com/tags?lang=en&page=1<2>" }],
+    });
+    expect(feed.rss2()).toContain(
+      '<category domain="https://example.com/tags?lang=en&amp;page=1&lt;2&gt;">News</category>',
+    );
+  });
+
+  it("should not modify the item's audio when rendering a podcast", () => {
+    const feed = new Feed({
+      title: "Feed Title",
+      id: "https://example.com/",
+      link: "https://example.com/",
+      podcast: true,
+    });
+    const audio = { url: "https://example.com/episode.mp3", length: 12665, type: "audio/mpeg", duration: 125 };
+    feed.addItem({ title: "Episode", link: "https://example.com/episode", date: published, audio });
+
+    expect(feed.rss2()).toContain("<itunes:duration>02:05</itunes:duration>");
+    expect(feed.rss2()).toContain("<itunes:duration>02:05</itunes:duration>");
+    expect(audio.duration).toBe(125);
+  });
+
   it("should emit the default generator when none is provided", () => {
     const feed = new Feed({ title: "Feed Title", id: "https://example.com/", link: "https://example.com/" });
     expect(feed.rss2()).toContain("<generator>https://github.com/jpmonette/feed</generator>");
