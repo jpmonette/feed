@@ -64,6 +64,25 @@ describe("atom 1.0", () => {
     expect(actual).not.toContain("Arts & Crafts");
   });
 
+  it("should escape < and > in category attributes", () => {
+    const feed = new Feed({
+      title: "Feed Title",
+      id: "http://example.com/",
+      link: "http://example.com/",
+      updated,
+    });
+    feed.addCategory("C++ <templates>");
+    feed.addItem({
+      title: "Hello World",
+      link: "http://example.org/2013/12/14",
+      date: updated,
+      category: [{ name: "<b>Bold</b>", term: "a<b" }],
+    });
+    const actual = feed.atom1();
+    expect(actual).toContain('<category term="C++ &lt;templates&gt;"/>');
+    expect(actual).toContain('<category label="&lt;b&gt;Bold&lt;/b&gt;" term="a&lt;b"/>');
+  });
+
   it("should emit the default generator when none is provided", () => {
     const feed = new Feed({ title: "Feed Title", id: "https://example.com/", link: "https://example.com/" });
     expect(feed.atom1()).toContain("<generator>https://github.com/jpmonette/feed</generator>");

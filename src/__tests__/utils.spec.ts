@@ -1,4 +1,4 @@
-import { sanitize, sanitizeUrl } from "../utils";
+import { sanitize, sanitizeAttribute, sanitizeUrl } from "../utils";
 
 describe("sanitize", () => {
   it("should escape ampersands", () => {
@@ -7,6 +7,16 @@ describe("sanitize", () => {
 
   it("should return undefined for undefined input", () => {
     expect(sanitize(undefined)).toBeUndefined();
+  });
+});
+
+describe("sanitizeAttribute", () => {
+  it("should escape ampersands and angle brackets", () => {
+    expect(sanitizeAttribute("a&b <c> d")).toBe("a&amp;b &lt;c&gt; d");
+  });
+
+  it("should return undefined for undefined input", () => {
+    expect(sanitizeAttribute(undefined)).toBeUndefined();
   });
 });
 

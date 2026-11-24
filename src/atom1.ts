@@ -2,7 +2,7 @@ import * as convert from "xml-js";
 import { generator } from "./config";
 import type { Feed } from "./feed";
 import type { Author, Category, Enclosure, Item } from "./typings";
-import { sanitize, sanitizeUrl } from "./utils";
+import { sanitize, sanitizeAttribute, sanitizeUrl } from "./utils";
 
 export default (ins: Feed) => {
   const { options } = ins;
@@ -71,7 +71,7 @@ export default (ins: Feed) => {
   base.feed.category = [];
 
   ins.categories.forEach((category: string) => {
-    base.feed.category.push({ _attributes: { term: sanitize(category) } });
+    base.feed.category.push({ _attributes: { term: sanitizeAttribute(category) } });
   });
 
   base.feed.contributor = [];
@@ -198,9 +198,9 @@ const formatCategory = (category: Category) => {
 
   return {
     _attributes: {
-      label: sanitize(name),
+      label: sanitizeAttribute(name),
       scheme: sanitizeUrl(scheme),
-      term: sanitize(term),
+      term: sanitizeAttribute(term),
     },
   };
 };

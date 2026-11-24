@@ -2,7 +2,7 @@ import * as convert from "xml-js";
 import { generator } from "./config";
 import type { Feed } from "./feed";
 import type { Author, Category, Enclosure, Extension, Item } from "./typings";
-import { sanitizeUrl } from "./utils";
+import { sanitizeAttribute, sanitizeUrl } from "./utils";
 
 export default (ins: Feed) => {
   const { options, extensions } = ins;
@@ -160,10 +160,9 @@ export default (ins: Feed) => {
     if (entry.audio) {
       const duration =
         options.podcast && typeof entry.audio !== "string" && entry.audio.duration ? entry.audio.duration : undefined;
-      if (duration) {
-        entry.audio.duration = undefined;
-      }
-      item.enclosure = formatEnclosure(entry.audio, "audio");
+      // copy instead of mutating, so a second rss2() call still sees the duration
+      const audio = duration && typeof entry.audio !== "string" ? { ...entry.audio, duration: undefined } : entry.audio;
+      item.enclosure = formatEnclosure(audio, "audio");
 
       if (duration) {
         item["itunes:duration"] = formatDuration(duration);
@@ -241,7 +240,7 @@ const formatCategory = (category: Category) => {
   return {
     _text: name,
     _attributes: {
-      domain,
+      domain: sanitizeAttribute(domain),
     },
   };
 };
